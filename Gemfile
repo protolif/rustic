@@ -2,16 +2,13 @@ source 'http://rubygems.org'
 
 gem 'rails', '3.0.9'
 
-# Bundle edge Rails instead:
-# gem 'rails', :git => 'git://github.com/rails/rails.git'
-
-gem 'mysql2', '~> 0.2.6'
-
 group :development do
+  gem 'mysql2', '~> 0.2.6'
   gem 'rspec-rails', '2.6.1'
 end
 
 group :test do
+  gem 'mysql2', '~> 0.2.6'
   gem 'rspec-rails', '2.6.1'
   gem 'webrat', '0.7.1'
   gem 'autotest', '4.4.6'
