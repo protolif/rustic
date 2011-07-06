@@ -20,7 +20,9 @@ describe User do
       :fname => "Joseph",
       :lname => "Khamel",
       :email => "joseph.khamel@example.com",
-      :tel =>   "123.456.7890"
+      :tel =>   "123.456.7890",
+      :password => "pa55w0rD",
+      :password_confirmation => "pa55w0rD"
       }
   end
   
@@ -91,4 +93,43 @@ describe User do
     long_tel_user.should_not be_valid
   end
   
+  describe "password validations" do
+    
+    it "should require a password" do
+      joe_passwordless = User.new(@attr.merge(:password => "", :password_confirmation => ""))
+      joe_passwordless.should_not be_valid
+    end
+    
+    it "should require a matching password confirmation" do
+      joe_fatfingers = User.new(@attr.merge(:password_confirmation => "pashwort"))
+      joe_fatfingers.should_not be_valid
+    end
+    
+    it "should reject short passwords" do
+      pwd = "a" * 7
+      joe_laxpass = User.new(@attr.merge(:password => pwd, :password_confirmation => pwd))
+      joe_laxpass.should_not be_valid
+    end
+    
+    it "should reject long passwords" do
+      pwd = "a" * 21
+      joe_paranoid = User.new(@attr.merge(:password => pwd, :password_confirmation => pwd))
+      joe_paranoid.should_not be_valid
+    end
+  end
+  
+  describe "password encryption" do
+    
+    before(:each) do
+      @user = User.create!(@attr)
+    end
+    
+    it "should have an encrypted password attribute" do
+      @user.should respond_to(:encrypted_password)
+    end
+    
+    it "should set an encrypted password" do
+      @user.encrypted_password.should_not be_blank
+    end
+  end
 end
