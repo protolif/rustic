@@ -10,6 +10,7 @@
 #  created_at :datetime
 #  updated_at :datetime
 #
+require 'digest'
 
 class User < ActiveRecord::Base
   attr_accessor :password
@@ -30,14 +31,29 @@ class User < ActiveRecord::Base
 
   before_save :encrypt_password
   
-  private
+  #begin class methods
   
-    def encrypt_password
-      self.encrypted_password = encrypt(self.password)
+  def has_password?(submitted_password)
+    encrypted_password == encrypt(submitted_password)
+  end
+  
+  private #begin private methods
+    def secure_hash(string)
+      Digest::SHA2.hexdigest(string)
+    end
+    
+    def make_salt
+      secure_hash("#{Time.now.utc}--#{password}")
     end
     
     def encrypt(string)
-      string # This is not finished yet. For test/dev purposes only. Worst encryption ever.
+      secure_hash("#{salt}--#{string}")
     end
-  
+    
+    def encrypt_password #really works now ^_^
+      self.salt = make_salt if new_record?
+      self.encrypted_password = encrypt(password)
+    end
+  #end private methods
+  #end class methods
 end
