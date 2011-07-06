@@ -115,3 +115,10 @@ footer {
 footer nav {
   float: none;
 }
+
+/* Gravatar */
+
+img.gravatar {
+  border: 1px solid #999;
+  margin-bottom: -15px;
+}
