@@ -47,4 +47,56 @@ describe UsersController do
       response.should have_selector('title', :content => "Sign up")
     end
   end
+  
+  describe "POST 'create'" do
+    
+    describe 'failure' do
+      
+      before(:each) do
+        @attr = { :fname => '', :lname => '', :email => '',
+                  :tel => '', :password => '', :password_confirmation => '' }
+      end
+      
+      it "should not create a user" do
+        lambda do
+          post :create, :user => @attr
+        end.should_not change(User, :count)
+      end
+      
+      it "should have the correct title" do
+        post :create, :user => @attr
+        response.should have_selector('title', :content => "Sign up")
+      end
+      
+      it "should render the 'new' page" do
+        post :create, :user => @attr
+        response.should render_template('new')
+      end
+    end
+    
+    describe "success" do
+
+      before(:each) do
+        @attr = { :fname => "Joseph", :lname => "Khamel", :email => "user@example.com",
+                  :tel => "123.456.7890", :password => "pa55w0rD",
+                  :password_confirmation => "pa55w0rD" }
+      end
+      
+      it "should create a user" do
+        lambda do
+          post :create, :user => @attr
+        end.should change(User, :count).by(1)
+      end
+
+      it "should redirect to the user show page" do
+        post :create, :user => @attr
+        response.should redirect_to(user_path(assigns(:user)))
+      end
+      
+      it "should have a welcome message" do
+        post :create, :user => @attr
+        flash[:success].should =~ /success! welcome to csc./i
+      end
+    end
+  end
 end
