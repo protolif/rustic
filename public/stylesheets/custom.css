@@ -165,3 +165,9 @@ img.gravatar {
   font-size: 12px;
   list-style: square;
 }
+
+/* Logo */
+img.logo {
+	height: 100px;
+	width: auto;
+}
