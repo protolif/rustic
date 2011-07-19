@@ -5,6 +5,7 @@
 body {
   background-color: #666;
   background-image: url('/images/proto_bg.png');
+  background-attachment: fixed;
 }
 
 header {
@@ -50,7 +51,7 @@ nav {
 }
 
 nav {
-  background-color: white;
+  background-color: #fff;
   padding: 0 0.7em;
   white-space: nowrap;
 }
@@ -92,6 +93,18 @@ a.signup_button {
   font-size: 150%;
   font-weight: bold;
   padding: 20px;
+  background-image: -webkit-gradient(
+    linear,
+    left bottom,
+    left top,
+    color-stop(0.35, #003366),
+    color-stop(0.68, #006699)
+  );
+  background-image: -moz-linear-gradient(
+    center bottom,
+    #003366 35%,
+    #006699 68%
+  );
 }
 
 /* Round corners */
@@ -168,6 +181,24 @@ img.gravatar {
 
 /* Logo */
 img.logo {
-	height: 100px;
+	height: 80px;
 	width: auto;
 }
+
+/* Navigation Icons */
+.transparent {
+	zoom: 1;
+	filter: alpha(opacity=50);
+	opacity: 0.5;
+}
+img.nav_buttons {
+	height: 20px;
+	width: auto;
+	padding: 0;
+	vertical-align: top;
+	transition: height 0.5s;
+	-moz-transition: height 0.5s; /* Firefox 4 */
+	-webkit-transition: height 0.5s; /* Safari and Chrome */
+	-o-transition: height 0.5s; /* Opera */
+}
+img.nav_buttons:hover { height: 40px; }
