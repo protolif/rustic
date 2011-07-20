@@ -214,3 +214,13 @@ img.nav_buttons {
 	-o-transition: height 0.5s; /* Opera */
 }
 img.nav_buttons:hover { height: 40px; }
+
+/* User Index */
+ul.users {
+  margin-top: 1em;
+}
+
+.users li {
+  margin-top: 1em;
+  list-style: none;
+}
