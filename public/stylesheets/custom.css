@@ -31,17 +31,12 @@ section h1 {
 /* Links */
 
 a {
-  color: #09c;
+  color: #069;
   text-decoration: none;
 }
 
 a:hover {
-  color: #069;
-  text-decoration: underline;
-}
-
-a:visited {
-  color: #069;
+  color: #09f;
 }
 
 /* Navigation */
@@ -70,14 +65,11 @@ nav ul li {
 nav ul li a {
   padding: 0 5px;
   font-weight: bold;
-}
-
-nav ul li a:visited {
-  color: #09c;
+  color: #069;
 }
 
 nav ul li a:hover {
-  text-decoration: underline;
+  color: #09f;
 }
 
 /* Sign up button */
@@ -93,18 +85,38 @@ a.signup_button {
   font-size: 150%;
   font-weight: bold;
   padding: 20px;
+  text-decoration: none;
   background-image: -webkit-gradient(
     linear,
     left bottom,
     left top,
-    color-stop(0.35, #003366),
-    color-stop(0.68, #006699)
+    color-stop(0.16, #036),
+    color-stop(0.69, #069)
   );
   background-image: -moz-linear-gradient(
     center bottom,
-    #003366 35%,
-    #006699 68%
+    #036 16%,
+    #069 69%
   );
+  -webkit-box-shadow: 5px 5px 10px 5px #000;
+  -moz-box-shadow: 5px 5px 10px 5px #000;
+  box-shadow: 5px 5px 10px 5px #000;
+}
+
+a.signup_button:hover {
+	background-image: -webkit-gradient(
+	  linear,
+	  left bottom,
+	  left top,
+	  color-stop(0.16, #036),
+	  color-stop(0.69, #003)
+	);
+	background-image: -moz-linear-gradient(
+	  center bottom,
+	  #036 16%,
+	  #003 69%
+	);
+	color: #ddd;
 }
 
 /* Round corners */
