@@ -87,8 +87,8 @@ describe User do
     joseph_phoneless.should_not be_valid
   end
 
-  it "should reject telephone numbers longer than 12 characters" do
-    long_tel = "1" * 13
+  it "should reject telephone numbers longer than 22 characters" do
+    long_tel = "1" * 23
     long_tel_user = User.new(@attr.merge(:tel => long_tel))
     long_tel_user.should_not be_valid
   end

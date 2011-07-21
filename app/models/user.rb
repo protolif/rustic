@@ -20,7 +20,7 @@ class User < ActiveRecord::Base
   
   validates :fname, :presence =>  true, :length => { :maximum => 20 }
   validates :lname, :presence =>  true, :length => { :maximum => 20 }
-  validates :tel,   :presence =>  true, :length => { :maximum => 12 }
+  validates :tel,   :presence =>  true, :length => { :maximum => 22 }
   validates :email, :presence =>  true,
                     :format   =>  { :with => email_regex},
                     :uniqueness => { :case_sensitive => false }
