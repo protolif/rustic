@@ -20,7 +20,7 @@ class User < ActiveRecord::Base
   
   validates :fname, :presence =>  true, :length => { :maximum => 20 }
   validates :lname, :presence =>  true, :length => { :maximum => 20 }
-  validates :tel,   :presence =>  true, :length => { :maximum => 22 }
+  validates :tel,   :presence =>  true, :length => { :within => 10..22 }
   validates :email, :presence =>  true,
                     :format   =>  { :with => email_regex},
                     :uniqueness => { :case_sensitive => false }
@@ -30,8 +30,7 @@ class User < ActiveRecord::Base
                        :length => { :within => 8..20 }
 
   before_save :encrypt_password
-  
-  #begin class methods
+  before_save :transform_data
   
   def has_password?(submitted_password)
     encrypted_password == encrypt(submitted_password)
@@ -47,7 +46,7 @@ class User < ActiveRecord::Base
     (user && user.salt == cookie_salt) ? user : nil
   end
   
-  private #begin private methods
+  private
     def secure_hash(string)
       Digest::SHA2.hexdigest(string)
     end
@@ -64,6 +63,9 @@ class User < ActiveRecord::Base
       self.salt = make_salt if new_record?
       self.encrypted_password = encrypt(password)
     end
-  #end private methods
-  #end class methods
+    
+    def transform_data
+      self.tel.gsub!(/\D/, "") #strips non-numeric values
+      self.tel = self.tel.slice(/\d{10}/) #strips the first 10 digits
+    end
 end

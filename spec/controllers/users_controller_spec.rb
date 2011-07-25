@@ -134,7 +134,7 @@ describe UsersController do
           post :create, :user => @attr
         end.should change(User, :count).by(1)
       end
-
+      
       it "should redirect to the user show page" do
         post :create, :user => @attr
         response.should redirect_to(user_path(assigns(:user)))

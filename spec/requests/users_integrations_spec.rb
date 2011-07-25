@@ -37,6 +37,7 @@ describe "UsersIntegrations" do
           response.should have_selector("div.flash.success", :content => "Success")
           response.should render_template("users/show")
         end.should change(User, :count).by(1)
+        assigns(:user).tel.should == "1234567890"
       end
     end
   end
