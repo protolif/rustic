@@ -148,17 +148,26 @@ img.gravatar {
   margin-bottom: -15px;
 }
 
-/* Error Messages */
+/* Form Fields */
 
-.field_with_errors {
-  margin-top: 0;
-  padding: 0;
-  background-color: red;
-  display: table;
+form label, form span label { 
+  display: block;  /* block float the labels to left column, set a width */
+  float: left; 
+  width: 100px; 
+  padding: 0; 
+  margin: 5px 5px 0; /* set top margin same as form input - textarea etc. elements */
+  text-align: right; 
 }
 
+
+/* Error Messages */
+
 .field_with_errors label {
-  color: #fff;
+  color: #f00;
+}
+
+.field_with_errors input {
+  border: 3px solid #f00;
 }
 
 #error_explanation {
