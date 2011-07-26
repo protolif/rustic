@@ -17,11 +17,15 @@ describe User do
   
   before(:each) do
     @attr = {
-      :fname => "Joseph",
-      :lname => "Khamel",
-      :email => "joseph.khamel@example.com",
-      :tel =>   "123.456.7890",
-      :password => "pa55w0rD",
+      :fname   => "Joseph",
+      :lname   => "Khamel",
+      :email   => "joseph.khamel@example.com",
+      :tel     => "123.456.7890",
+      :address => "123 Example Street",
+      :city    => "Indianapolis",
+      :state   => "IN",
+      :zip     => "46268",
+      :password              => "pa55w0rD",
       :password_confirmation => "pa55w0rD"
       }
   end
@@ -83,10 +87,30 @@ describe User do
   end
 
   it "should require a telephone number" do
-    joseph_phoneless = User.new(@attr.merge(:tel => ""))
-    joseph_phoneless.should_not be_valid
+    joe_phoneless = User.new(@attr.merge(:tel => ""))
+    joe_phoneless.should_not be_valid
   end
 
+  it "should require an address" do
+    joe_homeless = User.new(@attr.merge(:address => ""))
+    joe_homeless.should_not be_valid
+  end
+  
+  it "should require a city" do
+    joe_homeless = User.new(@attr.merge(:city => ""))
+    joe_homeless.should_not be_valid
+  end
+  
+  it "should require a state" do
+    joe_homeless = User.new(@attr.merge(:state => ""))
+    joe_homeless.should_not be_valid
+  end
+  
+  it "should require a zip" do
+    joe_homeless = User.new(@attr.merge(:zip => ""))
+    joe_homeless.should_not be_valid
+  end
+  
   it "should reject telephone numbers longer than 22 characters" do
     long_tel = "1" * 23
     long_tel_user = User.new(@attr.merge(:tel => long_tel))

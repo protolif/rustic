@@ -46,7 +46,7 @@ module ApplicationHelper
   end
   
   def logout_icon
-    image_tag("logout_icon.png",
+    image_tag("close_icon.png",
               :alt => "Sign out",
               :class => "nav_buttons")
   end

@@ -13,6 +13,10 @@ describe "UsersIntegrations" do
           fill_in "Last Name",    :with => ""
           fill_in "Email",        :with => ""
           fill_in "Phone Number", :with => ""
+          fill_in "Address",      :with => ""
+          fill_in "City",         :with => ""
+          fill_in "State",        :with => ""
+          fill_in "Zip",          :with => ""
           fill_in "Password",     :with => ""
           fill_in "Confirmation", :with => ""
           click_button
@@ -31,6 +35,10 @@ describe "UsersIntegrations" do
           fill_in "Last Name",    :with => "Khamel"
           fill_in "Email",        :with => "joseph.khamel@example.com"
           fill_in "Phone Number", :with => "123.456.7890"
+          fill_in "Address",      :with => "123 Example Street"
+          fill_in "City",         :with => "Indianapolis"
+          fill_in "State",        :with => "IN"
+          fill_in "Zip",          :with => "46268"
           fill_in "Password",     :with => "pa55w0rD"
           fill_in "Confirmation", :with => "pa55w0rD"
           click_button

@@ -100,8 +100,18 @@ describe UsersController do
     describe 'failure' do
       
       before(:each) do
-        @attr = { :fname => '', :lname => '', :email => '',
-                  :tel => '', :password => '', :password_confirmation => '' }
+        @attr = {
+          :fname   => "",
+          :lname   => "",
+          :email   => "",
+          :tel     => "",
+          :address => "",
+          :city    => "",
+          :state   => "",
+          :zip     => "",
+          :password              => "",
+          :password_confirmation => ""
+          }
       end
       
       it "should not create a user" do
@@ -124,9 +134,18 @@ describe UsersController do
     describe "success" do
 
       before(:each) do
-        @attr = { :fname => "Joseph", :lname => "Khamel", :email => "user@example.com",
-                  :tel => "123.456.7890", :password => "pa55w0rD",
-                  :password_confirmation => "pa55w0rD" }
+        @attr = {
+          :fname   => "Joseph",
+          :lname   => "Khamel",
+          :email   => "joseph.khamel@example.com",
+          :tel     => "123.456.7890",
+          :address => "123 Example Street",
+          :city    => "Indianapolis",
+          :state   => "IN",
+          :zip     => "46268",
+          :password              => "pa55w0rD",
+          :password_confirmation => "pa55w0rD"
+          }
       end
       
       it "should create a user" do
@@ -186,12 +205,18 @@ describe UsersController do
     describe "failure" do
 
       before(:each) do
-        @attr = { :email => "",
-                  :fname => "",
-                  :lname => "",
-                  :tel => "",
-                  :password => "",
-                  :password_confirmation => "" }
+        @attr = {
+          :fname   => "",
+          :lname   => "",
+          :email   => "",
+          :tel     => "",
+          :address => "",
+          :city    => "",
+          :state   => "",
+          :zip     => "",
+          :password              => "",
+          :password_confirmation => ""
+          }
       end
       
       it "should render the 'edit' page" do
@@ -208,12 +233,18 @@ describe UsersController do
     describe "success" do
       
       before(:each) do
-        @attr = { :fname => "Foo",
-                  :lname => "Bar",
-                  :email => "foobar@example.org",
-                  :tel => "123.456.7890",
-                  :password => "asdf1234",
-                  :password_confirmation => "asdf1234" }
+        @attr = {
+          :fname   => "Joseph",
+          :lname   => "Khamel",
+          :email   => "joseph.khamel@example.com",
+          :tel     => "123.456.7890",
+          :address => "123 Example Street",
+          :city    => "Indianapolis",
+          :state   => "IN",
+          :zip     => "46268",
+          :password              => "pa55w0rD",
+          :password_confirmation => "pa55w0rD"
+          }
       end
       
       it "should change the user's attributes" do

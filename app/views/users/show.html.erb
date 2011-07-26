@@ -4,5 +4,7 @@
 </h1>
 <p>
   Phone: <%= number_to_phone(@user.tel, :delimiter => '.') %><br />
-  Email: <%= @user.email %>
+  Email: <%= @user.email %><br />
+  Address: <%= "#{@user.address}, #{@user.city}, #{@user.state} #{@user.zip}" %>
+  <%= require 'uri' %>
 </p>
