@@ -2,13 +2,20 @@
 #
 # Table name: users
 #
-#  id         :integer(4)      not null, primary key
-#  fname      :string(255)
-#  lname      :string(255)
-#  email      :string(255)
-#  tel        :string(255)
-#  created_at :datetime
-#  updated_at :datetime
+#  id                 :integer(4)      not null, primary key
+#  fname              :string(255)
+#  lname              :string(255)
+#  email              :string(255)
+#  tel                :string(255)
+#  created_at         :datetime
+#  updated_at         :datetime
+#  encrypted_password :string(255)
+#  salt               :string(255)
+#  admin              :boolean(1)      default(FALSE)
+#  address            :string(255)
+#  city               :string(255)
+#  state              :string(255)
+#  zip                :string(255)
 #
 
 require 'spec_helper'
@@ -203,6 +210,30 @@ describe User do
     it "should be convertible to an admin" do
       @user.toggle!(:admin)
       @user.should be_admin
+    end
+  end
+  
+  describe "computer association" do
+    
+    before(:each) do
+      @user = User.create!(@attr)
+      @pc1  = Factory(:computer, :user => @user, :created_at => 1.day.ago)
+      @pc2  = Factory(:computer, :user => @user, :created_at => 1.hour.ago)
+    end
+    
+    it "should have a computer attribute" do
+      @user.should respond_to(:computers)
+    end
+    
+    it "should have the correct computers in the proper order" do
+      @user.computers.should == [@pc2, @pc1]
+    end
+    
+    it "should destroy associated computers" do
+      @user.destroy
+      [@pc1, @pc2].each do |computer|
+        Computer.find_by_id(computer.id).should be_nil
+      end
     end
   end
 end

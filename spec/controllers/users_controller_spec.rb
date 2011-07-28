@@ -80,6 +80,14 @@ describe UsersController do
       get :show, :id => @user
       response.should have_selector("h1>img", :class => "gravatar")
     end
+    
+    it "should show the user's computers" do
+      pc1 = Factory(:computer, :user => @user, :model => "MacBook Pro")
+      pc2 = Factory(:computer, :user => @user, :model => "iMac")
+      get :show, :id => @user
+      response.should have_selector("tr.computer>td", :content => pc1.model)
+      response.should have_selector("tr.computer>td", :content => pc2.model)
+    end
   end
 
   describe "GET 'new'" do

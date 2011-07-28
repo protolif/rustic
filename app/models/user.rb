@@ -2,14 +2,22 @@
 #
 # Table name: users
 #
-#  id         :integer(4)      not null, primary key
-#  fname      :string(255)
-#  lname      :string(255)
-#  email      :string(255)
-#  tel        :string(255)
-#  created_at :datetime
-#  updated_at :datetime
+#  id                 :integer(4)      not null, primary key
+#  fname              :string(255)
+#  lname              :string(255)
+#  email              :string(255)
+#  tel                :string(255)
+#  created_at         :datetime
+#  updated_at         :datetime
+#  encrypted_password :string(255)
+#  salt               :string(255)
+#  admin              :boolean(1)      default(FALSE)
+#  address            :string(255)
+#  city               :string(255)
+#  state              :string(255)
+#  zip                :string(255)
 #
+
 require 'digest'
 
 class User < ActiveRecord::Base
@@ -17,6 +25,8 @@ class User < ActiveRecord::Base
   attr_accessible :fname, :lname, :email, :tel, 
                   :address, :city, :state, :zip,
                   :password, :password_confirmation
+  
+  has_many :computers, :dependent => :destroy
   
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   
