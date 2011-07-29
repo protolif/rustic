@@ -8,8 +8,8 @@
 #  user_id    :integer(4)
 #  created_at :datetime
 #  updated_at :datetime
+#  serial     :string(255)
 #
-
 require 'spec_helper'
 
 describe Computer do
@@ -18,7 +18,8 @@ describe Computer do
     @user = Factory(:user)
     @attr = {
       :make  => "Apple",
-      :model => "MacBook Pro"
+      :model => "MacBook Pro",
+      :serial => "a1039857"
     }
   end
   
@@ -48,9 +49,19 @@ describe Computer do
       Computer.new(@attr).should_not be_valid
     end
     
-    it "should require nonblank make & model" do
+    it "should require nonblank make, & model" do
       @user.computers.build(:make  => " ",
                             :model => " ").should_not be_valid
+    end
+    
+    it "should require a serial number" do
+      hot_laptop = @user.computers.build(@attr.merge(:serial => ""))
+      hot_laptop.should_not be_valid
+    end
+    
+    it "should reject blank serial numbers" do
+      hot_laptop = @user.computers.build(@attr.merge(:serial => "   "))
+      hot_laptop.should_not be_valid
     end
     
     it "should reject long make & model" do

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110727045619) do
+ActiveRecord::Schema.define(:version => 20110729010402) do
 
   create_table "computers", :force => true do |t|
     t.string   "make"
@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(:version => 20110727045619) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "serial"
   end
 
   add_index "computers", ["created_at"], :name => "index_computers_on_created_at"

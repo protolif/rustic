@@ -18,5 +18,6 @@ end
 Factory.define :computer do |computer|
   computer.make "Apple"
   computer.model "MacBook Pro"
+  computer.serial "a103847594"
   computer.association :user
 end

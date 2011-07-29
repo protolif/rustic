@@ -108,18 +108,17 @@ describe UsersController do
     describe 'failure' do
       
       before(:each) do
-        @attr = {
-          :fname   => "",
-          :lname   => "",
-          :email   => "",
-          :tel     => "",
-          :address => "",
-          :city    => "",
-          :state   => "",
-          :zip     => "",
-          :password              => "",
-          :password_confirmation => ""
-          }
+        @attr = { :fname   => "",
+                  :lname   => "",
+                  :email   => "",
+                  :tel     => "",
+                  :address => "",
+                  :city    => "",
+                  :state   => "",
+                  :zip     => "",
+                  :password              => "",
+                  :password_confirmation => ""
+        }
       end
       
       it "should not create a user" do

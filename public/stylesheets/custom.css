@@ -1,6 +1,4 @@
-.container {
-  width: 710px;
-}
+.container { width: 710px }
 
 body {
   background-color: #666;
@@ -8,9 +6,7 @@ body {
   background-attachment: fixed;
 }
 
-header {
-  padding-top: 20px;
-}
+header { padding-top: 20px }
 
 header img {
   padding: 1em;
@@ -29,21 +25,15 @@ section h1 {
 }
 
 /* Links */
-
 a {
   color: #069;
   text-decoration: none;
 }
 
-a:hover {
-  color: #09f;
-}
+a:hover { color: #09f }
 
 /* Navigation */
-
-nav {
-  float: right;
-}
+nav { float: right }
 
 nav {
   background-color: #fff;
@@ -68,9 +58,7 @@ nav ul li a {
   color: #069;
 }
 
-nav ul li a:hover {
-  color: #09f;
-}
+nav ul li a:hover { color: #09f }
 
 /* Sign up button */
 
@@ -104,23 +92,79 @@ a.signup_button {
 }
 
 a.signup_button:hover {
-	background-image: -webkit-gradient(
-	  linear,
-	  left bottom,
-	  left top,
-	  color-stop(0.16, #036),
-	  color-stop(0.69, #003)
+  background-image: -webkit-gradient(
+	linear,
+	left bottom,
+	left top,
+	color-stop(0.16, #036),
+	color-stop(0.69, #003)
 	);
-	background-image: -moz-linear-gradient(
-	  center bottom,
-	  #036 16%,
-	  #003 69%
-	);
-	color: #ddd;
+  background-image: -moz-linear-gradient(
+	center bottom,
+	#036 16%,
+	#003 69%
+  );
+  color: #ddd;
 }
 
-/* Round corners */
+/* Add Button */
+.add {
+  color: #fff;
+  background-color: #080;
+  text-align: center;
+  vertical-align: 1em;
+  padding: 0 6px 3px;
+  margin: 0;
+  vertical-align: bottom;
+  background-image: -webkit-gradient(
+    linear,
+    left top,
+    right bottom,
+    color-stop(0.15, #3f3),
+    color-stop(0.58, #080)
+  );
+  background-image: -moz-linear-gradient(
+    left top,
+    #3f3 15%,
+    #080 58%
+  );
+}
 
+/* Subtract Button */
+.subtract {
+  color: #fff;
+  background-color: #800;
+  text-align: center;
+  vertical-align: 1em;
+  padding: 0 7px 3px;
+  margin: 0;
+  font-weight: bold;
+  vertical-align: bottom;
+  background-image: -webkit-gradient(
+    linear,
+    left top,
+    right bottom,
+    color-stop(0.15, #f66),
+    color-stop(0.58, #800)
+  );
+  background-image: -moz-linear-gradient(
+    left top,
+    #f66 15%,
+    #800 58%
+  );
+}
+
+/* Edit Button*/
+.edit_button {
+  vertical-align: bottom;
+  height: 23px;
+  width: auto;
+  padding: 0 10px 0 0;
+  background-image: url('images/write.png');
+}
+
+
+/* Round corners */
 .round {
   -moz-border-radius:    10px;
   -webkit-border-radius: 10px;
@@ -128,7 +172,6 @@ a.signup_button:hover {
 }
 
 /* Footer */
-
 footer {
   text-align: center;
   margin-top: 10px;
@@ -137,19 +180,15 @@ footer {
   margin-right: auto;
 }
 
-footer nav {
-  float: none;
-}
+footer nav { float: none }
 
 /* Gravatar */
-
 img.gravatar {
   border: 1px solid #999;
   margin-bottom: -15px;
 }
 
 /* Form Fields */
-
 form label, form span label { 
   display: block;  /* block float the labels to left column, set a width */
   float: left; 
@@ -159,16 +198,11 @@ form label, form span label {
   text-align: right; 
 }
 
+div.signin label { width: 70px }
 
 /* Error Messages */
-
-.field_with_errors label {
-  color: #f00;
-}
-
-.field_with_errors input {
-  border: 3px solid #f00;
-}
+.field_with_errors label { color: #f00 }
+.field_with_errors input { border: 3px solid #f00 }
 
 #error_explanation {
   width: 400px;
@@ -202,32 +236,30 @@ form label, form span label {
 
 /* Logo */
 img.logo {
-	height: 80px;
-	width: auto;
+  height: 80px;
+  width: auto;
 }
 
 /* Navigation Icons */
 .transparent {
-	zoom: 1;
-	filter: alpha(opacity=50);
-	opacity: 0.5;
+  zoom: 1;
+  filter: alpha(opacity=50);
+  opacity: 0.5;
 }
 img.nav_buttons {
-	height: 20px;
-	width: auto;
-	padding: 0;
-	vertical-align: top;
-	transition: height 0.5s;
-	-moz-transition: height 0.5s; /* Firefox 4 */
-	-webkit-transition: height 0.5s; /* Safari and Chrome */
-	-o-transition: height 0.5s; /* Opera */
+  height: 20px;
+  width: auto;
+  padding: 0;
+  vertical-align: top;
+  transition: height 0.5s;
+  -moz-transition: height 0.5s; /* Firefox 4 */
+  -webkit-transition: height 0.5s; /* Safari and Chrome */
+  -o-transition: height 0.5s; /* Opera */
 }
-img.nav_buttons:hover { height: 40px; }
+img.nav_buttons:hover { height: 40px }
 
 /* User Index */
-ul.users {
-  margin-top: 1em;
-}
+ul.users { margin-top: 1em }
 
 .users li {
   margin-top: 1em;

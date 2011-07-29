@@ -13,9 +13,15 @@ namespace :db do
                          :password => "pa55w0rD",
                          :password_confirmation => "pa55w0rD")
     admin.toggle!(:admin)
-    admin.computers.create!(:make => 'Apple', :model => 'MacBook Pro')
-    admin.computers.create!(:make => 'Apple', :model => 'PowerMac G4')
-    admin.computers.create!(:make => 'Custom', :model => 'Black NZXT')
+    admin.computers.create!(:make => 'Apple',
+                            :model => 'MacBook Pro',
+                            :serial => SecureRandom.hex(10))
+    admin.computers.create!(:make => 'Apple',
+                            :model => 'PowerMac G4',
+                            :serial => SecureRandom.hex(10))
+    admin.computers.create!(:make => 'Custom',
+                            :model => 'Black NZXT',
+                            :serial => SecureRandom.hex(10))
     
     manufacturers = ['Acer', 'Compaq', 'eMachines', 'Everex', 'Gateway', 'Apple',
                      'Asus', 'Dell', 'Alienware', 'Falcon Northwest', 'Fujitsu',
@@ -47,7 +53,9 @@ namespace :db do
                               :password              => password,
                               :password_confirmation => password)
       3.times do
-       user.computers.create!(:make => manufacturers.rand, :model => models.rand)
+       user.computers.create!(:make => manufacturers.rand,
+                              :model => models.rand,
+                              :serial => SecureRandom.hex(10))
       end
     end
   end

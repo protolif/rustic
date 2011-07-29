@@ -51,4 +51,9 @@ module ApplicationHelper
               :class => "nav_buttons")
   end
   
+  def edit_icon
+    image_tag("write.png",
+              :alt => "Edit",
+              :class => "edit_button")
+  end
 end
