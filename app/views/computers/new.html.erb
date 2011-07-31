@@ -14,6 +14,7 @@
     <%= f.label :serial %>
     <%= f.text_field :serial %>
   </div>
+  <%= hidden_field_tag :user_id, params[:user_id] %>
   <div class='actions'>
     <%= f.label nil %>
     <%= f.submit "Submit" %>

@@ -31,13 +31,14 @@
 		  </td>
 		</tr>
 	  </table>
-   	  <% if @user.computers.any? %>
 	  <table>
 		<tr>
 		  <th colspan="3"><%= "#{@user.fname}'s Computers" %>
-			<%= link_to(content_tag(:span, "+", :class => "add round"), new_computer_path) %>
+			  <%= link_to(content_tag(:span, "+", :class => "add round"),
+			              new_computer_path + "?user_id=#{@user.id}") %>
 		  </th>
 		</tr>
+		<% if @user.computers.any? %>
 	  	<tr>
 	  	  <th>Make</th><th>Model</th><th>Serial</th><th>First Visit</th><th>&nbsp;</th>
 	  	</tr>
@@ -49,12 +50,23 @@
 	      <td><%= "#{time_ago_in_words(computer.created_at)} ago" %></td>
 	      <td>
 		    <a href="#"><%= edit_icon %></a>
-		    <a href="#"><span class="subtract round">&#45;</span></a>
+		    <%= link_to content_tag(:span, "-", :class => "subtract round"),
+		                computer,
+		                :method => :delete,
+				            :confirm => "You sure?",
+				            :title => "#{computer.make} #{computer.model}" %>
+		  </td>
+	    </tr>
+	    <% end %>
+	    <% else %>
+	    <tr>
+	      <td colspan="5">
+		    It looks like you don't have any computers registered yet.
+		    Click the green plus icon above to add computers to your account.
 		  </td>
 	    </tr>
 	    <% end %>
 	  </table>
     </td>
-    <% end %>
   </tr>
 </table>
