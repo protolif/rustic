@@ -51,7 +51,7 @@
 	      <td>
 		    <a href="#"><%= edit_icon %></a>
 		    <%= link_to content_tag(:span, "-", :class => "subtract round"),
-		                computer,
+		                computer_path(computer) + "?user_id=#{@user.id}",
 		                :method => :delete,
 				            :confirm => "You sure?",
 				            :title => "#{computer.make} #{computer.model}" %>

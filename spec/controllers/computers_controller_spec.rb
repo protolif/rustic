@@ -111,7 +111,7 @@ describe ComputersController do
       
       it "should delete the computer" do
         lambda do
-          delete :destroy, :id => @computer
+          delete :destroy, :id => @computer, :user_id => @user.id
         end.should change(Computer, :count).by(-1)
         flash[:success].should =~ /successfully destroyed/i
       end

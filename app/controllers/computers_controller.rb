@@ -16,23 +16,27 @@ class ComputersController < ApplicationController
     else
       flash[:error] = "Unable to save computer."
     end
-    redirect_to user_path(@computer.user)
+    redirect_to user_path(@user)
   end
   
   def destroy
-    if @computer.destroy
+    @computer = @user.computers.find_by_id(params[:id])
+    if @computer && @computer.destroy
       flash[:success] = "Computer successfully destroyed."
     else
       flash[:error] = "Error destroying computer."
     end
-    redirect_back_or(user_path(@user))
+    redirect_to user_path(@user)
   end
   
   private
+  
+    def on_behalf_of(user)
+      (current_user.admin?) ? user : current_user
+    end
     
     def correct_user
-      @computer = Computer.find_by_id(params[:id])
-      @user = @computer.user
-      redirect_to(root_path) if !current_user?(@user) && !current_user.admin?
+      #if admin else current_user
+      @user = on_behalf_of(User.find_by_id(params[:user_id]))
     end
 end
