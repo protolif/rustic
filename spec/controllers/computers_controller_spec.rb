@@ -126,4 +126,71 @@ describe ComputersController do
       end
     end
   end
+  
+  describe "security model" do
+    
+    describe "admins acting on behalf of users" do
+
+      before(:each) do
+        @user     = test_sign_in(Factory(:user))
+        @user_pc  = Factory(:computer, :user => @user)
+        @admin    = test_sign_in(Factory(:user, :email => "joe.admin@example.com"))
+        @admin.toggle!(:admin)
+      end
+
+      describe "POST 'create'" do
+
+        it "should be able to create computers for them" do
+          @attr = { :make   => "Dell",
+                    :model  => "D600",
+                    :serial => SecureRandom.hex(10) }
+          lambda do          
+            post :create, :computer => @attr, :user_id => @user.id
+          end.should change(Computer, :count).by(1)
+        end
+      end
+
+      describe "DELETE 'destroy'" do
+
+        it "should be able to destroy computers for them" do
+          lambda do
+            delete :destroy, :id => @user_pc, :user_id => @user.id
+          end.should change(Computer, :count).by(-1)
+          flash[:success].should =~ /successfully destroyed/i
+        end
+      end
+    end
+
+    describe "users attempting to act on behalf of users" do
+
+      before(:each) do
+        @john = test_sign_in(Factory(:user))
+        @john_pc  = Factory(:computer, :user => @john)
+        @jane = test_sign_in(Factory(:user, :email => "jane@example.com"))
+      end
+
+      describe "POST 'create'" do
+
+        it "creates a computer for themselves, as hopefully intended" do
+          @attr = { :make   => "Dell",
+                    :model  => "D600",
+                    :serial => SecureRandom.hex(10) }
+          lambda do
+            lambda do          
+              post :create, :computer => @attr, :user_id => @john.id
+            end.should_not change(@john.computers, :count)
+          end.should change(@jane.computers, :count).by(1)
+        end
+      end
+
+      describe "DELETE 'destroy'" do
+
+        it "should NOT destroy any computers" do
+          lambda do
+            delete :destroy, :id => @john_pc, :user_id => @john.id
+          end.should_not change(Computer, :count)
+        end
+      end
+    end
+  end
 end

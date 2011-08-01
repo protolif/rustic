@@ -1,15 +1,13 @@
 class ComputersController < ApplicationController
   before_filter :authenticate
-  before_filter :correct_user, :only => [:destroy]
+  before_filter :correct_user, :only => [:destroy, :create, :new]
   
   def new
     @title = "New Computer"
-    @user = User.find_by_id(params[:user_id])
     @computer = @user.computers.new
   end
   
   def create
-    @user = User.find_by_id(params[:user_id])
     @computer = @user.computers.build(params[:computer])
     if @computer.save
       flash[:success] = "Computer successfully saved."
