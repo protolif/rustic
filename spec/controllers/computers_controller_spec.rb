@@ -118,6 +118,45 @@ describe ComputersController do
     end
   end
   
+  describe "PUT 'update'" do
+    
+    before(:each) do
+      @user = test_sign_in(Factory(:user))
+      @computer = Factory(:computer, :user => @user)
+    end
+    
+    describe "failure" do
+      
+      before(:each) do
+        @attr = { :make   => "",
+                  :model  => "",
+                  :serial => "" }
+      end
+      
+      it "should render the 'edit' page" do
+        put :update, :id => @computer, :computer => @attr, :user_id => @user.id
+        response.should render_template('edit')
+      end
+    end
+    
+    describe "success" do
+      
+     before(:each) do
+        @attr = { :make   => "Apple",
+                  :model  => "MacBook Pro",
+                  :serial => SecureRandom.hex(10) }
+      end
+      
+      it "should change the computer's attributes" do
+        put :update, :id => @computer, :computer => @attr, :user_id => @user.id
+        @computer.reload
+        @computer.make.should    == @attr[:make]
+        @computer.model.should   == @attr[:model]
+        @computer.serial.should  == @attr[:serial]
+      end
+    end
+  end
+  
   describe "DELETE 'destroy'" do
     
     describe "for signed-in users" do
@@ -167,7 +206,22 @@ describe ComputersController do
           end.should change(Computer, :count).by(1)
         end
       end
-
+      
+      describe "PUT 'update'" do
+                  
+        it "should update the computer's attributes for them" do
+          @attr = { :make   => "Apple",
+                    :model  => "MacBook Pro",
+                    :serial => SecureRandom.hex(10) }
+                    
+          put :update, :id => @user_pc, :computer => @attr, :user_id => @user.id
+          @user_pc.reload
+          @user_pc.make.should    == @attr[:make]
+          @user_pc.model.should   == @attr[:model]
+          @user_pc.serial.should  == @attr[:serial]
+        end
+      end
+      
       describe "DELETE 'destroy'" do
 
         it "should be able to destroy computers for them" do
@@ -200,7 +254,22 @@ describe ComputersController do
           end.should change(@jane.computers, :count).by(1)
         end
       end
-
+      
+      describe "PUT 'update'" do
+                  
+        it "should NOT update the computer's attributes" do
+          @attr = { :make   => "Fujitsu",
+                    :model  => "Lifebook",
+                    :serial => SecureRandom.hex(10) }
+                    
+          put :update, :id => @john_pc, :computer => @attr, :user_id => @john.id
+          @john_pc.reload
+          @john_pc.make.should_not   == @attr[:make]
+          @john_pc.model.should_not  == @attr[:model]
+          @john_pc.serial.should_not == @attr[:serial]
+        end
+      end
+      
       describe "DELETE 'destroy'" do
 
         it "should NOT destroy any computers" do

@@ -1,6 +1,7 @@
 class ComputersController < ApplicationController
   before_filter :authenticate
   before_filter :correct_user
+  before_filter :select_computer, :only => [:edit, :update, :destroy]
   
   def new
     @title = "New Computer"
@@ -18,12 +19,27 @@ class ComputersController < ApplicationController
   end
   
   def edit
-    @computer = @user.computers.find_by_id(params[:id])
-    @title = "#{@computer.make} #{@computer.model}"
+    if @computer
+      @title = "#{@computer.make} #{@computer.model}"
+    else
+      redirect_to user_path(@user)
+    end
+  end
+  
+  def update
+    if @computer && @computer.update_attributes(params[:computer])
+      redirect_to @user, :flash => { :success => "The computer was updated successfully." }
+    else
+      if @computer
+        @title = "#{@computer.make} #{@computer.model}"
+        render 'edit'
+      else
+        redirect_to user_path(@user)
+      end
+    end
   end
   
   def destroy
-    @computer = @user.computers.find_by_id(params[:id])
     if @computer && @computer.destroy
       flash[:success] = "Computer successfully destroyed."
     else
@@ -41,5 +57,9 @@ class ComputersController < ApplicationController
     def correct_user
       #if admin else current_user
       @user = on_behalf_of(User.find_by_id(params[:user_id]))
+    end
+    
+    def select_computer
+      @computer = @user.computers.find_by_id(params[:id])
     end
 end

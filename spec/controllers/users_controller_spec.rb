@@ -205,8 +205,7 @@ describe UsersController do
   describe "PUT 'update'" do
 
     before(:each) do
-      @user = Factory(:user)
-      test_sign_in(@user)
+      @user = test_sign_in(Factory(:user))
     end
 
     describe "failure" do
