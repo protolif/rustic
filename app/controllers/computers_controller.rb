@@ -1,6 +1,6 @@
 class ComputersController < ApplicationController
   before_filter :authenticate
-  before_filter :correct_user, :only => [:destroy, :create, :new]
+  before_filter :correct_user
   
   def new
     @title = "New Computer"
@@ -15,6 +15,11 @@ class ComputersController < ApplicationController
       flash[:error] = "Unable to save computer."
     end
     redirect_to user_path(@user)
+  end
+  
+  def edit
+    @computer = @user.computers.find_by_id(params[:id])
+    @title = "#{@computer.make} #{@computer.model}"
   end
   
   def destroy

@@ -1,0 +1,17 @@
+<div class='field'>
+  <%= f.label :make %>
+  <%= f.text_field :make %>
+</div>
+<div class='field'>
+  <%= f.label :model %>
+  <%= f.text_field :model %>
+</div>
+<div class='field'>
+  <%= f.label :serial %>
+  <%= f.text_field :serial %>
+</div>
+<%= hidden_field_tag :user_id, params[:user_id] %>
+<div class='actions'>
+  <%= f.label nil %>
+  <%= f.submit "#{ (@computer.new_record?) ? 'Register' : 'Update' }" %>
+</div>

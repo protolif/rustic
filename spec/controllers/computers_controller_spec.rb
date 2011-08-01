@@ -100,6 +100,24 @@ describe ComputersController do
     end
   end
   
+  describe "GET 'edit'" do
+    
+    before(:each) do
+      @user = test_sign_in(Factory(:user))
+      @computer = Factory(:computer, :user => @user)
+    end
+    
+    it "should be successful" do
+      get :edit, :id => @computer, :user_id => @user.id
+      response.should be_success
+    end
+    
+    it "should have the correct title" do
+      get :edit, :id => @computer, :user_id => @user.id
+      response.should have_selector('title', :content => "#{@computer.make} #{@computer.model}")
+    end
+  end
+  
   describe "DELETE 'destroy'" do
     
     describe "for signed-in users" do

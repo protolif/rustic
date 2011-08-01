@@ -49,7 +49,7 @@
 	      <td><%= computer.serial %></td>
 	      <td><%= "#{time_ago_in_words(computer.created_at)} ago" %></td>
 	      <td>
-		    <a href="#"><%= edit_icon %></a>
+		    <%= link_to(edit_icon, edit_computer_path(computer) + "?user_id=#{@user.id}") %>
 		    <%= link_to content_tag(:span, "-", :class => "subtract round"),
 		                computer_path(computer) + "?user_id=#{@user.id}",
 		                :method => :delete,
