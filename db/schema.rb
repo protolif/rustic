@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110729010402) do
+ActiveRecord::Schema.define(:version => 20110801210457) do
 
   create_table "computers", :force => true do |t|
     t.string   "make"
@@ -19,6 +19,12 @@ ActiveRecord::Schema.define(:version => 20110729010402) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "serial"
+    t.boolean  "charger"
+    t.string   "cpu"
+    t.string   "ram"
+    t.datetime "checked_in"
+    t.datetime "checked_out"
+    t.string   "form_factor"
   end
 
   add_index "computers", ["created_at"], :name => "index_computers_on_created_at"

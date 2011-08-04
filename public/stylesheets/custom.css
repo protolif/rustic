@@ -154,16 +154,8 @@ a.signup_button:hover {
   );
 }
 
-/* Edit Button*/
-.edit_button {
-  vertical-align: bottom;
-  height: 23px;
-  width: auto;
-  padding: 0 10px 0 0;
-}
-
-/* Ticket Button*/
-.ticket_button {
+/* Buttons */
+.edit_button, .chpwd_button, .ticket_button {
   vertical-align: bottom;
   height: 23px;
   width: auto;
@@ -270,4 +262,11 @@ ul.users { margin-top: 1em }
 .users li {
   margin-top: 1em;
   list-style: none;
+}
+
+.caveat { font-weight: bold }
+p.caveat { font-size: 75% }
+span.caveat {
+	font-size: 25%;
+	vertical-align: super;
 }

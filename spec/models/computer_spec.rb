@@ -70,3 +70,24 @@ describe Computer do
     end
   end
 end
+
+
+# == Schema Information
+#
+# Table name: computers
+#
+#  id          :integer(4)      not null, primary key
+#  make        :string(255)
+#  model       :string(255)
+#  user_id     :integer(4)
+#  created_at  :datetime
+#  updated_at  :datetime
+#  serial      :string(255)
+#  charger     :boolean(1)
+#  cpu         :string(255)
+#  ram         :string(255)
+#  checked_in  :datetime
+#  checked_out :datetime
+#  form_factor :string(255)
+#
+

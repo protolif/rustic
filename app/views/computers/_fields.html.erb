@@ -10,6 +10,24 @@
   <%= f.label :serial %>
   <%= f.text_field :serial %>
 </div>
+<div class='field'>
+  <%= f.label :form_factor %>
+  <%= f.select :form_factor, Computer::FF, { :include_blank => true } %>
+</div>
+<div class='field'>
+  <%= f.label :charger, "With AC Adapter" %>
+  <%= f.check_box :charger %>
+</div><br /><br />
+<% if current_user.admin? %>
+  <div class='field'>
+	  <%= f.label :cpu, "CPU" %>
+	  <%= f.text_field :cpu %>
+	</div>
+	<div class='field'>
+	  <%= f.label :ram, "RAM" %>
+	  <%= f.text_field :ram %>
+	</div>
+<% end %>
 <%= hidden_field_tag :user_id, params[:user_id] %>
 <div class='actions'>
   <%= f.label nil %>

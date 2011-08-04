@@ -1,6 +1,10 @@
 <h1>
   <%= gravatar_for @user %>
   <%= "#{@user.fname} #{@user.lname}" %>
+  <% if current_user && current_user.admin? %>
+	  <%= link_to(edit_icon, edit_user_path(@user)) %>
+	  <%= link_to(chpwd_icon, edit_user_path(@user) + "?chpwd=1") %>
+	<% end %>
 </h1>
 <table>
   <tr>

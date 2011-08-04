@@ -28,7 +28,8 @@ class User < ActiveRecord::Base
   
   has_many :computers, :dependent => :destroy
   
-  email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  email_regex    = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  password_regex = /^.*(?=.{8,})(?=.*[a-z])(?=.*[A-Z])(?=.*[\d\W]).*$/
   
   validates :fname,   :presence   => true, :length => { :maximum => 20 }
   validates :lname,   :presence   => true, :length => { :maximum => 20 }
@@ -40,13 +41,24 @@ class User < ActiveRecord::Base
   validates :email,   :presence   => true,
                       :format     => { :with => email_regex },
                       :uniqueness => { :case_sensitive => false }
-                    
-  validates :password, :presence => true,
-                       :confirmation => true,
-                       :length => { :within => 8..20 }
 
+  validates :password, :presence     => true, 
+                       :confirmation => true,
+                       :format       => { :with => password_regex, :message => "does not meet complexity requirements." },
+                       :on           => :create
+  
+  validates :password, :allow_nil => true,
+                       :confirmation        => true,
+                       :format              => { :with => password_regex, :message => "does not meet complexity requirements." },
+                       :on                  => :update
+  
   before_save :encrypt_password
   before_save :transform_data
+  
+  ST = ["AK","AL","AR","AS","AZ","CA","CO","CT","DC","DE","FL","GA","GU","HI","IA",
+        "ID","IL","IN","KS","KY","LA","MA","MD","ME","MH","MI","MN","MO","MS","MT",
+        "NC","ND","NE","NH","NJ","NM","NV","NY","OH","OK","OR","PA","PR","PW","RI",
+        "SC","SD","TN","TX","UT","VA","VI","VT","WA","WI","WV","WY"]
   
   def has_password?(submitted_password)
     encrypted_password == encrypt(submitted_password)
@@ -60,6 +72,12 @@ class User < ActiveRecord::Base
   def self.authenticate_with_salt(id, cookie_salt)
     user = find_by_id(id)
     (user && user.salt == cookie_salt) ? user : nil
+  end
+  
+  def self.search(search, page)
+    paginate :per_page => 8, :page => page,
+             :conditions => ['lname like ?', "%#{search}%"],
+             :order => 'lname'
   end
   
   private

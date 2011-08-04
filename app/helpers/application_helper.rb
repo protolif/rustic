@@ -68,6 +68,13 @@ module ApplicationHelper
               :class => "nav_buttons")
   end
   
+  def users_index_icon
+    image_tag("users_index_icon.png",
+              :alt   => "All Users",
+              :title => "All Users",
+              :class => "nav_buttons")
+  end
+  
   def login_icon
     image_tag("login_icon.png",
               :alt   => "Sign In",
@@ -94,5 +101,12 @@ module ApplicationHelper
               :alt   => "Create a Ticket",
               :title => "Create a Ticket",
               :class => "ticket_button")
+  end
+  
+  def chpwd_icon
+    image_tag("chpwd_icon.png",
+              :alt   => "Change Password",
+              :title => "Change Password",
+              :class => "chpwd_button")
   end
 end

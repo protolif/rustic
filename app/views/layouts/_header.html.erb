@@ -5,6 +5,9 @@
       <li><%= link_to home_icon, root_path %></li>
       <li><%= link_to help_icon, help_path %></li>
       <% if signed_in? %>
+        <% if current_user.admin? %>
+          <li><%= link_to users_index_icon, users_path %></li>
+        <% end%>
         <li><%= link_to profile_icon, current_user %></li>
         <li><%= link_to settings_icon, edit_user_path(current_user) %></li>
 	    <li><%= link_to logout_icon, signout_path, :method => :delete %></li>
