@@ -39,8 +39,8 @@
   <% if @user.new_record? || params[:chpwd] == "1" %>
     <div class='tbl_row'>
 	  	<div class='tbl_head'>
-	  		<%= f.label :password, content_tag(:span, "#{ (@user.new_record?) ? nil : 'New' } Password")
-	                           + content_tag(:span, '††', :class => 'caveat') %>
+	  		<%= f.label :password, content_tag(:span, "#{ (@user.new_record?) ? nil : 'New' } Password") +
+	                             content_tag(:span, '††', :class => 'caveat') %>
 	  	</div>
 	    <div class='tbl_data'><%= f.password_field :password %></div>
 	  </div>
