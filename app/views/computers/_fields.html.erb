@@ -1,35 +1,36 @@
-<div class='field'>
-  <%= f.label :make %>
-  <%= f.text_field :make %>
-</div>
-<div class='field'>
-  <%= f.label :model %>
-  <%= f.text_field :model %>
-</div>
-<div class='field'>
-  <%= f.label :serial %>
-  <%= f.text_field :serial %>
-</div>
-<div class='field'>
-  <%= f.label :form_factor %>
-  <%= f.select :form_factor, Computer::FF, { :include_blank => true } %>
-</div>
-<div class='field'>
-  <%= f.label :charger, "With AC Adapter" %>
-  <%= f.check_box :charger %>
-</div><br /><br />
-<% if current_user.admin? %>
-  <div class='field'>
-	  <%= f.label :cpu, "CPU" %>
-	  <%= f.text_field :cpu %>
-	</div>
-	<div class='field'>
-	  <%= f.label :ram, "RAM" %>
-	  <%= f.text_field :ram %>
-	</div>
-<% end %>
-<%= hidden_field_tag :user_id, params[:user_id] %>
-<div class='actions'>
-  <%= f.label nil %>
-  <%= f.submit "#{ (@computer.new_record?) ? 'Register' : 'Update' }" %>
+<div class='tbl'>
+  <div class='tbl_row'>
+  	<div class='tbl_head'><%= f.label :make %></div>
+    <div class='tbl_data'><%= f.select :make, Computer::MAKES, { :include_blank => true } %></div>
+  </div>
+  <div class='tbl_row'>
+  	<div class='tbl_head'><%= f.label :model %></div>
+    <div class='tbl_data'><%= f.text_field :model %></div>
+  </div>
+  <div class='tbl_row'>
+  	<div class='tbl_head'><%= f.label :serial %></div>
+    <div class='tbl_data'><%= f.text_field :serial %></div>
+  </div>
+  <div class='tbl_row'>
+  	<div class='tbl_head'><%= f.label :form_factor %></div>
+    <div class='tbl_data'><%= f.select :form_factor, Computer::FF, { :include_blank => true } %></div>
+  </div>
+  <div class='tbl_row'>
+  	<div class='tbl_head'><%= f.label :charger %></div>
+    <div class='tbl_data'><%= f.check_box :charger %></div>
+  </div>
+  <% if current_user.admin? %>
+	  <div class='tbl_row'>
+	  	<div class='tbl_head'><%= f.label :cpu, "CPU" %></div>
+	    <div class='tbl_data'><%= f.text_field :cpu %></div>
+	  </div>
+	  <div class='tbl_row'>
+	  	<div class='tbl_head'><%= f.label :ram, "RAM" %></div>
+	    <div class='tbl_data'><%= f.text_field :ram %></div>
+	  </div>
+  <% end %>
+  <div class='tbl_row'>
+  	<div class='tbl_head'><%= hidden_field_tag :user_id, params[:user_id] %></div>
+    <div class='tbl_data'><%= f.submit "#{ (@computer.new_record?) ? 'Register' : 'Update' }" %></div>
+  </div>
 </div>

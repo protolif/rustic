@@ -186,52 +186,6 @@ img.gravatar {
   margin-bottom: -15px;
 }
 
-/* Form Fields */
-form label, form span label { 
-  display: block;  /* block float the labels to left column, set a width */
-  float: left; 
-  width: 100px; 
-  padding: 0; 
-  margin: 5px 5px 0; /* set top margin same as form input - textarea etc. elements */
-  text-align: right; 
-}
-
-div.signin label { width: 70px }
-
-/* Error Messages */
-.field_with_errors label { color: #f00 }
-.field_with_errors input { border: 3px solid #f00 }
-
-#error_explanation {
-  width: 400px;
-  border: 2px solid red;
-  padding: 7px;
-  padding-bottom: 12px;
-  margin-bottom: 20px;
-  background-color: #f0f0f0;
-}
-
-#error_explanation h2 {
-  text-align: left;
-  font-weight: bold;
-  padding: 5px 5px 5px 15px;
-  font-size: 12px;
-  margin: -7px;
-  background-color: #c00;
-  color: #fff;
-}
-
-#error_explanation p {
-  color: #333;
-  margin-bottom: 0;
-  padding: 5px;
-}
-
-#error_explanation ul li {
-  font-size: 12px;
-  list-style: square;
-}
-
 /* Logo */
 img.logo {
   height: 80px;
@@ -269,4 +223,55 @@ p.caveat { font-size: 75% }
 span.caveat {
 	font-size: 25%;
 	vertical-align: super;
+}
+
+/* Table Layout */
+div.tbl { display: table; width: auto }
+div.tbl_row { display: table-row; width: auto }
+div.tbl_head { font-weight: bold }
+div.tbl_data, div.tbl_head { 
+	display: table-cell;
+	padding: 2px 4px;/* Never use percentages here! */
+	width: auto;
+	white-space: nowrap
+}
+.tbl .tbl_row .tbl_data .tbl .tbl_row:nth-child(even) { background-color: #eee }
+
+div.user_show_title { font-size: 300% }
+div.user_show_title img { vertical-align: text-top }
+div.user_show_computers_title { font-weight: bold; margin: 20px 5px 0 0 }
+
+/* Error Messages */
+.field_with_errors label { color: #f00 }
+.field_with_errors input { border: 3px solid #f00 }
+
+
+#error_explanation {
+  width: 400px;
+  border: 2px solid red;
+  padding: 7px;
+  padding-bottom: 12px;
+  margin-bottom: 20px;
+  background-color: #fff;
+}
+
+#error_explanation h2 {
+  text-align: left;
+  font-weight: bold;
+  padding: 5px 5px 5px 15px;
+  font-size: 12px;
+  margin: -7px;
+  background-color: #c00;
+  color: #fff;
+}
+
+#error_explanation p {
+  color: #333;
+  margin-bottom: 0;
+  padding: 5px;
+}
+
+#error_explanation ul li {
+  font-size: 12px;
+  list-style: square;
 }

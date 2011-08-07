@@ -13,6 +13,20 @@ class Computer < ActiveRecord::Base
   FF = ['Netbook', 'Laptop', 'Desktop Replacement', 'Shuttle', 
         'SFF', 'Mini-Tower', 'Mid-Tower', 'Full-Tower',
         '1U-Server', '2U-Server', '3U-Server', '4U-Server']
+        
+  MAKES = ['Acer', 'Alienware', 'Apple', 'Asus', 'Averatec', 'Compaq', 
+           'Custom', 'Dell', 'eMachines', 'Everex', 'Falcon Northwest',
+           'Fujitsu', 'Gateway', 'HP', 'IBM', 'Lenovo', 'MSI', 'Other',
+           'Panasonic', 'Samsung', 'Sharp', 'Shuttle', 'Sony', 'Toshiba']
+           
+  def checked_in_at
+    (checked_in.nil?) ? 'Never' : time_ago_in_words(checked_in) + 'ago'
+  end
+  
+  def checked_out_at
+    (checked_out.nil?) ? 'Never' : time_ago_in_words(checked_out) + 'ago'
+  end
+  
 end
 
 # == Schema Information

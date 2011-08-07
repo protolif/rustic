@@ -1,78 +1,85 @@
-<h1>
-  <%= gravatar_for @user %>
-  <%= "#{@user.fname} #{@user.lname}" %>
-  <% if current_user && current_user.admin? %>
-	  <%= link_to(edit_icon, edit_user_path(@user)) %>
-	  <%= link_to(chpwd_icon, edit_user_path(@user) + "?chpwd=1") %>
-	<% end %>
-</h1>
-<table>
-  <tr>
-    <td>
-	  <table>
-		<tr>
-		  <td>
-			Phone:
-		  </td>
-		  <td>
-		  	<%= number_to_phone(@user.tel, :delimiter => '.') %>
-		  </td>
-		</tr>
-		<tr>
-		  <td>
-		  	Email:
-		  </td>
-		  <td>
-		  	<%= @user.email %>
-		  </td>
-		</tr>
-		<tr>
-		  <td>
-		  	Address:
-		  </td>
-		  <td>
-		  	<%= "#{@user.address}, #{@user.city}, #{@user.state} #{@user.zip}" %>
-		  </td>
-		</tr>
-	  </table>
-	  <table>
-		<tr>
-		  <th colspan="3"><%= "#{@user.fname}'s Computers" %>
-			  <%= link_to(content_tag(:span, "+", :class => "add round"),
-			              new_computer_path + "?user_id=#{@user.id}",
-			              :title => "Register Computer") %>
-		  </th>
-		</tr>
-		<% if @user.computers.any? %>
-	  	<tr>
-	  	  <th>Make</th><th>Model</th><th>Serial</th><th>First Visit</th><th>&nbsp;</th>
-	  	</tr>
-	    <% @user.computers.each do |computer| %>
-	    <tr class="computer">
-	      <td><%= computer.make %></td>
-	      <td><%= computer.model %></td>
-	      <td><%= computer.serial %></td>
-	      <td><%= "#{time_ago_in_words(computer.created_at)} ago" %></td>
-	      <td>
-		    <%= link_to ticket_icon, "#" %>
-		    <%= link_to(edit_icon, edit_computer_path(computer) + "?user_id=#{@user.id}") %>
-		    <%= link_to content_tag(:span, "-", :class => "subtract round"),
-		                computer_path(computer) + "?user_id=#{@user.id}",
-		                :method => :delete,
-				            :confirm => "You sure?",
-				            :title => "Delete This Computer" %>
-		  </td>
-	    </tr>
-	    <% end %>
-	    <% else %>
-	    <tr>
-	      <td colspan="5">
-		    It looks like you don't have any computers registered yet.
-		    Click the green plus icon above to add computers to your account.
-		  </td>
-	    </tr>
-	    <% end %>
-	  </table>
-    </td>
-  </tr>
-</table>
+<div class='tbl'>
+  <div class='tbl_row'>
+    <div class='tbl_data user_show_title'>
+	    <%= gravatar_for @user %>
+		  <%= "#{@user.fname} #{@user.lname}" %>
+			<% if current_user && current_user.admin? %>
+				<%= link_to(edit_icon, edit_user_path(@user)) %>
+				<%= link_to(chpwd_icon, edit_user_path(@user) + "?chpwd=1") %>
+			<% end %>
+		</div>
+	</div>
+	<div class='tbl_row'>
+    <div class='tbl_data'>
+	    <div class='tbl'>
+		    <div class='tbl_row'>
+		      <div class='tbl_head'>
+			      Phone:
+		      </div>
+		      <div class='tbl_data'>
+		  	    <%= number_to_phone(@user.tel, :delimiter => '.') %>
+		      </div>
+		    </div>
+		    <div class='tbl_row'>
+		      <div class='tbl_head'>
+		  	    Email:
+		      </div>
+		      <div class='tbl_data'>
+		  	    <%= @user.email %>
+		      </div>
+		    </div>
+		    <div class='tbl_row'>
+		      <div class='tbl_head'>
+		  	    Address:
+		      </div>
+		      <div class='tbl_data'>
+		  	    <%= "#{@user.address}, #{@user.city}, #{@user.state} #{@user.zip}" %>
+		      </div>
+		    </div>
+	    </div>
+	    <div class="user_show_computers_title">
+	      <%= "#{@user.fname}'s Computers" %>
+	      <%= link_to(content_tag(:span, "+", :class => "add round"),
+	                  new_computer_path + "?user_id=#{@user.id}",
+	                  :title => "Register Computer") %>
+      </div>
+	    <div class='tbl'>
+        <% if @user.computers.any? %>
+		  	  <div class='tbl_row'>
+		  	    <div class='tbl_head'>Make</div>
+		        <div class='tbl_head'>Model</div>
+		        <div class='tbl_head'>Serial</div>
+		        <div class='tbl_head'>In</div>
+		        <div class='tbl_head'>Out</div>
+		        <div class='tbl_head'>Actions</div>
+		  	  </div>
+		      <% @user.computers.each do |computer| %>
+			      <div class='tbl_row'>
+				      <div class='tbl_data'><%= computer.make %></div>
+				      <div class='tbl_data'><%= computer.model %></div>
+				      <div class='tbl_data'><%= computer.serial %></div>
+				      <div class='tbl_data'><%= computer.checked_in_at %></div>
+				      <div class='tbl_data'><%= computer.checked_out_at %></div>
+				      <div class='tbl_data'>
+				        <%= link_to ticket_icon, "#" %>
+				        <%= link_to(edit_icon, edit_computer_path(computer) + "?user_id=#{@user.id}") %>
+				        <%= link_to content_tag(:span, "-", :class => "subtract round"),
+				                    computer_path(computer) + "?user_id=#{@user.id}",
+				                    :method => :delete,
+						                :confirm => "You sure?",
+						                :title => "Delete This Computer" %>
+				      </div>
+			      </div>
+		      <% end %>
+	      <% else %>
+		      <div class='tbl_row'>
+		        <div class='tbl_data'>
+			        It looks like you don't have any computers registered yet.
+			        Click the green plus icon above to add computers to your account.
+			      </div>
+		      </div>
+	      <% end %>
+      </div>
+    </div>
+  </div>
+</div>

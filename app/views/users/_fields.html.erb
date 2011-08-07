@@ -1,60 +1,69 @@
-<% unless params[:chpwd] == "1" %>
-<div class='field'>
-  <%= f.label :fname, 'First Name' %>
-  <%= f.text_field :fname %>
+<div class='tbl'>
+	<% unless params[:chpwd] == "1" %>
+	  <div class='tbl_row'>
+	  	<div class='tbl_head'><%= f.label :fname, 'First Name' %></div>
+	    <div class='tbl_data'><%= f.text_field :fname %></div>
+	  </div>
+	  <div class='tbl_row'>
+	  	<div class='tbl_head'><%= f.label :lname, 'Last Name' %></div>
+	    <div class='tbl_data'><%= f.text_field :lname %></div>
+	  </div>
+	  <div class='tbl_row'>
+	  	<div class='tbl_head'><%= f.label :email %></div>
+	    <div class='tbl_data'><%= f.text_field :email %></div>
+	  </div>
+	  <div class='tbl_row'>
+	  	<div class='tbl_head'>
+	  		<%= f.label :tel, content_tag(:span, 'Telephone') +
+			                    content_tag(:span, '†', :class => 'caveat') %>
+	  	</div>
+	    <div class='tbl_data'><%= f.text_field :tel %></div>
+	  </div>
+	  <div class='tbl_row'>
+	  	<div class='tbl_head'><%= f.label :address %></div>
+	    <div class='tbl_data'><%= f.text_field :address %></div>
+	  </div>
+	  <div class='tbl_row'>
+	  	<div class='tbl_head'><%= f.label :city %></div>
+	    <div class='tbl_data'><%= f.text_field :city %></div>
+	  </div>
+	  <div class='tbl_row'>
+	  	<div class='tbl_head'><%= f.label :state %></div>
+	    <div class='tbl_data'><%= f.select :state, User::ST, { :include_blank => true } %></div>
+	  </div>
+	  <div class='tbl_row'>
+	  	<div class='tbl_head'><%= f.label :zip %></div>
+	    <div class='tbl_data'><%= f.text_field :zip %></div>
+	  </div>
+  <% end %>
+  <% if @user.new_record? || params[:chpwd] == "1" %>
+    <div class='tbl_row'>
+	  	<div class='tbl_head'>
+	  		<%= f.label :password, content_tag(:span, "#{ (@user.new_record?) ? nil : 'New' } Password")
+	                           + content_tag(:span, '††', :class => 'caveat') %>
+	  	</div>
+	    <div class='tbl_data'><%= f.password_field :password %></div>
+	  </div>
+	  <div class='tbl_row'>
+	  	<div class='tbl_head'><%= f.label :password_confirmation, 'Confirmation' %></div>
+	    <div class='tbl_data'><%= f.password_field :password_confirmation %></div>
+	  </div>
+  <% end %>	
+  <div class='tbl_row'>
+  	<div class='tbl_head'><%= f.label nil %></div>
+    <div class='tbl_data'><%= f.submit "#{ (@user.new_record?) ? 'Sign up' : 'Update' }" %></div>
+  </div>
 </div>
-<div class='field'>
-  <%= f.label :lname, 'Last Name' %>
-  <%= f.text_field :lname %>
-</div>
-<div class='field'>
-  <%= f.label :email, 'Email Address' %>
-  <%= f.text_field :email %>
-</div>
-<div class='field'>
-  <%= f.label :tel, content_tag(:span, 'Telephone') +
-                    content_tag(:span, '†', :class => 'caveat') %>
-  <%= f.text_field :tel %>
-</div>
-<div class='field'>
-  <%= f.label :address %>
-  <%= f.text_field :address %>
-</div>
-<div class='field'>
-  <%= f.label :city %>
-  <%= f.text_field :city %>
-</div>
-<div class='field'>
-  <%= f.label :state %>
-  <%= f.select :state, User::ST, { :include_blank => true } %>
-</div>
-<div class='field'>
-  <%= f.label :zip %>
-  <%= f.text_field :zip %>
-</div>
-<% end %>
-<% if @user.new_record? || params[:chpwd] == "1" %>
-	<div class='field'>
-	  <%= f.label :password, content_tag(:span, "#{'New' unless @user.new_record?} Password") +
-	                         content_tag(:span, '††', :class => 'caveat') %>
-	  <%= f.password_field :password %>
-	</div>
-	<div class='field'>
-	  <%= f.label :password_confirmation, 'Confirmation' %>
-	  <%= f.password_field :password_confirmation %>
-	</div>
-<% end %>
-<div class='actions'>
-  <%= f.label nil %>
-  <%= f.submit "#{ (@user.new_record?) ? 'Sign up' : 'Update' }" %>
-</div>
-<% if @user.new_record? || params[:chpwd] == "1" %>
 <br />
-<p class="caveat">
-	†† Passwords require 1 lowercase letter, 1 uppercase letter, 1 number or symbol,
-  and must be at least 8 characters in length.
-</p>
-<p class="caveat">
-  † Phone numbers must be 10 digits in length, but can be entered in any format.
-</p>
+<!--<p class="caveat">* Indicates a required field.</p>-->
+<% unless params[:chpwd] == "1" %>
+	<p class="caveat">
+	  † Phone numbers must be 10 digits in length, but can be entered in any format.
+	</p>
+<% end %>
+<% if @user.new_record? || params[:chpwd] == "1" %>
+	<p class="caveat">
+	  †† Passwords require 1 lowercase letter, 1 uppercase letter, 1 number or symbol,
+	  and must be at least 8 characters in length.
+	</p>
 <% end %>

@@ -41,7 +41,6 @@ namespace :db do
       city     = Faker::Address.city
       state    = Faker::Address.us_state_abbr
       zip      = Faker::Address.zip_code
-      password = Faker::Lorem.words(12)
       user     = User.create!(:fname   => fname,
                               :lname   => lname,
                               :email   => email,
@@ -50,8 +49,8 @@ namespace :db do
                               :city    => city,
                               :state   => state,
                               :zip     => zip,
-                              :password              => password,
-                              :password_confirmation => password)
+                              :password              => "pa55worD",
+                              :password_confirmation => "pa55worD")
       3.times do
        user.computers.create!(:make => manufacturers.rand,
                               :model => models.rand,

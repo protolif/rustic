@@ -84,20 +84,20 @@ describe UsersController do
 
       it "should have include the user's name" do
         get :show, :id => @user
-        response.should have_selector("h1", :content => "#{@user.fname} #{@user.lname}")
+        response.should have_selector("div", :content => "#{@user.fname} #{@user.lname}")
       end
 
       it "should have a profile image" do
         get :show, :id => @user
-        response.should have_selector("h1>img", :class => "gravatar")
+        response.should have_selector("div>img", :class => "gravatar")
       end
 
       it "should show the user's computers" do
         pc1 = Factory(:computer, :user => @user, :model => "MacBook Pro")
         pc2 = Factory(:computer, :user => @user, :model => "iMac")
         get :show, :id => @user
-        response.should have_selector("tr.computer>td", :content => pc1.model)
-        response.should have_selector("tr.computer>td", :content => pc2.model)
+        response.should have_selector("div", :content => pc1.model)
+        response.should have_selector("div", :content => pc2.model)
       end
     end
   end
