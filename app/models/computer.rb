@@ -1,5 +1,6 @@
 class Computer < ActiveRecord::Base
-  attr_accessible :make, :model, :serial, :form_factor, :charger, :cpu, :ram
+  attr_accessible :make, :model, :serial, :form_factor,
+                  :charger, :cpu, :ram, :checked_in, :checked_out
   
   belongs_to :user
   
@@ -18,14 +19,6 @@ class Computer < ActiveRecord::Base
            'Custom', 'Dell', 'eMachines', 'Everex', 'Falcon Northwest',
            'Fujitsu', 'Gateway', 'HP', 'IBM', 'Lenovo', 'MSI', 'Other',
            'Panasonic', 'Samsung', 'Sharp', 'Shuttle', 'Sony', 'Toshiba']
-           
-  def checked_in_at
-    (checked_in.nil?) ? 'Never' : time_ago_in_words(checked_in) + 'ago'
-  end
-  
-  def checked_out_at
-    (checked_out.nil?) ? 'Never' : time_ago_in_words(checked_out) + 'ago'
-  end
   
 end
 

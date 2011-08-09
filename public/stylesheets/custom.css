@@ -239,12 +239,12 @@ div.tbl_data, div.tbl_head {
 
 div.user_show_title { font-size: 300% }
 div.user_show_title img { vertical-align: text-top }
-div.user_show_computers_title { font-weight: bold; margin: 20px 5px 0 0 }
+div.user_show_h2 { font-weight: bold; margin: 20px 5px 0 0 }
 
 /* Error Messages */
 .field_with_errors label { color: #f00 }
 .field_with_errors input { border: 3px solid #f00 }
-
+.field_with_errors textarea { border-color: #f00 }
 
 #error_explanation {
   width: 400px;
@@ -274,4 +274,11 @@ div.user_show_computers_title { font-weight: bold; margin: 20px 5px 0 0 }
 #error_explanation ul li {
   font-size: 12px;
   list-style: square;
+}
+
+ /* Form Fields */
+
+textarea {
+	width: 300px;
+	height: 105px;
 }

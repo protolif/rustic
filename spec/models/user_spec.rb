@@ -236,4 +236,26 @@ describe User do
       end
     end
   end
+  
+  describe "ticket association" do
+    
+    before(:each) do
+      @user = Factory(:user)
+      @technician = Factory(:user, :email => "admin@example.org")
+      @computer = Factory(:computer, :user => @user)
+      @ticket = @user.tickets.create!(:computer_id   => @computer.id,
+                                      :technician_id => @technician.id,
+                                      :issue         => "a" * 10)
+    end
+    
+    it "user should have many tickets" do
+      @user.should respond_to(:tickets)
+      @user.tickets.first.should == @ticket
+    end
+    
+    it "technicians should have many jobs" do
+      @technician.should respond_to(:jobs)
+      @technician.jobs.first.should == @ticket
+    end
+  end
 end

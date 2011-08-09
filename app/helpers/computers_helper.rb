@@ -1,5 +1,13 @@
 module ComputersHelper
 
+  def checked_in_at(computer)
+    (computer.checked_in.nil?) ? 'Never' : time_ago_in_words(computer.checked_in) + ' ago'
+  end
+  
+  def checked_out_at(computer)
+    (computer.checked_out.nil?) ? 'Never' : time_ago_in_words(computer.checked_out) + ' ago'
+  end
+
   # begin driver links
   
   def dell_drivers_link(svc_tag)

@@ -1,0 +1,18 @@
+<div class='tbl'>
+	<div class='tbl_row'>
+		<div class='tbl_head'><%= f.label :issue, "Please describe your issue below:" %></div>
+	</div>
+	<div class='tbl_row'>
+		<div class='tbl_data'><%= f.text_area :issue %></div>
+	</div>
+	<div class='tbl_row'>
+    <div class='tbl_data'>
+	    <%= f.hidden_field   :status,      :value => 'In Queue' %>
+	    <%= f.hidden_field   :customer_id, :value => params[:user_id] %>
+      <%= f.hidden_field   :computer_id, :value => params[:computer_id] %>
+      <%= hidden_field_tag :computer_id,           params[:computer_id] %>
+      <%= hidden_field_tag :user_id,               params[:user_id] %>
+      <%= f.submit %>
+    </div>
+  </div>
+</div>

@@ -26,7 +26,12 @@ class User < ActiveRecord::Base
                   :address, :city, :state, :zip,
                   :password, :password_confirmation
   
-  has_many :computers, :dependent => :destroy
+  has_many :computers, :dependent   => :destroy
+  has_many :tickets,   :dependent   => :destroy,
+                       :foreign_key => "customer_id"
+  has_many :jobs,      :dependent   => :destroy,
+                       :foreign_key => "technician_id",
+                       :class_name  => "Ticket" 
   
   email_regex    = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   password_regex = /^.*(?=.{8,})(?=.*[a-z])(?=.*[A-Z])(?=.*[\d\W]).*$/

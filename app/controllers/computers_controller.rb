@@ -49,15 +49,6 @@ class ComputersController < ApplicationController
   end
   
   private
-  
-    def on_behalf_of(user)
-      (current_user.admin?) ? user : current_user
-    end
-    
-    def correct_user
-      #if admin else current_user
-      @user = on_behalf_of(User.find_by_id(params[:user_id]))
-    end
     
     def select_computer
       @computer = @user.computers.find_by_id(params[:id])

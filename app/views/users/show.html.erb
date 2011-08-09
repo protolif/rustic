@@ -37,7 +37,7 @@
 		      </div>
 		    </div>
 	    </div>
-	    <div class="user_show_computers_title">
+	    <div class="user_show_h2">
 	      <%= "#{@user.fname}'s Computers" %>
 	      <%= link_to(content_tag(:span, "+", :class => "add round"),
 	                  new_computer_path + "?user_id=#{@user.id}",
@@ -49,8 +49,8 @@
 		  	    <div class='tbl_head'>Make</div>
 		        <div class='tbl_head'>Model</div>
 		        <div class='tbl_head'>Serial</div>
-		        <div class='tbl_head'>In</div>
-		        <div class='tbl_head'>Out</div>
+		        <div class='tbl_head'>Checked In</div>
+		        <div class='tbl_head'>Checked Out</div>
 		        <div class='tbl_head'>Actions</div>
 		  	  </div>
 		      <% @user.computers.each do |computer| %>
@@ -58,10 +58,11 @@
 				      <div class='tbl_data'><%= computer.make %></div>
 				      <div class='tbl_data'><%= computer.model %></div>
 				      <div class='tbl_data'><%= computer.serial %></div>
-				      <div class='tbl_data'><%= computer.checked_in_at %></div>
-				      <div class='tbl_data'><%= computer.checked_out_at %></div>
+				      <div class='tbl_data'><%= checked_in_at(computer) %></div>
+				      <div class='tbl_data'><%= checked_out_at(computer) %></div>
 				      <div class='tbl_data'>
-				        <%= link_to ticket_icon, "#" %>
+				        <%= link_to ticket_icon, new_ticket_path +
+				                                 "?user_id=#{@user.id}&computer_id=#{computer.id}" %>
 				        <%= link_to(edit_icon, edit_computer_path(computer) + "?user_id=#{@user.id}") %>
 				        <%= link_to content_tag(:span, "-", :class => "subtract round"),
 				                    computer_path(computer) + "?user_id=#{@user.id}",
@@ -79,6 +80,29 @@
 			      </div>
 		      </div>
 	      <% end %>
+      </div>
+      <div class="user_show_h2"><%= "#{@user.fname}'s Tickets" %></div>
+      <div class='tbl'>
+      	<% if @user.tickets.any? %>
+          <div class='tbl_row'>
+          	<div class='tbl_head'>ID</div>
+	          <div class='tbl_head'>Model</div>
+            <div class='tbl_head'>Issue</div>
+            <div class='tbl_head'>Technician</div>
+            <div class='tbl_head'>Status</div>
+            <div class='tbl_head'>Created</div>
+          </div>
+          <% @user.tickets.each do |ticket| %>
+          	<div class='tbl_row'>
+	          	<div class='tbl_data'><%= ticket.id %></div>
+	            <div class='tbl_data'><%= ticket.computer.model %></div>
+	            <div class='tbl_data'><%= ticket.issue %></div>
+	            <div class='tbl_data'><%= (ticket.technician) ? ticket.technician : "None" %></div>
+	            <div class='tbl_data'><%= (ticket.status.nil?) ? "None" : ticket.status %></div>
+	            <div class='tbl_data'><%= "#{time_ago_in_words(ticket.created_at)} ago" %></div>
+	          </div>
+          <% end %>
+        <% end %>
       </div>
     </div>
   </div>

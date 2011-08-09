@@ -9,7 +9,7 @@ describe ComputersController do
       
       before(:each) do
         @user = test_sign_in(Factory(:user))
-        get :new, {:user_id => @user.id}
+        get :new, :user_id => @user.id
       end
       
       it "should be successful" do

@@ -40,6 +40,15 @@ module SessionsHelper
     deny_access unless signed_in?
   end
   
+  def on_behalf_of(user)
+    (current_user.admin?) ? user : current_user
+  end
+  
+  def correct_user
+    #if admin else current_user
+    @user = on_behalf_of(User.find_by_id(params[:user_id]))
+  end
+  
   private
 
     def remember_token
