@@ -240,6 +240,15 @@ div.tbl_data, div.tbl_head {
 div.user_show_title { font-size: 300% }
 div.user_show_title img { vertical-align: text-top }
 div.user_show_h2 { font-weight: bold; margin: 20px 5px 0 0 }
+div.default {
+	white-space: normal;
+	background-color: #eee;
+}
+div.wrappable { white-space: normal }
+div.row_link a { color: #000 }
+div.row_link:hover { background-color: #aaf !important }
+
+fieldset { width: auto }
 
 /* Error Messages */
 .field_with_errors label { color: #f00 }

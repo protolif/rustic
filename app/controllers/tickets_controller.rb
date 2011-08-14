@@ -18,6 +18,14 @@ class TicketsController < ApplicationController
     end
   end
   
+  def show
+    @ticket = Ticket.find_by_id(params[:id])
+    @title  = "Ticket for #{@ticket.customer.fname}'s #{@ticket.computer.model} | ID: #{@ticket.id}"
+    @customer = @ticket.customer
+    @computer = @ticket.computer
+    @technician = @ticket.technician
+  end
+  
   private
     
     def check_in(computer)

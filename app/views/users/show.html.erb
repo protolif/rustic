@@ -57,7 +57,7 @@
 			      <div class='tbl_row'>
 				      <div class='tbl_data'><%= computer.make %></div>
 				      <div class='tbl_data'><%= computer.model %></div>
-				      <div class='tbl_data'><%= computer.serial %></div>
+				      <div class='tbl_data'><%= truncate(computer.serial, :length => 10) %></div>
 				      <div class='tbl_data'><%= checked_in_at(computer) %></div>
 				      <div class='tbl_data'><%= checked_out_at(computer) %></div>
 				      <div class='tbl_data'>
@@ -74,9 +74,9 @@
 		      <% end %>
 	      <% else %>
 		      <div class='tbl_row'>
-		        <div class='tbl_data'>
+		        <div class='tbl_data default'>
 			        It looks like you don't have any computers registered yet.
-			        Click the green plus icon above to add computers to your account.
+			        Click the green plus icon above to register your computer with us.
 			      </div>
 		      </div>
 	      <% end %>
@@ -93,16 +93,27 @@
             <div class='tbl_head'>Created</div>
           </div>
           <% @user.tickets.each do |ticket| %>
-          	<div class='tbl_row'>
-	          	<div class='tbl_data'><%= ticket.id %></div>
-	            <div class='tbl_data'><%= ticket.computer.model %></div>
-	            <div class='tbl_data'><%= ticket.issue %></div>
-	            <div class='tbl_data'><%= (ticket.technician) ? ticket.technician : "None" %></div>
-	            <div class='tbl_data'><%= (ticket.status.nil?) ? "None" : ticket.status %></div>
-	            <div class='tbl_data'><%= "#{time_ago_in_words(ticket.created_at)} ago" %></div>
+            <div class='tbl_row row_link'>
+            <% [ ticket.id,
+	               ticket.computer.model,
+	               truncate(ticket.issue),
+	               (ticket.technician) ? ticket.technician : "None",
+	               (ticket.status.nil?) ? "None" : ticket.status,
+	               "#{time_ago_in_words(ticket.created_at)} ago"
+	             ].each do |data| %>
+	               <%= content_tag(:div, link_to(data, ticket_path(ticket)), :class => 'tbl_data') %>
+	             <% end %>
 	          </div>
           <% end %>
-        <% end %>
+       	<% else %>
+		      <div class='tbl_row'>
+		        <div class='tbl_data default'>
+			        It looks like you don't have any tickets yet.
+			        If you've already registered your computer,
+			        click the blue ticket icon above to open a ticket for your computer.
+			      </div>
+		      </div>
+	      <% end %>
       </div>
     </div>
   </div>

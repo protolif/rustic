@@ -32,6 +32,35 @@ describe TicketsController do
     end
   end
   
+  describe "GET 'show'" do
+    
+    describe "for signed-in users" do
+      
+      before(:each) do
+        @ticket = Factory(:ticket)
+        @customer = test_sign_in(@ticket.customer)
+        get :show,  :id => @ticket.id
+      end
+      
+      it "should be successful" do
+        response.should be_success
+      end
+      
+      it "should have the correct title" do
+        response.should have_selector('title', :content => "Ticket for #{@ticket.customer.fname}'s #{@ticket.computer.model} | ID: #{@ticket.id}")
+      end
+    end
+    
+    describe "for non-signed-in users" do
+      
+      it "should deny access" do
+        get :show, :id => 1
+        response.should redirect_to(signin_path)
+        flash[:notice].should =~ /sign in/i
+      end
+    end
+  end
+  
   describe "POST 'create'" do
     
     describe "for signed-in users" do
