@@ -109,4 +109,11 @@ module ApplicationHelper
               :title => "Change Password",
               :class => "chpwd_button")
   end
+  
+  def charger_icon
+    image_tag("charger_icon.png",
+              :alt   => "With Charger",
+              :title => "With Charger",
+              :class => "charger_icon")
+  end
 end

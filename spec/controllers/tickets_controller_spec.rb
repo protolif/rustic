@@ -49,6 +49,18 @@ describe TicketsController do
       it "should have the correct title" do
         response.should have_selector('title', :content => "Ticket for #{@ticket.customer.fname}'s #{@ticket.computer.model} | ID: #{@ticket.id}")
       end
+      
+      it "should display the correct legends" do
+        response.should have_selector('legend', :content => 'Ticket')
+        response.should have_selector('legend', :content => 'Customer')
+        response.should have_selector('legend', :content => 'Computer')
+        response.should have_selector('legend', :content => 'Issue')
+        response.should have_selector('legend', :content => 'Labor')
+        response.should have_selector('legend', :content => 'Parts')
+        response.should have_selector('legend', :content => 'Bill')
+        response.should have_selector('legend', :content => 'Payments')
+        response.should have_selector('legend', :content => 'History')
+      end
     end
     
     describe "for non-signed-in users" do

@@ -1,164 +1,185 @@
 <div class='tbl'>
 	<div class='tbl_row'>
 		<div class='tbl_data'>
-			<fieldset>
-				<legend>Ticket</legend>
-			  <div class='tbl'>
-					<div class='tbl_row'>
-						<div class='tbl_head'>Checked In:</div>
-						<div class='tbl_data'><%= checked_in_at(@computer) %></div>
+			<div class='tbl'>
+				<div class='tbl_row'>
+					<div class='tbl_data wrappable'>
+						<fieldset>
+							<legend>Ticket</legend>
+							<% if !@computer.checked_in.nil? %>
+							  <b>Checked in:</b>
+							  <%= "#{@computer.checked_in.strftime('%B %d %I:%M %p')}
+							      (#{checked_in_at(@computer)})" %><br />
+						  <% end %>
+						  <% if !@computer.checked_out.nil? %>
+						    <b>Checked out:</b>
+							  <%= "#{@computer.checked_out.strftime('%B %d %I:%M %p')}
+							      (#{checked_out_at(@computer)})" %><br />
+						  <% end %>
+						  <b>Status:</b> <%= @ticket.status %><br />
+						  <b>Technician:</b>
+						  <%= (@technician.nil?) ? 'None' : @technician.fname %><br />
+						</fieldset>
+						<fieldset>
+							<legend>Computer</legend>
+							<%= link_to("#{@computer.make} #{@computer.model} #{@computer.form_factor}
+							    #{truncate(@computer.serial, :length => 20)}", computer_path(@computer)) %>
+							<br />
+							<%= @computer.cpu %>
+							<%= @computer.ram %><br />
+							<%= charger_icon if @computer.charger %>
+						</fieldset>
+						<fieldset>
+							<legend>Issue</legend>
+							<%= @ticket.issue %>
+						</fieldset>
+						<fieldset>
+							<legend>Payments</legend>
+							<div class='tbl'>
+								<div class='tbl_row'>
+									<div class='tbl_head'>
+										When
+									</div>
+									<div class='tbl_head'>
+										Amount
+									</div>
+									<div class='tbl_head'>
+										Method
+									</div>
+								</div>
+								<div class='tbl_row'>
+									<div class='tbl_data'>
+										<%= 1.day.ago.strftime('%B %d %I:%M %p') %>
+									</div>
+									<div class='tbl_data'>
+										$99.00
+									</div>
+									<div class='tbl_data'>
+										MasterCard
+									</div>
+								</div>
+							</div>
+						</fieldset>
+						<fieldset>
+							<legend>History</legend>
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+							incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+							exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+							dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+							Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+							mollit anim id est laborum.
+						</fieldset>
 					</div>
-					<div class='tbl_row'>
-						<div class='tbl_head'>Queue Time:</div>
-						<div class='tbl_data'></div>
-					</div>
-					<div class='tbl_row'>
-						<div class='tbl_head'>Fix Time:</div>
-						<div class='tbl_data'></div>
-					</div>
-					<div class='tbl_row'>
-						<div class='tbl_head'>Wait Time:</div>
-						<div class='tbl_data'></div>
-					</div>
-					<div class='tbl_row'>
-						<div class='tbl_head'>Status:</div>
-						<div class='tbl_data'><%= @ticket.status %></div>
-					</div>
-					<div class='tbl_row'>
-						<div class='tbl_head'>Technician:</div>
-						<div class='tbl_data'>
-						  <%= (@technician.nil?) ? 'None' : @technician.fname %>
-						</div>
+					<div class='tbl_data rcol'>
+						<fieldset>
+							<legend>Customer</legend>
+							<b>Name:</b>
+							<%= link_to("#{@customer.fname} #{@customer.lname}", user_path(@customer)) %>
+							<br />
+							<b>Phone:</b> <%= number_to_phone(@customer.tel, :delimiter => '.') %><br />
+							<b>Email:</b>
+							<%= link_to(truncate(@customer.email, :length => 30), "mailto:#{@customer.email}") %>
+							<br />
+							<b>Address:</b><br />
+						  <%= @customer.address %><br />
+					    <%= "#{@customer.city}, #{@customer.state} #{@customer.zip}" %>
+						</fieldset>
+						<fieldset>
+							<legend>
+								Labor
+								<%= link_to(content_tag(:span, "+", :class => "add round legend_button"),
+					                  "#",
+					                  :title => "Add Labor Charge") %>
+							</legend>
+							<div class='tbl'>
+								<div class='tbl_row'>
+									<div class='tbl_head'>
+										Service
+									</div>
+									<div class='tbl_head'>
+										Price
+									</div>
+									<div class='tbl_head'>
+										Notes
+									</div>
+								</div>
+								<div class='tbl_row'>
+									<div class='tbl_data'>
+										Diagnosis
+									</div>
+									<div class='tbl_data'>
+										$0.00
+									</div>
+									<div class='tbl_data'>
+										Dust Removal
+									</div>
+								</div>
+							</div>
+						</fieldset>
+						<fieldset>
+							<legend>
+								Parts
+								<%= link_to(content_tag(:span, "+", :class => "add round legend_button"),
+					                  "#",
+					                  :title => "Add Parts Charge") %>
+							</legend>
+							<div class='tbl'>
+								<div class='tbl_row'>
+									<div class='tbl_head'>
+										Item
+									</div>
+									<div class='tbl_head'>
+										Qty
+									</div>
+									<div class='tbl_head'>
+										Price
+									</div>
+								</div>
+								<div class='tbl_row'>
+									<div class='tbl_data'>
+										Memory 1GB DDR
+									</div>
+									<div class='tbl_data'>
+										2
+									</div>
+									<div class='tbl_data'>
+										$80.00
+									</div>
+								</div>
+							</div>
+						</fieldset>
+						<fieldset>
+							<legend>Bill</legend>
+							<div class='tbl'>
+								<div class='tbl_row'>
+									<div class='tbl_head'>
+										Subtotal
+									</div>
+									<div class='tbl_data'>
+										$350.00
+									</div>
+								</div>
+								<div class='tbl_row'>
+									<div class='tbl_head'>
+										Tax
+									</div>
+									<div class='tbl_data'>
+										$5.00
+									</div>
+								</div>
+								<div class='tbl_row'>
+									<div class='tbl_head'>
+										Total
+									</div>
+									<div class='tbl_data'>
+										$355.00
+									</div>
+								</div>
+							</div>
+						</fieldset>
 					</div>
 				</div>
-			</fieldset>
-		</div>
-		<div class='tbl_data'>
-			<fieldset>
-				<legend>Customer</legend>
-			  <div class='tbl'>
-					<div class='tbl_row'>
-						<div class='tbl_head'>Name:</div>
-						<div class='tbl_data'>
-						  <%= "#{@customer.fname} #{@customer.lname}" %>
-						</div>
-					</div>
-					<div class='tbl_row'>
-						<div class='tbl_head'>Phone:</div>
-						<div class='tbl_data'>
-						  <%= number_to_phone(@customer.tel, :delimiter => '.') %>
-						</div>
-					</div>
-					<div class='tbl_row'>
-						<div class='tbl_head'>Email:</div>
-						<div class='tbl_data'><%= @customer.email %></div>
-					</div>
-					<div class='tbl_row'>
-						<div class='tbl_head'>Address:</div>
-						<div class='tbl_data'>
-						  <%= "#{@customer.address}," %><br />
-						  <%= "#{@customer.city}, #{@customer.state} #{@customer.zip}" %>
-						</div>
-					</div>
-				</div>
-			</fieldset>
-		</div>
-	</div>
-	<div class='tbl_row'>
-		<div class='tbl_data wrappable'>
-			<fieldset>
-				<legend>Issue</legend>
-				<%= @ticket.issue %>
-			</fieldset>
-			<fieldset>
-				<legend>History</legend>
-				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-			</fieldset>
-		</div>
-		<div class='tbl_data'>
-			<fieldset>
-				<legend>Labor</legend>
-				<div class='tbl'>
-					<div class='tbl_row'>
-						<div class='tbl_head'>
-							Service
-						</div>
-						<div class='tbl_head'>
-							Price
-						</div>
-						<div class='tbl_head'>
-							Notes
-						</div>
-					</div>
-					<div class='tbl_row'>
-						<div class='tbl_data'>
-							Diagnosis
-						</div>
-						<div class='tbl_data'>
-							$0.00
-						</div>
-						<div class='tbl_data'>
-							Dust Removal
-						</div>
-					</div>
-				</div>
-			</fieldset>
-			<fieldset>
-				<legend>Parts</legend>
-				<div class='tbl'>
-					<div class='tbl_row'>
-						<div class='tbl_head'>
-							Item
-						</div>
-						<div class='tbl_head'>
-							Qty
-						</div>
-						<div class='tbl_head'>
-							Price
-						</div>
-					</div>
-					<div class='tbl_row'>
-						<div class='tbl_data'>
-							Memory 1GB DDR
-						</div>
-						<div class='tbl_data'>
-							2
-						</div>
-						<div class='tbl_data'>
-							$80.00
-						</div>
-					</div>
-				</div>
-			</fieldset>
-			<fieldset>
-				<legend>Bill</legend>
-				<div class='tbl'>
-					<div class='tbl_row'>
-						<div class='tbl_head'>
-							Subtotal
-						</div>
-						<div class='tbl_data'>
-							$350.00
-						</div>
-					</div>
-					<div class='tbl_row'>
-						<div class='tbl_head'>
-							Tax
-						</div>
-						<div class='tbl_data'>
-							$5.00
-						</div>
-					</div>
-					<div class='tbl_row'>
-						<div class='tbl_head'>
-							Total
-						</div>
-						<div class='tbl_data'>
-							$355.00
-						</div>
-					</div>
-				</div>
-			</fieldset>
+			</div>
 		</div>
 	</div>
 </div>
