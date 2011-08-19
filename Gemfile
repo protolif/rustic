@@ -3,7 +3,9 @@ source 'http://rubygems.org'
 gem 'rails', '3.0.9'
 gem 'gravatar_image_tag', '1.0.0.pre2'
 gem 'will_paginate', '3.0.pre2'
-gem 'faker', '0.3.1'
+gem 'faker', '0.9.5'
+gem 'money', '3.7.1'
+gem 'haml'
 
 group :development do
   gem 'mysql2', '~> 0.2.6'

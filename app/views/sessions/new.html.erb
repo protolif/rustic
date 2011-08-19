@@ -2,17 +2,17 @@
 
 <%= form_for(:session, :url => sessions_path) do |f| %>
   <div class='tbl'>
-	  <div class='tbl_row'>
-	  	<div class='tbl_head'><%= f.label :email %></div>
-	    <div class='tbl_data'><%= f.text_field :email %></div>
+	  <div class='row'>
+	  	<div class='cellb'><%= f.label :email %></div>
+	    <div class='cell'><%= f.text_field :email %></div>
 	  </div>
-	  <div class='tbl_row'>
-	  	<div class='tbl_head'><%= f.label :password %></div>
-	    <div class='tbl_data'><%= f.password_field :password %></div>
+	  <div class='row'>
+	  	<div class='cellb'><%= f.label :password %></div>
+	    <div class='cell'><%= f.password_field :password %></div>
 	  </div>
-		<div class='tbl_row'>
-	  	<div class='tbl_head'><%= f.label nil %></div>
-	    <div class='tbl_data'><%= f.submit 'Sign in' %></div>
+		<div class='row'>
+	  	<div class='cellb'><%= f.label nil %></div>
+	    <div class='cell'><%= f.submit 'Sign in' %></div>
 	  </div>
 	</div>
 <% end %>

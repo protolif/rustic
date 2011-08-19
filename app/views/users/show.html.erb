@@ -1,6 +1,6 @@
 <div class='tbl'>
-  <div class='tbl_row'>
-    <div class='tbl_data user_show_title'>
+  <div class='row'>
+    <div class='cell user_show_title'>
 	    <%= gravatar_for @user %>
 		  <%= "#{@user.fname} #{@user.lname}" %>
 			<% if current_user && current_user.admin? %>
@@ -9,30 +9,30 @@
 			<% end %>
 		</div>
 	</div>
-	<div class='tbl_row'>
-    <div class='tbl_data'>
+	<div class='row'>
+    <div class='cell'>
 	    <div class='tbl'>
-		    <div class='tbl_row'>
-		      <div class='tbl_head'>
+		    <div class='row'>
+		      <div class='cellb'>
 			      Phone:
 		      </div>
-		      <div class='tbl_data'>
+		      <div class='cell'>
 		  	    <%= number_to_phone(@user.tel, :delimiter => '.') %>
 		      </div>
 		    </div>
-		    <div class='tbl_row'>
-		      <div class='tbl_head'>
+		    <div class='row'>
+		      <div class='cellb'>
 		  	    Email:
 		      </div>
-		      <div class='tbl_data'>
+		      <div class='cell'>
 		  	    <%= @user.email %>
 		      </div>
 		    </div>
-		    <div class='tbl_row'>
-		      <div class='tbl_head'>
+		    <div class='row'>
+		      <div class='cellb'>
 		  	    Address:
 		      </div>
-		      <div class='tbl_data'>
+		      <div class='cell'>
 		  	    <%= "#{@user.address}, #{@user.city}, #{@user.state} #{@user.zip}" %>
 		      </div>
 		    </div>
@@ -45,22 +45,22 @@
       </div>
 	    <div class='tbl'>
         <% if @user.computers.any? %>
-		  	  <div class='tbl_row'>
-		  	    <div class='tbl_head'>Make</div>
-		        <div class='tbl_head'>Model</div>
-		        <div class='tbl_head'>Serial</div>
-		        <div class='tbl_head'>Checked In</div>
-		        <div class='tbl_head'>Checked Out</div>
-		        <div class='tbl_head'>Actions</div>
+		  	  <div class='row'>
+		  	    <div class='cellb'>Make</div>
+		        <div class='cellb'>Model</div>
+		        <div class='cellb'>Serial</div>
+		        <div class='cellb'>Checked In</div>
+		        <div class='cellb'>Checked Out</div>
+		        <div class='cellb'>Actions</div>
 		  	  </div>
 		      <% @user.computers.each do |computer| %>
-			      <div class='tbl_row'>
-				      <div class='tbl_data'><%= computer.make %></div>
-				      <div class='tbl_data'><%= computer.model %></div>
-				      <div class='tbl_data'><%= truncate(computer.serial, :length => 10) %></div>
-				      <div class='tbl_data'><%= checked_in_at(computer) %></div>
-				      <div class='tbl_data'><%= checked_out_at(computer) %></div>
-				      <div class='tbl_data'>
+			      <div class='row'>
+				      <div class='cell'><%= computer.make %></div>
+				      <div class='cell'><%= computer.model %></div>
+				      <div class='cell'><%= truncate(computer.serial, :length => 10) %></div>
+				      <div class='cell'><%= checked_in_at(computer) %></div>
+				      <div class='cell'><%= checked_out_at(computer) %></div>
+				      <div class='cell'>
 				        <%= link_to ticket_icon, new_ticket_path +
 				                                 "?user_id=#{@user.id}&computer_id=#{computer.id}" %>
 				        <%= link_to(edit_icon, edit_computer_path(computer) + "?user_id=#{@user.id}") %>
@@ -73,8 +73,8 @@
 			      </div>
 		      <% end %>
 	      <% else %>
-		      <div class='tbl_row'>
-		        <div class='tbl_data default'>
+		      <div class='row'>
+		        <div class='cell default'>
 			        It looks like you don't have any computers registered yet.
 			        Click the green plus icon above to register your computer with us.
 			      </div>
@@ -84,16 +84,16 @@
       <div class="user_show_h2"><%= "#{@user.fname}'s Tickets" %></div>
       <div class='tbl'>
       	<% if @user.tickets.any? %>
-          <div class='tbl_row'>
-          	<div class='tbl_head'>ID</div>
-	          <div class='tbl_head'>Model</div>
-            <div class='tbl_head'>Issue</div>
-            <div class='tbl_head'>Technician</div>
-            <div class='tbl_head'>Status</div>
-            <div class='tbl_head'>Created</div>
+          <div class='row'>
+          	<div class='cellb'>ID</div>
+	          <div class='cellb'>Model</div>
+            <div class='cellb'>Issue</div>
+            <div class='cellb'>Technician</div>
+            <div class='cellb'>Status</div>
+            <div class='cellb'>Created</div>
           </div>
           <% @user.tickets.each do |ticket| %>
-            <div class='tbl_row row_link'>
+            <div class='row row_link'>
             <% [ ticket.id,
 	               ticket.computer.model,
 	               truncate(ticket.issue),
@@ -101,13 +101,13 @@
 	               (ticket.status.nil?) ? "None" : ticket.status,
 	               "#{time_ago_in_words(ticket.created_at)} ago"
 	             ].each do |data| %>
-	               <%= content_tag(:div, link_to(data, ticket_path(ticket)), :class => 'tbl_data') %>
+	               <%= content_tag(:div, link_to(data, ticket_path(ticket)), :class => 'cell') %>
 	             <% end %>
 	          </div>
           <% end %>
        	<% else %>
-		      <div class='tbl_row'>
-		        <div class='tbl_data default'>
+		      <div class='row'>
+		        <div class='cell default'>
 			        It looks like you don't have any tickets yet.
 			        If you've already registered your computer,
 			        click the blue ticket icon above to open a ticket for your computer.

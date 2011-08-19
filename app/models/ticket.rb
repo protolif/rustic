@@ -1,14 +1,17 @@
 class Ticket < ActiveRecord::Base
   attr_accessible :customer_id, :computer_id, :technician_id, :issue, :status
   
-  belongs_to :customer, :class_name => "User"
   belongs_to :computer
+  belongs_to :customer,   :class_name => "User"
   belongs_to :technician, :class_name => "User"
+  
+  has_many :labors, :dependent => :destroy
 
   validates :customer_id, :presence => true
   validates :computer_id, :presence => true
   validates :issue,       :presence => true, :length => { :within => 10..255 }
 end
+
 
 # == Schema Information
 #
@@ -21,5 +24,6 @@ end
 #  created_at    :datetime
 #  updated_at    :datetime
 #  issue         :string(255)
+#  status        :string(255)
 #
 

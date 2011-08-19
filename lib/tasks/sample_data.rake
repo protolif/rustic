@@ -13,15 +13,32 @@ namespace :db do
                          :password => "pa55w0rD",
                          :password_confirmation => "pa55w0rD")
     admin.toggle!(:admin)
-    admin.computers.create!(:make => 'Apple',
+    [admin.computers.create!(:make => 'Apple',
                             :model => 'MacBook Pro',
-                            :serial => SecureRandom.hex(10))
+                            :serial => SecureRandom.hex(10),
+                            :form_factor => "Laptop",
+                            :charger     => true,
+                            :status      => "In Queue",
+                            :checked_in  => Time.now),
     admin.computers.create!(:make => 'Apple',
                             :model => 'PowerMac G4',
-                            :serial => SecureRandom.hex(10))
+                            :serial => SecureRandom.hex(10),
+                            :form_factor => "Desktop",
+                            :charger     => false,
+                            :status      => "In Queue",
+                            :checked_in  => Time.now),
     admin.computers.create!(:make => 'Custom',
                             :model => 'Black NZXT',
-                            :serial => SecureRandom.hex(10))
+                            :serial => SecureRandom.hex(10),
+                            :form_factor => "Desktop",
+                            :charger     => false,
+                            :status      => "In Queue",
+                            :checked_in  => Time.now)].each do |pc|
+                              t = admin.tickets.create!(:computer_id => pc.id, :issue => Faker::Lorem.sentence)
+                              t.labors.create!(:service => "Virus Removal",
+                                               :price   => "$99",
+                                               :notes   => "1337 Malware")
+                            end
     
     manufacturers = ['Acer', 'Compaq', 'eMachines', 'Everex', 'Gateway', 'Apple',
                      'Asus', 'Dell', 'Alienware', 'Falcon Northwest', 'Fujitsu',
@@ -52,9 +69,18 @@ namespace :db do
                               :password              => "pa55worD",
                               :password_confirmation => "pa55worD")
       3.times do
-       user.computers.create!(:make => manufacturers.rand,
-                              :model => models.rand,
-                              :serial => SecureRandom.hex(10))
+        pc = user.computers.create!(:make        => manufacturers.rand,
+                                    :model       => models.rand,
+                                    :serial      => SecureRandom.hex(10),
+                                    :form_factor => "Laptop",
+                                    :charger     => true,
+                                    :status      => "In Queue",
+                                    :checked_in  => Time.now)
+                                    
+        t = user.tickets.create!(:computer_id => pc.id, :issue => Faker::Lorem.sentence)
+        t.labors.create!(:service => "Virus Removal",
+                         :price   => "$99",
+                         :notes   => "1337 Malware")
       end
     end
   end

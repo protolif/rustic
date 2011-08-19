@@ -1,0 +1,74 @@
+.tbl
+	.row
+		.cell
+			.tbl
+				.row
+					.cell.wrappable
+						= render 'customer', :c => @customer
+						= render 'computer', :pc => @computer
+						%fieldset
+							%legend Issue
+							= @ticket.issue
+						%fieldset
+							%legend History
+							= Faker::Lorem.paragraph
+					.cell	
+						= render 'ticket', :t => @ticket
+						%fieldset
+							%legend
+								Labor
+							.tbl#labor_table
+								.row
+									.cellb Service
+									.cellb Price
+									.cellb Notes
+								- if @ticket.labors.any?
+									- @ticket.labors.each do |labor| 
+										= render 'labors/labor', :labor => labor
+						.tbl
+							= form_for @ticket.labors.new, :remote => true do |f| 
+								.row.longer
+									.cell
+										= f.select :service, Labor::SERVICES, :include_blank => true
+									.cell
+										= f.text_field :price, :class => :price
+									.cell
+										= f.text_field :notes, :class => :notes
+									.cell
+										= f.hidden_field :ticket_id, :value => @ticket.id
+										= f.submit "Add"
+						%fieldset
+							%legend Parts
+							.tbl
+								.row
+									.cellb Item
+									.cellb Qty
+									.cellb Price
+								.row
+									.cell Memory 1GB DDR
+									.cell 2
+									.cell $80.00
+						%fieldset
+							%legend Bill
+							.tbl
+								.row
+									.cellb Subtotal
+									.cell $350.00
+								.row
+									.cellb Tax
+									.cell $5.00
+								.row
+									.cellb Total
+									.cell $355.00
+						%fieldset
+							%legend Payments
+							.tbl
+								.row
+									.cellb When
+									.cellb Amount
+									.cellb Method
+								.row
+									.cell
+										= 1.day.ago.strftime('%B %d %I:%M %p')
+									.cell $99.00
+									.cell MasterCard

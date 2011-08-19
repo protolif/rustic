@@ -78,6 +78,7 @@ describe Ticket do
   end
 end
 
+
 # == Schema Information
 #
 # Table name: tickets
@@ -89,5 +90,6 @@ end
 #  created_at    :datetime
 #  updated_at    :datetime
 #  issue         :string(255)
+#  status        :string(255)
 #
 

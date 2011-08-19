@@ -3,6 +3,7 @@ Rustic::Application.routes.draw do
   resources :users
   resources :computers
   resources :tickets
+  resources :labors
   resources :sessions, :only => [:new, :create, :destroy]
 
 

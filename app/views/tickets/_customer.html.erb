@@ -1,0 +1,10 @@
+<fieldset>
+	<legend>Customer</legend>
+	<%= link_to("#{c.fname} #{c.lname}", user_path(c)) %>
+	<br />
+	<%= number_to_phone(c.tel, :delimiter => '.') %><br />
+	<%= link_to(truncate(c.email, :length => 30), "mailto:#{c.email}") %>
+	<br />
+  <%= c.address %><br />
+  <%= "#{c.city}, #{c.state} #{c.zip}" %>
+</fieldset>

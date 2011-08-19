@@ -227,15 +227,15 @@ span.caveat {
 
 /* Table Layout */
 div.tbl { display: table; width: auto }
-div.tbl_row { display: table-row; width: auto }
-div.tbl_head { font-weight: bold }
-div.tbl_data, div.tbl_head { 
+div.row { display: table-row; width: auto }
+div.cellb { font-weight: bold }
+div.cell, div.cellb { 
 	display: table-cell;
 	padding: 2px 4px;/* Never use percentages here! */
 	width: auto;
 	white-space: nowrap
 }
-.tbl .tbl_row .tbl_data .tbl .tbl_row:nth-child(even) { background-color: #eee }
+.tbl .row .cell .tbl .row:nth-child(even) { background-color: #eee }
 
 div.user_show_title { font-size: 300% }
 div.user_show_title img { vertical-align: text-top }
@@ -291,3 +291,6 @@ textarea {
 	width: 300px;
 	height: 105px;
 }
+/*.service { width: 100px }*/
+.price   { width: 50px }
+.notes   { width: 100px }
