@@ -59,7 +59,7 @@ describe TicketsController do
         response.should have_selector('legend', :content => 'Parts')
         response.should have_selector('legend', :content => 'Bill')
         response.should have_selector('legend', :content => 'Payments')
-        response.should have_selector('legend', :content => 'History')
+        response.should have_selector('legend', :content => 'Notes')
       end
     end
     

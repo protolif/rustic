@@ -2,6 +2,11 @@ class TicketsController < ApplicationController
   before_filter :authenticate
   before_filter :correct_user
   
+  def index
+    @title   = "Tickets"
+    @tickets = Ticket.search('In Queue', params[:page])
+  end
+  
   def new
     @title  = "New Ticket"
     @ticket = @user.tickets.new
@@ -24,6 +29,16 @@ class TicketsController < ApplicationController
     @customer = @ticket.customer
     @computer = @ticket.computer
     @technician = @ticket.technician
+  end
+  
+  def update
+    @ticket = Ticket.find(params[:ticket][:id])
+    if @ticket.update_attributes(params[:ticket])
+      respond_to do |format|
+        format.html { redirect_to @ticket }
+        format.js
+      end
+    end
   end
   
   private

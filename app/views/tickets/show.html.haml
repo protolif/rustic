@@ -9,11 +9,9 @@
 						%fieldset
 							%legend Issue
 							= @ticket.issue
-						%fieldset
-							%legend History
-							= Faker::Lorem.paragraph
+						= render 'notes', :t => @ticket
 					.cell	
-						= render 'ticket', :t => @ticket
+						= render 'meta', :t => @ticket
 						%fieldset
 							%legend Labor
 							.tbl#labor_table

@@ -1,0 +1,12 @@
+.row
+	.cell
+		= "#{ticket.computer.make} #{ticket.computer.model}"
+	.cell
+		= truncate(ticket.issue, :length => 40)
+	.cell
+		= "#{time_ago_in_words(ticket.created_at)} ago"
+	.cell
+		= form_for ticket do |f|
+			= f.hidden_field :id, :value => ticket.id
+			= f.hidden_field :technician_id, :value => current_user.id
+			= f.submit "Take Job"

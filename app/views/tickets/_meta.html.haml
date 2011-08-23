@@ -1,0 +1,17 @@
+%fieldset
+	%legend Ticket
+	- if !t.computer.checked_in.nil?
+		%b Checked in:
+		= "#{t.computer.checked_in.strftime('%B %d %I:%M %p')} (#{checked_in_at(t.computer)})"
+		%br
+	- if !t.computer.checked_out.nil?
+		%b Checked out:
+		= "#{t.computer.checked_out.strftime('%B %d %I:%M %p')} (#{checked_out_at(t.computer)})"
+		%br
+	= form_for t, :remote => true do |f|
+		= f.label :status, 'Status:'
+		= f.select :status, Ticket::STATUSES
+		= f.hidden_field :id, :value => @ticket.id
+		= f.submit "Update"
+	%b Technician:
+	= (t.technician.nil?) ? 'None' : t.technician.fname

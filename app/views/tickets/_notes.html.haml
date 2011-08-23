@@ -1,0 +1,6 @@
+%fieldset
+	%legend Notes
+	= form_for t, :remote => true do |f|
+		= f.text_area :notes, :class => :notes
+		= f.hidden_field :id, :value => @ticket.id
+		= f.submit "Update"

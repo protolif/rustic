@@ -1,5 +1,6 @@
 class Ticket < ActiveRecord::Base
-  attr_accessible :customer_id, :computer_id, :technician_id, :issue, :status,
+  attr_accessible :customer_id, :computer_id, :technician_id,
+                  :issue, :status, :notes,
                   :subtotal, :total, :tax
   
   composed_of :subtotal,
@@ -29,6 +30,8 @@ class Ticket < ActiveRecord::Base
   validates :computer_id, :presence => true
   validates :issue,       :presence => true, :length => { :within => 10..255 }
   
+  STATUSES = ['In Queue', 'Diagnosing', 'Fixing', 'Waiting', 'Completed', 'Closed']
+  
   LOCAL_SALES_TAX = 0.07
   
   def subtotal
@@ -57,6 +60,12 @@ class Ticket < ActiveRecord::Base
   
   def calculate
     total
+  end
+  
+  def self.search(search, page)
+    paginate :per_page => 8, :page => page,
+             :conditions => ['status like ?', "%#{search}%"],
+             :order => 'created_at'
   end
 end
 
