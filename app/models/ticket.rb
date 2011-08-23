@@ -21,8 +21,9 @@ class Ticket < ActiveRecord::Base
   belongs_to :customer,   :class_name => "User"
   belongs_to :technician, :class_name => "User"
   
-  has_many :labors, :dependent => :destroy
-  has_many :parts,  :dependent => :destroy
+  has_many :labors,   :dependent => :destroy
+  has_many :parts,    :dependent => :destroy
+  has_many :payments, :dependent => :destroy
 
   validates :customer_id, :presence => true
   validates :computer_id, :presence => true
@@ -60,6 +61,7 @@ class Ticket < ActiveRecord::Base
 end
 
 
+
 # == Schema Information
 #
 # Table name: tickets
@@ -72,5 +74,8 @@ end
 #  updated_at    :datetime
 #  issue         :string(255)
 #  status        :string(255)
+#  subtotal      :integer(4)      default(0), not null
+#  total         :integer(4)      default(0), not null
+#  tax           :integer(4)      default(0), not null
 #
 

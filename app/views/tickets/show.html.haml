@@ -65,13 +65,21 @@
 							= render 'bill', :ticket => @ticket
 						%fieldset
 							%legend Payments
-							.tbl
+							.tbl#payments_table
 								.row
-									.cellb When
-									.cellb Amount
-									.cellb Method
+									.cellb.price Amount
+									.cellb.method Method
+									.cellb.when When
+								- if @ticket.payments.any?
+									- @ticket.payments.each do |payment| 
+										= render 'payments/payment', :payment => payment
+						.tbl
+							= form_for @ticket.payments.new, :remote => true do |f| 
 								.row
 									.cell
-										= 1.day.ago.strftime('%B %d %I:%M %p')
-									.cell $99.00
-									.cell MasterCard
+										= f.text_field :price, :class => :price
+									.cell
+										= f.select :method, Payment::METHODS, :include_blank => true
+									.cell
+										= f.hidden_field :ticket_id, :value => @ticket.id
+										= f.submit "Add"

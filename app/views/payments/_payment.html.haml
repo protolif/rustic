@@ -1,0 +1,10 @@
+.row{:id=>"payment_#{payment.id}"}
+	.cell
+		= "$#{payment.price}"
+	.cell
+		= payment.method
+	.cell
+		= payment.created_at.strftime('%B %d %I:%M %p')
+	.cell
+		= form_for payment, :html => { :method => :delete }, :remote => true do |f|
+			= f.submit "Delete"

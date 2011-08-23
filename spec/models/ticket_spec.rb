@@ -107,6 +107,7 @@ describe Ticket do
 end
 
 
+
 # == Schema Information
 #
 # Table name: tickets
@@ -119,5 +120,8 @@ end
 #  updated_at    :datetime
 #  issue         :string(255)
 #  status        :string(255)
+#  subtotal      :integer(4)      default(0), not null
+#  total         :integer(4)      default(0), not null
+#  tax           :integer(4)      default(0), not null
 #
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110823094727) do
+ActiveRecord::Schema.define(:version => 20110823113508) do
 
   create_table "computers", :force => true do |t|
     t.string   "make"
@@ -52,6 +52,16 @@ ActiveRecord::Schema.define(:version => 20110823094727) do
   end
 
   add_index "parts", ["ticket_id"], :name => "index_parts_on_ticket_id"
+
+  create_table "payments", :force => true do |t|
+    t.integer  "ticket_id"
+    t.integer  "price",      :default => 0, :null => false
+    t.string   "method"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "payments", ["ticket_id"], :name => "index_payments_on_ticket_id"
 
   create_table "tickets", :force => true do |t|
     t.integer  "customer_id"

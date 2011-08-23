@@ -1,5 +1,5 @@
-class Part < ActiveRecord::Base
-  attr_accessible :item, :price, :qty, :warranty
+class Payment < ActiveRecord::Base
+  attr_accessible :price, :method
   
   composed_of :price,
               :class_name => 'Money',
@@ -9,24 +9,20 @@ class Part < ActiveRecord::Base
   belongs_to :ticket
   
   validates :ticket_id, :presence => true
-  validates :item,      :presence => true
   validates :price,     :presence => true
-  validates :qty,       :presence => true
-  validates :warranty,  :presence => true
+  validates :method,    :presence => true
   
-  WARRANTIES = ['1 Year', '6 Months', '90 Days', '30 Days', '2 Weeks', 'None']
+  METHODS = ['Cash', 'Check', 'Visa', 'MasterCard', 'Amex', 'Discover']
 end
 
 # == Schema Information
 #
-# Table name: parts
+# Table name: payments
 #
 #  id         :integer(4)      not null, primary key
-#  item       :string(255)
 #  ticket_id  :integer(4)
-#  price      :integer(4)      default(0), not null
-#  qty        :integer(4)      default(1), not null
-#  warranty   :string(255)
+#  amount     :integer(4)      default(0), not null
+#  method     :string(255)
 #  created_at :datetime
 #  updated_at :datetime
 #

@@ -5,6 +5,7 @@ Rustic::Application.routes.draw do
   resources :tickets
   resources :labors,   :only => [:create, :destroy]
   resources :parts,    :only => [:create, :destroy]
+  resources :payments, :only => [:create, :destroy]
   resources :sessions, :only => [:new, :create, :destroy]
 
 
