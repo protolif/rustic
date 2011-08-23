@@ -19,9 +19,9 @@
 								Labor
 							.tbl#labor_table
 								.row
-									.cellb Service
-									.cellb Price
-									.cellb Notes
+									.cellb.service Service Performed
+									.cellb.price Price
+									.cellb.notes Additional Notes
 								- if @ticket.labors.any?
 									- @ticket.labors.each do |labor| 
 										= render 'labors/labor', :labor => labor
