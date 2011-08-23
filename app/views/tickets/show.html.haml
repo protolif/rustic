@@ -15,8 +15,7 @@
 					.cell	
 						= render 'ticket', :t => @ticket
 						%fieldset
-							%legend
-								Labor
+							%legend Labor
 							.tbl#labor_table
 								.row
 									.cellb.service Service Performed
@@ -27,7 +26,7 @@
 										= render 'labors/labor', :labor => labor
 						.tbl
 							= form_for @ticket.labors.new, :remote => true do |f| 
-								.row.longer
+								.row
 									.cell
 										= f.select :service, Labor::SERVICES, :include_blank => true
 									.cell
@@ -39,15 +38,29 @@
 										= f.submit "Add"
 						%fieldset
 							%legend Parts
-							.tbl
+							.tbl#parts_table
 								.row
-									.cellb Item
-									.cellb Qty
-									.cellb Price
+									.cellb.item Hardware Description
+									.cellb.qty Qty
+									.cellb.price Price
+									.cellb.warranty Warranty
+								- if @ticket.parts.any?
+									- @ticket.parts.each do |part| 
+										= render 'parts/part', :part => part
+						.tbl
+							= form_for @ticket.parts.new, :remote => true do |f| 
 								.row
-									.cell Memory 1GB DDR
-									.cell 2
-									.cell $80.00
+									.cell
+										= f.text_field :item, :class => :item
+									.cell
+										= f.text_field :qty, :class => :qty
+									.cell
+										= f.text_field :price, :class => :price
+									.cell
+										= f.select :warranty, Part::WARRANTIES, :include_blank => true
+									.cell
+										= f.hidden_field :ticket_id, :value => @ticket.id
+										= f.submit "Add"
 						%fieldset#bill
 							= render 'bill', :ticket => @ticket
 						%fieldset

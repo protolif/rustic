@@ -6,7 +6,9 @@
 			= "$#{ticket.subtotal}"
 	.row
 		.cellb Tax
-		.cell $5.00
+		.cell
+			= "$#{ticket.tax}"
 	.row
 		.cellb Total
-		.cell $355.00
+		.cell
+			= "$#{ticket.total}"

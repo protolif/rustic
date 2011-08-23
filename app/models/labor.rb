@@ -10,6 +10,7 @@ class Labor < ActiveRecord::Base
   
   validates :ticket_id, :presence => true
   validates :service,   :presence => true
+  validates :price,     :presence => true
   
   SERVICES = ['Console Repair',
               'Data Recovery',

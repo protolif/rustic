@@ -22,21 +22,40 @@ class Ticket < ActiveRecord::Base
   belongs_to :technician, :class_name => "User"
   
   has_many :labors, :dependent => :destroy
+  has_many :parts,  :dependent => :destroy
 
   validates :customer_id, :presence => true
   validates :computer_id, :presence => true
   validates :issue,       :presence => true, :length => { :within => 10..255 }
+  
+  LOCAL_SALES_TAX = 0.07
   
   def subtotal
     subtotal = Money.new(0)
     labors.each do |labor|
       subtotal += labor.price
     end
+    parts.each do |part|
+      subtotal += part.price
+    end
     subtotal
   end
   
+  def tax
+    tax = Money.new(0)
+    parts.each do |part|
+      tax += part.price * LOCAL_SALES_TAX
+    end
+    tax
+  end
+  
+  def total
+    total = Money.new(0)
+    total += subtotal + tax
+  end
+  
   def calculate
-    subtotal
+    total
   end
 end
 

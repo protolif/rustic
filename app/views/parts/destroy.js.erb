@@ -1,0 +1,2 @@
+$("part_<%= @part.id %>").hide()
+$("bill").update("<%= escape_javascript(render('tickets/bill', :ticket => @part.ticket)) %>");

@@ -1,0 +1,12 @@
+.row{:id=>"part_#{part.id}"}
+	.cell
+		= part.item
+	.cell
+		= part.qty
+	.cell
+		= "$#{part.price}"
+	.cell
+		= part.warranty
+	.cell
+		= form_for part, :html => { :method => :delete }, :remote => true do |f|
+			= f.submit "Delete"
