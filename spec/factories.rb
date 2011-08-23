@@ -25,6 +25,7 @@ end
 
 Factory.define :ticket do |ticket|
   ticket.issue "Lorem ipsum dolor sit amet"
+  ticket.status "In Queue"
   ticket.association :customer, :factory => :user
   ticket.association :computer, :factory => :computer
 end

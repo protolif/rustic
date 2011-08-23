@@ -48,18 +48,8 @@
 									.cell Memory 1GB DDR
 									.cell 2
 									.cell $80.00
-						%fieldset
-							%legend Bill
-							.tbl
-								.row
-									.cellb Subtotal
-									.cell $350.00
-								.row
-									.cellb Tax
-									.cell $5.00
-								.row
-									.cellb Total
-									.cell $355.00
+						%fieldset#bill
+							= render 'bill', :ticket => @ticket
 						%fieldset
 							%legend Payments
 							.tbl

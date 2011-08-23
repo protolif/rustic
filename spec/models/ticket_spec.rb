@@ -74,6 +74,34 @@ describe Ticket do
         @user.tickets.build(:computer_id => @computer.id,
                             :issue       => "a" * 255).should be_valid
       end
+      
+      it "should have a subtotal" do
+        @ticket = @user.tickets.build(:computer_id => @computer.id,
+                                      :issue       => "a" * 255,
+                                      :subtotal    => 0)
+        @ticket.subtotal.class.should == Money
+      end
+    end
+  end
+  
+  describe "Money Arithmetic" do
+    
+    before(:each) do
+      @ticket = @user.tickets.create!(:computer_id   => @computer.id,
+                                      :technician_id => @technician.id,
+                                      :issue         => "a" * 10)
+      @l1 = @ticket.labors.build(:service => "Virus Removal",
+                                :price   => "$99",
+                                :notes   => "1337 Malware")
+      @l2 = @ticket.labors.build(:service => "House Call",
+                                :price   => "$101",
+                                :notes   => "66 Minutes")
+      @l1.save
+      @l2.save
+    end
+    
+    it "should have the correct subtotal" do
+      @ticket.subtotal.should == @l1.price + @l2.price
     end
   end
 end
