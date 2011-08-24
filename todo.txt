@@ -1,5 +1,3 @@
 enhanced search as you type
 computer locations
 replace ticket notes with ticket feed
-a printer friendly ticket
-qr codes for computers

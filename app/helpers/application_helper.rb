@@ -116,4 +116,12 @@ module ApplicationHelper
               :title => "With Charger",
               :class => "charger_icon")
   end
+  
+  def qr_white
+    image_tag("qrw.png")
+  end
+  
+  def qr_black
+    image_tag("qrb.png")
+  end
 end

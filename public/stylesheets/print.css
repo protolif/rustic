@@ -1,17 +1,8 @@
-.container { width: 710px }
+.container { width: 100% }
 
-body {
-  background-color: #666;
-  background-image: url('/images/proto_bg.png');
-  background-attachment: fixed;
-}
+body { background-color: #fff }
 
-header { padding-top: 20px }
-
-header img {
-  padding: 1em;
-  background: #fff;
-}
+header { display:none }
 
 section {
   margin-top: 1em;
@@ -30,35 +21,8 @@ a {
   text-decoration: none;
 }
 
-a:hover { color: #09f }
-
 /* Navigation */
-nav { float: right }
-
-nav {
-  background-color: #fff;
-  padding: 0 0.7em;
-  white-space: nowrap;
-}
-
-nav ul {
-  margin: 0;
-  padding: 0;
-}
-
-nav ul li {
-  list-style-type: none;
-  display: inline-block;
-  padding: 0.2em 0;
-}
-
-nav ul li a {
-  padding: 0 5px;
-  font-weight: bold;
-  color: #069;
-}
-
-nav ul li a:hover { color: #09f }
+nav { display:none }
 
 /* Sign up button */
 
@@ -91,76 +55,14 @@ a.signup_button {
   box-shadow: 5px 5px 10px 5px #000;
 }
 
-a.signup_button:hover {
-  background-image: -webkit-gradient(
-	linear,
-	left bottom,
-	left top,
-	color-stop(0.16, #036),
-	color-stop(0.69, #003)
-	);
-  background-image: -moz-linear-gradient(
-	center bottom,
-	#036 16%,
-	#003 69%
-  );
-  color: #ddd;
-}
-
 /* Add Button */
-.add {
-  color: #fff;
-  background-color: #080;
-  text-align: center;
-  vertical-align: 1em;
-  padding: 0 6px 3px;
-  margin: 0;
-  vertical-align: bottom;
-  background-image: -webkit-gradient(
-    linear,
-    left top,
-    right bottom,
-    color-stop(0.15, #3f3),
-    color-stop(0.58, #080)
-  );
-  background-image: -moz-linear-gradient(
-    left top,
-    #3f3 15%,
-    #080 58%
-  );
-}
+.add { display: none }
 .legend_button { font-size: 85%; font-weight: normal }
 /* Subtract Button */
-.subtract {
-  color: #fff;
-  background-color: #800;
-  text-align: center;
-  vertical-align: 1em;
-  padding: 0 7px 3px;
-  margin: 0;
-  font-weight: bold;
-  vertical-align: bottom;
-  background-image: -webkit-gradient(
-    linear,
-    left top,
-    right bottom,
-    color-stop(0.15, #f66),
-    color-stop(0.58, #800)
-  );
-  background-image: -moz-linear-gradient(
-    left top,
-    #f66 15%,
-    #800 58%
-  );
-}
+.subtract { display: none}
 
 /* Buttons */
-.edit_button, .chpwd_button, .ticket_button {
-  vertical-align: bottom;
-  height: 23px;
-  width: auto;
-  padding: 0 10px 0 0;
-}
+.edit_button, .chpwd_button, .ticket_button { display: none}
 
 /* Round corners */
 .round {
@@ -170,45 +72,19 @@ a.signup_button:hover {
 }
 
 /* Footer */
-footer {
-  text-align: center;
-  margin-top: 10px;
-  width: 710px;
-  margin-left: auto;
-  margin-right: auto;
-}
+footer { display: none }
 
 footer nav { float: none }
 
 /* Gravatar */
-img.gravatar {
-  border: 1px solid #999;
-  margin-bottom: -15px;
-}
+img.gravatar { display: none }
 
 /* Logo */
-img.logo {
-  height: 80px;
-  width: auto;
-}
+img.logo { display: none }
 
 /* Navigation Icons */
-.transparent {
-  zoom: 1;
-  filter: alpha(opacity=50);
-  opacity: 0.5;
-}
-img.nav_buttons {
-  height: 20px;
-  width: auto;
-  padding: 0;
-  vertical-align: top;
-  transition: height 0.5s;
-  -moz-transition: height 0.5s; /* Firefox 4 */
-  -webkit-transition: height 0.5s; /* Safari and Chrome */
-  -o-transition: height 0.5s; /* Opera */
-}
-img.nav_buttons:hover { height: 40px }
+.transparent { display: none}
+img.nav_buttons { display: none }
 
 /* User Index */
 ul.users { margin-top: 1em }
@@ -314,10 +190,10 @@ textarea.notes {
   padding: 0;
   margin: 0;
 }
-.qr .cell {
-  width: 10px;
-  height: 10px;
-  font-size: 0;
+.qr .cell, .qr img {
+  width: 3px;
+  height: 3px;
 }
+.qr .cell { font-size: 0 }
 .bg0 { background-color: #000 }
 .bgF { background-color: #fff }
