@@ -49,6 +49,11 @@ module SessionsHelper
     @user = on_behalf_of(User.find_by_id(params[:user_id]))
   end
   
+  def admin_user
+    @user = User.find(params[:id])
+    redirect_to(root_path) if !current_user.admin? || current_user?(@user)
+  end
+  
   private
 
     def remember_token

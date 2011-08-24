@@ -55,11 +55,6 @@ class UsersController < ApplicationController
       redirect_to(root_path) if !current_user?(@user) && !current_user.admin?
     end
     
-    def admin_user
-      @user = User.find(params[:id])
-      redirect_to(root_path) if !current_user.admin? || current_user?(@user)
-    end
-    
     def session_killer
       sign_out unless current_user.nil?
     end
