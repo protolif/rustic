@@ -34,6 +34,9 @@ class ComputersController < ApplicationController
   end
   
   def update
+    if !params[:status].nil? && params[:status] == "Closed"
+      params[:computer][:checked_out] = Time.now
+    end
     if @computer && @computer.update_attributes(params[:computer])
       redirect_to @user, :flash => { :success => "The computer was updated successfully." }
     else

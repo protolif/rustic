@@ -246,7 +246,7 @@ div.default {
 }
 div.wrappable { white-space: normal }
 div.row_link a { color: #000 }
-div.row_link:hover { background-color: #aaf !important }
+div.row_link:hover { background-color: #ddf !important }
 
 fieldset { width: auto; margin: 0 }
 
@@ -314,10 +314,10 @@ textarea.notes {
   padding: 0;
   margin: 0;
 }
-.qr .cell {
-  width: 10px;
-  height: 10px;
-  font-size: 0;
+.qr .cell, .qr img {
+  width: 5px;
+  height: 5px;
 }
+.qr .cell { font-size: 0 }
 .bg0 { background-color: #000 }
 .bgF { background-color: #fff }

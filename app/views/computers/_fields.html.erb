@@ -19,6 +19,10 @@
   	<div class='cellb'><%= f.label :charger %></div>
     <div class='cell'><%= f.check_box :charger %></div>
   </div>
+  <div class='row'>
+  	<div class='cellb'><%= f.label :location %></div>
+    <div class='cell'><%= f.select :location, Computer::ZONES, { :include_blank => true } %></div>
+  </div>
   <% if current_user.admin? %>
 	  <div class='row'>
 	  	<div class='cellb'><%= f.label :cpu, "CPU" %></div>

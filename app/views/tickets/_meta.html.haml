@@ -12,6 +12,8 @@
 		= f.label :status, 'Status:'
 		= f.select :status, Ticket::STATUSES
 		= f.hidden_field :id, :value => @ticket.id
+		= f.hidden_field :technician_id, :value => current_user.id
 		= f.submit "Update"
 	%b Technician:
-	= (t.technician.nil?) ? 'None' : t.technician.fname
+	%span#technician
+		= (t.technician.nil?) ? 'None' : t.technician.fname

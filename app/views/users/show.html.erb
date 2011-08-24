@@ -54,22 +54,23 @@
 		        <div class='cellb'>Actions</div>
 		  	  </div>
 		      <% @user.computers.each do |computer| %>
-			      <div class='row'>
-				      <div class='cell'><%= computer.make %></div>
-				      <div class='cell'><%= computer.model %></div>
-				      <div class='cell'><%= truncate(computer.serial, :length => 10) %></div>
-				      <div class='cell'><%= checked_in_at(computer) %></div>
-				      <div class='cell'><%= checked_out_at(computer) %></div>
-				      <div class='cell'>
-				        <%= link_to ticket_icon, new_ticket_path +
-				                                 "?user_id=#{@user.id}&computer_id=#{computer.id}" %>
-				        <%= link_to(edit_icon, edit_computer_path(computer) + "?user_id=#{@user.id}") %>
-				        <%= link_to content_tag(:span, "-", :class => "subtract round"),
-				                    computer_path(computer) + "?user_id=#{@user.id}",
-				                    :method => :delete,
-						                :confirm => "You sure?",
-						                :title => "Delete This Computer" %>
-				      </div>
+			      <div class='row row_link'>
+							<% [ computer.make,
+		               computer.model,
+		               truncate(computer.serial, :length => 10),
+		               checked_in_at(computer),
+		               checked_out_at(computer),
+		               link_to(ticket_icon, new_ticket_path +
+					                 "?user_id=#{@user.id}&computer_id=#{computer.id}") +
+					         link_to(edit_icon, edit_computer_path(computer) + "?user_id=#{@user.id}") +
+					         link_to(content_tag(:span, "-", :class => "subtract round"),
+					                    computer_path(computer) + "?user_id=#{@user.id}",
+					                    :method => :delete,
+							                :confirm => "You sure?",
+							                :title => "Delete This Computer")
+		             ].each do |data| %>
+		               <%= content_tag(:div, link_to(data, computer_path(computer)), :class => 'cell') %>
+		             <% end %>
 			      </div>
 		      <% end %>
 	      <% else %>
@@ -97,7 +98,7 @@
             <% [ ticket.id,
 	               ticket.computer.model,
 	               truncate(ticket.issue),
-	               (ticket.technician) ? ticket.technician : "None",
+	               (ticket.technician) ? ticket.technician.fname : "None",
 	               (ticket.status.nil?) ? "None" : ticket.status,
 	               "#{time_ago_in_words(ticket.created_at)} ago"
 	             ].each do |data| %>

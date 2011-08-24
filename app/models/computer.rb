@@ -20,6 +20,11 @@ class Computer < ActiveRecord::Base
            'Fujitsu', 'Gateway', 'HP', 'IBM', 'Lenovo', 'MSI', 'Other',
            'Panasonic', 'Samsung', 'Sharp', 'Shuttle', 'Sony', 'Toshiba']
   
+  ZONES = ['Triage', 'Front Desk', 'Island', "James' Desk",
+           "Ed's Desk", "Glenn's Desk", 'Shelf A', 'Shelf B',
+           'Shelf C', 'Shelf D', 'Shelf E', 'Shelf F',
+           'Shelf L', 'Soldering Station']
+  
 end
 
 # == Schema Information

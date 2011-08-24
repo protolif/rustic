@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110823161039) do
+ActiveRecord::Schema.define(:version => 20110824191855) do
 
   create_table "computers", :force => true do |t|
     t.string   "make"
@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(:version => 20110823161039) do
     t.datetime "checked_in"
     t.datetime "checked_out"
     t.string   "form_factor"
+    t.string   "location"
   end
 
   add_index "computers", ["created_at"], :name => "index_computers_on_created_at"
