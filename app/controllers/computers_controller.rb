@@ -59,7 +59,7 @@ class ComputersController < ApplicationController
     
     def generate_qr
       @computer = Computer.find(params[:id])
-      @qr = RQRCode::QRCode.new("cscindy.heroku.com/computers/#{@computer.id}")
+      @qr = RQRCode::QRCode.new("cscindy.com/computers/#{@computer.id}")
     end
     
     def select_computer
