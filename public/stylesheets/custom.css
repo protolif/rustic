@@ -302,3 +302,21 @@ textarea.notes {
 .item    { width: 170px }
 .notes   { width: 140px }
 .qty     { width: 15px }
+
+/* QR Code */
+.qr, .qr .row, .qr .cell {
+  border-width: 0;
+  border-style: none;
+  border-color: transparent;
+  border-collapse: collapse;
+ }
+.qr .row, .qr .cell {
+  padding: 0;
+  margin: 0;
+}
+.qr .cell {
+  width: 10px;
+  height: 10px;
+}
+.bg0 { background-color: #000 }
+.bgF { background-color: #fff }

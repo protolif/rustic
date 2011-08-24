@@ -5,7 +5,8 @@ gem 'gravatar_image_tag', '1.0.0.pre2'
 gem 'will_paginate', '3.0.pre2'
 gem 'faker', '0.9.5'
 gem 'money', '3.7.1'
-gem 'haml'
+gem 'haml', '3.1.2'
+gem 'rqrcode', '0.4.1'
 
 group :development do
   gem 'mysql2', '~> 0.2.6'

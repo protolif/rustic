@@ -31,6 +31,22 @@ describe ComputersController do
     end
   end
   
+  describe "GET 'show'" do
+    
+    describe "for signed-in users" do
+      
+      before(:each) do
+        @user = test_sign_in(Factory(:user))
+        @computer = Factory(:computer, :user => @user)
+        get :show, :id => @computer
+      end
+      
+      it "should be successful" do
+        response.should be_success
+      end
+    end
+  end
+  
   describe "POST 'create'" do
     
     describe "for signed-in users" do

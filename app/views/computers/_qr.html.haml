@@ -1,0 +1,8 @@
+.tbl.qr
+	- qr.modules.each_index do |x| 
+		.row
+			- qr.modules.each_index do |y| 
+				- if qr.dark?(x,y)
+					.cell.bg0
+				- else
+					.cell.bgF
