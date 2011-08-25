@@ -3,6 +3,7 @@ class Computer < ActiveRecord::Base
                   :charger, :cpu, :ram, :checked_in, :checked_out
   
   belongs_to :user
+  has_many   :tickets, :dependent   => :destroy
   
   validates :make,    :presence => true, :length => { :maximum => 20 }
   validates :model,   :presence => true, :length => { :maximum => 20 }
