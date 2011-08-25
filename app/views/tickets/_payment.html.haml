@@ -1,0 +1,20 @@
+%fieldset
+	%legend Payments
+	.tbl#payments_table
+		.row
+			.cellb.price Amount
+			.cellb.method Method
+			.cellb.when When
+		- if t.payments.any?
+			- t.payments.each do |payment| 
+				= render 'payments/payment', :payment => payment
+.tbl
+	= form_for t.payments.new, :remote => true do |f| 
+		.row
+			.cell
+				= f.text_field :price, :class => :price
+			.cell
+				= f.select :method, Payment::METHODS, :include_blank => true
+			.cell
+				= f.hidden_field :ticket_id, :value => t.id
+				= f.submit "Add"

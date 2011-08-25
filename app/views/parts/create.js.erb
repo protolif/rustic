@@ -2,4 +2,4 @@ $("parts_table").insert(
   {'bottom' : "<%= escape_javascript(render('part', :part => @part)) %>"}
 );
 $("new_part").reset();
-$("bill").update("<%= escape_javascript(render('tickets/bill', :ticket => @part.ticket)) %>");
+$("bill").update("<%= escape_javascript(render('tickets/bill', :t => @part.ticket)) %>");

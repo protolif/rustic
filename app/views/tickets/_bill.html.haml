@@ -1,14 +1,15 @@
-%legend Bill
-.tbl
-	.row
-		.cellb Subtotal
-		.cell
-			= "$#{ticket.subtotal}"
-	.row
-		.cellb Tax
-		.cell
-			= "$#{ticket.tax}"
-	.row
-		.cellb Total
-		.cell
-			= "$#{ticket.total}"
+%fieldset#bill
+	%legend Bill
+	.tbl
+		.row
+			.cellb Subtotal
+			.cell
+				= "$#{t.subtotal}"
+		.row
+			.cellb Tax
+			.cell
+				= "$#{t.tax}"
+		.row
+			.cellb Total
+			.cell
+				= "$#{t.total}"

@@ -2,4 +2,4 @@ $("labor_table").insert(
   {'bottom' : "<%= escape_javascript(render('labor', :labor => @labor)) %>"}
 );
 $("new_labor").reset();
-$("bill").update("<%= escape_javascript(render('tickets/bill', :ticket => @labor.ticket)) %>");
+$("bill").update("<%= escape_javascript(render('tickets/bill', :t => @labor.ticket)) %>");

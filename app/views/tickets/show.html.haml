@@ -4,80 +4,13 @@
 			.tbl
 				.row
 					.cell.wrappable
-						= render 'customer', :c => @customer
-						= render 'computer', :pc => @computer
-						%fieldset
-							%legend Issue
-							= @ticket.issue
-						= render 'notes', :t => @ticket
+						= render 'customer', :c  => @ticket.customer
+						= render 'computer', :pc => @ticket.computer
+						= render 'issue',    :t  => @ticket
+						= render 'notes',    :t  => @ticket
 					.cell	
-						= render 'meta', :t => @ticket
-						%fieldset
-							%legend Labor
-							.tbl#labor_table
-								.row
-									.cellb.service Service Performed
-									.cellb.price Price
-									.cellb.notes Additional Notes
-								- if @ticket.labors.any?
-									- @ticket.labors.each do |labor| 
-										= render 'labors/labor', :labor => labor
-						.tbl
-							= form_for @ticket.labors.new, :remote => true do |f| 
-								.row
-									.cell
-										= f.select :service, Labor::SERVICES, :include_blank => true
-									.cell
-										= f.text_field :price, :class => :price
-									.cell
-										= f.text_field :notes, :class => :notes
-									.cell
-										= f.hidden_field :ticket_id, :value => @ticket.id
-										= f.submit "Add"
-						%fieldset
-							%legend Parts
-							.tbl#parts_table
-								.row
-									.cellb.item Hardware Description
-									.cellb.qty Qty
-									.cellb.price Price
-									.cellb.warranty Warranty
-								- if @ticket.parts.any?
-									- @ticket.parts.each do |part| 
-										= render 'parts/part', :part => part
-						.tbl
-							= form_for @ticket.parts.new, :remote => true do |f| 
-								.row
-									.cell
-										= f.text_field :item, :class => :item
-									.cell
-										= f.text_field :qty, :class => :qty
-									.cell
-										= f.text_field :price, :class => :price
-									.cell
-										= f.select :warranty, Part::WARRANTIES, :include_blank => true
-									.cell
-										= f.hidden_field :ticket_id, :value => @ticket.id
-										= f.submit "Add"
-						%fieldset#bill
-							= render 'bill', :ticket => @ticket
-						%fieldset
-							%legend Payments
-							.tbl#payments_table
-								.row
-									.cellb.price Amount
-									.cellb.method Method
-									.cellb.when When
-								- if @ticket.payments.any?
-									- @ticket.payments.each do |payment| 
-										= render 'payments/payment', :payment => payment
-						.tbl
-							= form_for @ticket.payments.new, :remote => true do |f| 
-								.row
-									.cell
-										= f.text_field :price, :class => :price
-									.cell
-										= f.select :method, Payment::METHODS, :include_blank => true
-									.cell
-										= f.hidden_field :ticket_id, :value => @ticket.id
-										= f.submit "Add"
+						= render 'meta',     :t => @ticket
+						= render 'labor',    :t => @ticket
+						= render 'part',     :t => @ticket
+						= render 'bill',     :t => @ticket
+						= render 'payment',  :t => @ticket

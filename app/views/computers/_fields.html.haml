@@ -1,0 +1,42 @@
+.tbl
+	.row
+		.cellb
+			= f.label :make
+		.cell
+			= f.select :make, Computer::MAKES, { :include_blank => true }
+	.row
+		.cellb
+			= f.label :model
+		.cell
+			= f.text_field :model
+	.row
+		.cellb
+			= f.label :serial
+		.cell
+			= f.text_field :serial
+	.row
+		.cellb
+			= f.label :form_factor
+		.cell
+			= f.select :form_factor, Computer::FF, { :include_blank => true }
+	.row
+		.cellb
+			= f.label :charger
+		.cel
+			= f.check_box :charger
+	- if current_user.admin?
+		.row
+			.cellb
+				= f.label :cpu, "CPU"
+			.cell
+				= f.text_field :cpu
+		.row
+			.cellb
+				= f.label :ram, "RAM"
+			.cell
+				= f.text_field :ram
+	.row
+		.cellb
+			= hidden_field_tag :user_id, params[:user_id]
+		.cell
+			= f.submit "#{ (@computer.new_record?) ? 'Register' : 'Update' }"

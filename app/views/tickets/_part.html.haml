@@ -1,0 +1,25 @@
+%fieldset
+	%legend Parts
+	.tbl#parts_table
+		.row
+			.cellb.item Hardware Description
+			.cellb.qty Qty
+			.cellb.price Price
+			.cellb.warranty Warranty
+		- if t.parts.any?
+			- t.parts.each do |part| 
+				= render 'parts/part', :part => part
+.tbl
+	= form_for t.parts.new, :remote => true do |f| 
+		.row
+			.cell
+				= f.text_field :item, :class => :item
+			.cell
+				= f.text_field :qty, :class => :qty
+			.cell
+				= f.text_field :price, :class => :price
+			.cell
+				= f.select :warranty, Part::WARRANTIES, :include_blank => true
+			.cell
+				= f.hidden_field :ticket_id, :value => t.id
+				= f.submit "Add"
