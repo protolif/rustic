@@ -54,6 +54,11 @@ module SessionsHelper
     redirect_to(root_path) if !current_user.admin? || current_user?(@user)
   end
   
+  def admin_only
+    @admin = current_user
+    redirect_to(root_path) unless current_user.admin?
+  end
+  
   private
 
     def remember_token

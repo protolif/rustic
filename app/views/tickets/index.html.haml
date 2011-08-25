@@ -1,6 +1,19 @@
-%h1 In Queue
-
-.tbl#ticket_index
-	= render @tickets
-
-= will_paginate
+.tbl
+	.row
+		.cell
+			%h1 My Tickets
+			.tbl
+				= render @my_jobs
+				= will_paginate
+	.row
+		.cell
+			%h1 In Queue
+			.tbl#ticket_index
+				= render @in_queue
+				= will_paginate
+	.row
+		.cell
+			%h1 Waiting
+			.tbl
+				= render @waiting
+				= will_paginate

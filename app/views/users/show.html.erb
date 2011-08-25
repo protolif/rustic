@@ -28,14 +28,7 @@
 		  	    <%= @user.email %>
 		      </div>
 		    </div>
-		    <div class='row'>
-		      <div class='cellb'>
-		  	    Address:
-		      </div>
-		      <div class='cell'>
-		  	    <%= "#{@user.address}, #{@user.city}, #{@user.state} #{@user.zip}" %>
-		      </div>
-		    </div>
+				<%= render 'address' if !@user.address.blank? %>
 	    </div>
 	    <div class="user_show_h2">
 	      <%= "#{@user.fname}'s Computers" %>

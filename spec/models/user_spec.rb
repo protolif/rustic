@@ -98,24 +98,24 @@ describe User do
     joe_phoneless.should_not be_valid
   end
 
-  it "should require an address" do
+  it "no longer requires an address" do
     joe_homeless = User.new(@attr.merge(:address => ""))
-    joe_homeless.should_not be_valid
+    joe_homeless.should be_valid
   end
   
-  it "should require a city" do
+  it "no longer requires a city" do
     joe_homeless = User.new(@attr.merge(:city => ""))
-    joe_homeless.should_not be_valid
+    joe_homeless.should be_valid
   end
   
-  it "should require a state" do
+  it "no longer requires a state" do
     joe_homeless = User.new(@attr.merge(:state => ""))
-    joe_homeless.should_not be_valid
+    joe_homeless.should be_valid
   end
   
-  it "should require a zip" do
+  it "no longer requires a zip" do
     joe_homeless = User.new(@attr.merge(:zip => ""))
-    joe_homeless.should_not be_valid
+    joe_homeless.should be_valid
   end
   
   it "should reject telephone numbers longer than 22 characters" do

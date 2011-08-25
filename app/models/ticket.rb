@@ -62,9 +62,20 @@ class Ticket < ActiveRecord::Base
     total
   end
   
-  def self.search(search, page)
+  def self.search(page)
+    paginate :per_page => 8, :page => page,
+             :order => 'created_at'
+  end
+  
+  def self.search_status(search, page)
     paginate :per_page => 8, :page => page,
              :conditions => ['status like ?', "%#{search}%"],
+             :order => 'created_at'
+  end
+  
+  def self.search_technician(id, page)
+    paginate :per_page => 8, :page => page,
+             :conditions => ['technician_id = ?', "%#{id}%"],
              :order => 'created_at'
   end
 end

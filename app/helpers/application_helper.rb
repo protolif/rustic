@@ -75,6 +75,13 @@ module ApplicationHelper
               :class => "nav_buttons")
   end
   
+  def tickets_index_icon
+    image_tag("tickets_index_icon.png",
+              :alt   => "All Tickets",
+              :title => "All Tickets",
+              :class => "nav_buttons")
+  end
+  
   def login_icon
     image_tag("login_icon.png",
               :alt   => "Sign In",

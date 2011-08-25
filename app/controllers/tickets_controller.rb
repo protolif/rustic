@@ -1,10 +1,14 @@
 class TicketsController < ApplicationController
   before_filter :authenticate
   before_filter :correct_user
+  before_filter :admin_only, :only => [:index]
   
   def index
-    @title   = "Tickets"
-    @tickets = Ticket.search('In Queue', params[:page])
+    @title     = "Tickets"
+    @tickets   = Ticket.search(params[:page])
+    @my_jobs   = Ticket.search_status("#{@admin.id}", params[:page])
+    @in_queue  = Ticket.search_status('In Queue', params[:page])
+    @waiting   = Ticket.search_status('Waiting', params[:page])
   end
   
   def new
