@@ -1,5 +1,5 @@
 class Computer < ActiveRecord::Base
-  attr_accessible :make, :model, :serial, :form_factor,
+  attr_accessible :make, :model, :serial, :form_factor, :location,
                   :charger, :cpu, :ram, :checked_in, :checked_out
   
   belongs_to :user

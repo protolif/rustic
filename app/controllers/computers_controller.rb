@@ -38,13 +38,19 @@ class ComputersController < ApplicationController
       params[:computer][:checked_out] = Time.now
     end
     if @computer && @computer.update_attributes(params[:computer])
-      redirect_to @user, :flash => { :success => "The computer was updated successfully." }
+      respond_to do |format|
+        format.html { redirect_to @computer, :flash => { :success => "Update Success" } }
+        format.js
+      end
     else
       if @computer
         @title = "#{@computer.make} #{@computer.model}"
         render 'edit'
-      else
-        redirect_to user_path(@user)
+      else #there is no computer
+        respond_to do |format|
+          format.html { redirect_to @user }
+          format.js
+        end
       end
     end
   end
@@ -66,6 +72,6 @@ class ComputersController < ApplicationController
     end
     
     def select_computer
-      @computer = @user.computers.find_by_id(params[:id])
+      @computer = (@user.nil?) ? Computer.find(params[:id]) : @user.computers.find_by_id(params[:id])
     end
 end

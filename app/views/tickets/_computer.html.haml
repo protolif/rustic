@@ -1,7 +1,7 @@
 %fieldset
 	%legend Computer
 	= link_to("#{pc.make} #{pc.model} #{truncate(pc.serial, :length => 20)}", computer_path(pc))
-	= form_for pc do |f|
+	= form_for pc, :remote => true do |f|
 		= f.select :location, Computer::ZONES, :include_blank => true
 		= f.hidden_field :id, :value => pc.id
 		= f.hidden_field :technician_id, :value => current_user.id

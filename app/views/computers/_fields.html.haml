@@ -24,6 +24,11 @@
 			= f.label :charger
 		.cel
 			= f.check_box :charger
+	.row
+		.cellb
+			= f.label :location
+		.cell
+			= f.select :location, Computer::ZONES, { :include_blank => true }
 	- if current_user.admin?
 		.row
 			.cellb
