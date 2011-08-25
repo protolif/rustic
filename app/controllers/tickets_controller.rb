@@ -34,6 +34,7 @@ class TicketsController < ApplicationController
   def update
     @ticket = Ticket.find(params[:ticket][:id])
     if @ticket.update_attributes(params[:ticket])
+      check_out @ticket.computer if params[:ticket][:status] == "Closed"
       respond_to do |format|
         format.html { redirect_to @ticket }
         format.js
@@ -42,7 +43,7 @@ class TicketsController < ApplicationController
   end
   
   private
-    
+  
     def check_in(computer)
       computer.checked_in = Time.now
       computer.save

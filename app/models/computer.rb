@@ -24,7 +24,6 @@ class Computer < ActiveRecord::Base
            "Ed's Desk", "Glenn's Desk", 'Shelf A', 'Shelf B',
            'Shelf C', 'Shelf D', 'Shelf E', 'Shelf F',
            'Shelf L', 'Soldering Station']
-  
 end
 
 # == Schema Information
