@@ -1,0 +1,64 @@
+.tbl
+	.row
+		.cell.user_show_title
+			= gravatar_for @user
+			= "#{@user.fname} #{@user.lname}"
+			- if current_user && current_user.admin?
+				= link_to(edit_icon, edit_user_path(@user))
+				= link_to(chpwd_icon, edit_user_path(@user) + "?chpwd=1")
+	.row
+		.cell
+			.tbl
+				.row
+					.cellb Phone:
+					.cell
+						= number_to_phone(@user.tel, :delimiter => '.')
+				.row
+					.cellb Email:
+					.cell
+						= @user.email
+				= render 'address' if !@user.address.blank?
+			.user_show_h2
+				= "#{@user.fname}'s Computers"
+				= link_to(content_tag(:span, "+", :class => "add round"),
+									new_computer_path + "?user_id=#{@user.id}",
+									:title => "Register Computer")
+			.tbl
+				- if @user.computers.any?
+					.row
+						.cellb Make
+						.cellb Model
+						.cellb Serial
+						.cellb Checked In
+						.cellb Checked Out
+						.cellb Actions
+					- @user.computers.each do |computer| 
+						.row.row_link
+							- computer_row(computer).each do |data| 
+								= content_tag(:div, link_to(data, computer_path(computer)), :class => 'cell')
+				- else
+					.row
+						.cell.default
+							It looks like you don't have any computers registered yet.
+							Click the green plus icon above to register your computer with us.
+			.user_show_h2
+				= "#{@user.fname}'s Tickets"
+			.tbl
+				- if @user.tickets.any?
+					.row
+						.cellb Make
+						.cellb Model
+						.cellb Issue
+						.cellb Technician
+						.cellb Status
+						.cellb Created
+					- @user.tickets.each do |ticket| 
+						.row.row_link
+							- ticket_row(ticket).each do |data| 
+								= content_tag(:div, link_to(data, ticket_path(ticket)), :class => 'cell')
+				- else
+					.row
+						.cell.default
+							It looks like you don't have any tickets yet.
+							If you've already registered your computer,
+							click the blue ticket icon above to open a ticket for your computer.

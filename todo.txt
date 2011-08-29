@@ -1,3 +1,10 @@
-enhanced search as you type
-computer locations
-replace ticket notes with ticket feed
+users index search should be case insensitive.
+users index search should filter on first or last name.
+customers should not be able to show/update/destroy tickets.
+customers should not be able to create/destroy labor, parts, payments.
+customers should not be able to edit/destroy computers.
+tickets index should list a technician's current jobs, in reverse chronological order.
+users show page should have an ajax new ticket form.
+home page should have an ajax sign in form.
+replace ticket notes with a ticket feed
+tickets should have a QR code that contains a link to the ticket's show page.

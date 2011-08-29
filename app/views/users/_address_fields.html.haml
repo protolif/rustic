@@ -1,0 +1,20 @@
+.row
+	.cellb
+		= f.label :address
+	.cell
+		= f.text_field :address
+.row
+	.cellb
+		= f.label :city
+	.cell
+		= f.text_field :city
+.row
+	.cellb
+		= f.label :state
+	.cell
+		= f.select :state, User::ST, { :include_blank => true }
+.row
+	.cellb
+		= f.label :zip
+	.cell
+		= f.text_field :zip
