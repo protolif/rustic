@@ -182,8 +182,10 @@ footer nav { float: none }
 
 /* Gravatar */
 img.gravatar {
-  border: 1px solid #999;
-  margin-bottom: -15px;
+  border: 0;
+  margin-bottom: -7px;
+  margin-left: -4px;
+  margin-top: -2px;
 }
 
 /* Logo */
@@ -210,14 +212,7 @@ img.nav_buttons {
 }
 img.nav_buttons:hover { height: 40px }
 
-/* User Index */
-ul.users { margin-top: 1em }
-
-.users li {
-  margin-top: 1em;
-  list-style: none;
-}
-
+/* User Signup */
 .caveat { font-weight: bold }
 p.caveat { font-size: 75% }
 span.caveat {

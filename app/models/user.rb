@@ -77,7 +77,9 @@ class User < ActiveRecord::Base
   
   def self.search(search, page)
     paginate :per_page => 8, :page => page,
-             :conditions => ['lname like ?', "%#{search}%"],
+             :conditions => ['lower(lname) like ? or lower(fname) like ?',
+                            "%#{search.downcase unless search.nil?}%",
+                            "%#{search.downcase unless search.nil?}%"],
              :order => 'lname'
   end
   

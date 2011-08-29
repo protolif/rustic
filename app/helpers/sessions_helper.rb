@@ -55,7 +55,7 @@ module SessionsHelper
   end
   
   def admin_only
-    @admin = current_user
+    @admin = current_user if current_user.admin?
     redirect_to(root_path) unless current_user.admin?
   end
   
