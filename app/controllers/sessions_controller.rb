@@ -1,6 +1,10 @@
 class SessionsController < ApplicationController
   def new
     @title = "Sign in"
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
   
   def create
