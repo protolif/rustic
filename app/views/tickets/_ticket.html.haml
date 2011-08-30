@@ -1,10 +1,6 @@
-.row
-	.cell
-		= "#{ticket.computer.make} #{ticket.computer.model}"
-	.cell
-		= truncate(ticket.issue, :length => 40)
-	.cell
-		= "#{time_ago_in_words(ticket.created_at)} ago"
+.row.row_link
+	- ticket_index_row(ticket).each do |data| 
+		= content_tag(:div, link_to(data, ticket_path(ticket)), :class => 'cell')
 	.cell
 		= form_for ticket do |f|
 			= f.hidden_field :id, :value => ticket.id

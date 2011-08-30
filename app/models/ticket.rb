@@ -34,6 +34,11 @@ class Ticket < ActiveRecord::Base
   
   LOCAL_SALES_TAX = 0.07
   
+  scope :in_queue, where("status = ?",  "In Queue")
+  scope :waiting,  where("status = ?",  "Waiting")
+  scope :closed,   where("status = ?",  "Closed")
+  scope :open,     where("status != ?", "Closed")
+  
   def subtotal
     subtotal = Money.new(0)
     labors.each do |labor|
@@ -60,23 +65,6 @@ class Ticket < ActiveRecord::Base
   
   def calculate
     total
-  end
-  
-  def self.search(page)
-    paginate :per_page => 8, :page => page,
-             :order => 'created_at'
-  end
-  
-  def self.search_status(search, page)
-    paginate :per_page => 8, :page => page,
-             :conditions => ['status like ?', "%#{search}%"],
-             :order => 'created_at'
-  end
-  
-  def self.search_technician(id, page)
-    paginate :per_page => 8, :page => page,
-             :conditions => ['technician_id = ?', "%#{id}%"],
-             :order => 'created_at'
   end
 end
 

@@ -316,3 +316,13 @@ textarea.notes {
 .qr .cell { font-size: 0 }
 .bg0 { background-color: #000 }
 .bgF { background-color: #fff }
+
+/* Ticket index */
+#ticket_index h4 {
+  color: #999;
+  font-style: italic;
+  font-size: 90%;
+  margin-bottom: 10px;
+  margin-left: 50px;
+}
+#ticket_index h1 { margin-bottom: 0 }

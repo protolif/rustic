@@ -4,11 +4,13 @@ class TicketsController < ApplicationController
   before_filter :admin_only, :only => [:index]
   
   def index
-    @title     = "Tickets"
-    @tickets   = Ticket.search(params[:page])
-    @my_jobs   = Ticket.search_status("#{@admin.id}", params[:page])
-    @in_queue  = Ticket.search_status('In Queue', params[:page])
-    @waiting   = Ticket.search_status('Waiting', params[:page])
+    @title      = "Tickets"
+    @tickets    = Ticket.all
+    @open       = Ticket.open
+    @my_jobs    = Ticket.open.where("technician_id = ?", @admin.id)
+    @in_queue   = Ticket.in_queue
+    @waiting    = Ticket.waiting
+    @closed     = Ticket.closed
   end
   
   def new
