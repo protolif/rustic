@@ -4,12 +4,8 @@
 		= render 'checked_in',  :t => t
 	%span#checked_out
 		= render 'checked_out', :t => t
-	= form_for t, :remote => true do |f|
-		= f.label :status, 'Status:'
-		= f.select :status, Ticket::STATUSES
-		= f.hidden_field :id, :value => @ticket.id
-		= f.hidden_field :technician_id, :value => current_user.id
-		= f.submit "Update"
+	%span#status
+		= render 'status', :t => t
 	%b Technician:
 	%span#technician
 		= render 'technician', :t => t
