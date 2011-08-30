@@ -5,12 +5,11 @@ class TicketsController < ApplicationController
   
   def index
     @title      = "Tickets"
-    @tickets    = Ticket.all
-    @open       = Ticket.open
-    @my_jobs    = Ticket.open.where("technician_id = ?", @admin.id)
-    @in_queue   = Ticket.in_queue
-    @waiting    = Ticket.waiting
-    @closed     = Ticket.closed
+    @open       = Ticket.open.order("created_at")
+    @my_jobs    = Ticket.open.where("technician_id = ?", @admin.id).order("created_at")
+    @in_queue   = Ticket.in_queue.order("created_at")
+    @waiting    = Ticket.waiting.order("created_at")
+    @closed     = Ticket.closed.order("created_at")
   end
   
   def new
