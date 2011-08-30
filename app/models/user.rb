@@ -104,5 +104,7 @@ class User < ActiveRecord::Base
     def transform_data
       self.tel.gsub!(/\D/, "") #strips non-numeric values
       self.tel = self.tel.slice(/\d{10}/) #strips the first 10 digits
+      self.fname = self.fname.capitalize
+      self.lname = self.lname.capitalize
     end
 end
