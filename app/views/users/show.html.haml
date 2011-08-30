@@ -12,7 +12,10 @@
 				.row
 					.cellb Phone:
 					.cell
-						= number_to_phone(@user.tel, :delimiter => '.')
+						= number_to_phone(@user.tel,  :delimiter => '.')
+						- if !@user.tel2.nil?
+							and
+							= number_to_phone(@user.tel2, :delimiter => '.')
 				.row
 					.cellb Email:
 					.cell

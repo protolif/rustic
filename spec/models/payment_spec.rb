@@ -35,13 +35,14 @@ describe Payment do
   end
 end
 
+
 # == Schema Information
 #
 # Table name: payments
 #
 #  id         :integer(4)      not null, primary key
 #  ticket_id  :integer(4)
-#  amount     :integer(4)      default(0), not null
+#  price      :integer(4)      default(0), not null
 #  method     :string(255)
 #  created_at :datetime
 #  updated_at :datetime
