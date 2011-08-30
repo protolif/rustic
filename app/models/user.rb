@@ -1,8 +1,28 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id                 :integer(4)      not null, primary key
+#  fname              :string(255)
+#  lname              :string(255)
+#  email              :string(255)
+#  tel                :string(255)
+#  created_at         :datetime
+#  updated_at         :datetime
+#  encrypted_password :string(255)
+#  salt               :string(255)
+#  admin              :boolean(1)      default(FALSE)
+#  address            :string(255)
+#  city               :string(255)
+#  state              :string(255)
+#  zip                :string(255)
+#
+
 require 'digest'
 
 class User < ActiveRecord::Base
   attr_accessor :password
-  attr_accessible :fname, :lname, :email, :tel, :tel2,
+  attr_accessible :fname, :lname, :email, :tel, 
                   :address, :city, :state, :zip,
                   :password, :password_confirmation
   
@@ -84,30 +104,5 @@ class User < ActiveRecord::Base
     def transform_data
       self.tel.gsub!(/\D/, "") #strips non-numeric values
       self.tel = self.tel.slice(/\d{10}/) #strips the first 10 digits
-      if !self.tel2.nil?
-        self.tel2.gsub!(/\D/, "")
-        self.tel2 = self.tel2.slice(/\d{10}/)
-      end
     end
 end
-# == Schema Information
-#
-# Table name: users
-#
-#  id                 :integer(4)      not null, primary key
-#  fname              :string(255)
-#  lname              :string(255)
-#  email              :string(255)
-#  tel                :string(255)
-#  created_at         :datetime
-#  updated_at         :datetime
-#  encrypted_password :string(255)
-#  salt               :string(255)
-#  admin              :boolean(1)      default(FALSE)
-#  address            :string(255)
-#  city               :string(255)
-#  state              :string(255)
-#  zip                :string(255)
-#  tel2               :string(255)
-#
-

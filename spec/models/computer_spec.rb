@@ -72,7 +72,6 @@ describe Computer do
 end
 
 
-
 # == Schema Information
 #
 # Table name: computers
@@ -90,6 +89,5 @@ end
 #  checked_in  :datetime
 #  checked_out :datetime
 #  form_factor :string(255)
-#  location    :string(255)
 #
 

@@ -20,11 +20,6 @@
 				= f.label :tel, inline_superscript('Telephone', '†')
 			.cell
 				= f.text_field :tel
-		.row
-			.cellb
-				= f.label :tel2, inline_superscript('Alternate', '†')
-			.cell
-				= f.text_field :tel2
 		= render 'address_fields', :f => f unless noob?
 	- if need_password?
 		.row

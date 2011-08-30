@@ -70,7 +70,6 @@ end
 
 
 
-
 # == Schema Information
 #
 # Table name: tickets
@@ -86,6 +85,5 @@ end
 #  subtotal      :integer(4)      default(0), not null
 #  total         :integer(4)      default(0), not null
 #  tax           :integer(4)      default(0), not null
-#  notes         :text
 #
 

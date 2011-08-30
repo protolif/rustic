@@ -3,9 +3,6 @@
 	<%= link_to("#{c.fname} #{c.lname}", user_path(c)) %>
 	<br />
 	<%= number_to_phone(c.tel, :delimiter => '.') %><br />
-	<% if !c.tel2.nil? %>
-		<%= number_to_phone(c.tel2, :delimiter => '.') %>
-	<% end %>
 	<%= link_to(truncate(c.email, :length => 30), "mailto:#{c.email}") %>
 	<% if !c.address.blank? %>
 		<br />
