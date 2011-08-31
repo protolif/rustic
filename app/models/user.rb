@@ -22,7 +22,7 @@ require 'digest'
 
 class User < ActiveRecord::Base
   attr_accessor :password
-  attr_accessible :fname, :lname, :email, :tel, 
+  attr_accessible :fname, :lname, :email, :tel, :tel2,
                   :address, :city, :state, :zip,
                   :password, :password_confirmation
   
@@ -39,19 +39,22 @@ class User < ActiveRecord::Base
   validates :fname,   :presence   => true, :length => { :maximum => 20 }
   validates :lname,   :presence   => true, :length => { :maximum => 20 }
   validates :tel,     :presence   => true, :length => { :within => 10..22 }
+  validates :tel2,    :allow_nil  => true, :length => { :within => 10..22 }
   validates :email,   :presence   => true,
                       :format     => { :with => email_regex },
                       :uniqueness => { :case_sensitive => false }
 
-  validates :password, :presence     => true, 
+  validates :password, :presence     => true,
                        :confirmation => true,
-                       :format       => { :with => password_regex, :message => "does not meet complexity requirements." },
+                       :format       => { :with => password_regex,
+                                          :message => "does not meet complexity requirements." },
                        :on           => :create
   
-  validates :password, :allow_nil => true,
-                       :confirmation        => true,
-                       :format              => { :with => password_regex, :message => "does not meet complexity requirements." },
-                       :on                  => :update
+  validates :password, :allow_nil    => true,
+                       :confirmation => true,
+                       :format       => { :with => password_regex,
+                                          :message => "does not meet complexity requirements." },
+                       :on           => :update
   
   before_save :encrypt_password
   before_save :transform_data
@@ -98,7 +101,7 @@ class User < ActiveRecord::Base
     
     def encrypt_password #really works now ^_^
       self.salt = make_salt if new_record?
-      self.encrypted_password = encrypt(password)
+      self.encrypted_password = encrypt(password) unless self.password.nil?
     end
     
     def transform_data
@@ -106,5 +109,9 @@ class User < ActiveRecord::Base
       self.tel = self.tel.slice(/\d{10}/) #strips the first 10 digits
       self.fname = self.fname.capitalize
       self.lname = self.lname.capitalize
+      unless self.tel2.nil?
+        self.tel2.gsub!(/\D/, "") #strips non-numeric values
+        self.tel2 = self.tel2.slice(/\d{10}/) #strips the first 10 digits
+      end
     end
 end

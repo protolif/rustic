@@ -1,0 +1,15 @@
+%fieldset
+	%legend Customer
+	= link_to("#{c.fname} #{c.lname}", user_path(c))
+	%br
+	= number_to_phone(c.tel, :delimiter => '.')
+	%br
+	- unless c.tel2.nil?
+		= number_to_phone(c.tel2, :delimiter => '.')
+		%br
+	= link_to(truncate(c.email, :length => 30), "mailto:#{c.email}")
+	- if !c.address.blank?
+		%br
+		= c.address
+		%br
+		= "#{c.city}, #{c.state} #{c.zip}"
