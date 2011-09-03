@@ -34,7 +34,7 @@ class User < ActiveRecord::Base
                        :class_name  => "Ticket" 
   
   email_regex    = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-  password_regex = /^.*(?=.{8,})(?=.*[a-z])(?=.*[A-Z])(?=.*[\d\W]).*$/
+  #password_regex = /^.*(?=.{8,})(?=.*[a-z])(?=.*[A-Z])(?=.*[\d\W]).*$/
   
   validates :fname,   :presence   => true, :length => { :maximum => 20 }
   validates :lname,   :presence   => true, :length => { :maximum => 20 }
@@ -46,15 +46,15 @@ class User < ActiveRecord::Base
 
   validates :password, :presence     => true,
                        :confirmation => true,
-                       :format       => { :with => password_regex,
-                                          :message => "does not meet complexity requirements." },
+                       :length       => { :within => 6..20 },
                        :on           => :create
+                       #:format       => { :with => password_regex, :message => "does not meet complexity requirements." },
   
   validates :password, :allow_nil    => true,
                        :confirmation => true,
-                       :format       => { :with => password_regex,
-                                          :message => "does not meet complexity requirements." },
+                       :length       => { :within => 6..20 },
                        :on           => :update
+                       #:format       => { :with => password_regex, :message => "does not meet complexity requirements." },
   
   before_save :encrypt_password
   before_save :transform_data

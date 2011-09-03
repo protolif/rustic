@@ -137,7 +137,7 @@ describe User do
     end
 
     it "should reject short passwords" do
-      pwd = "a" * 7
+      pwd = "a" * 5
       joe_laxpass = User.new(@attr.merge(:password => pwd, :password_confirmation => pwd))
       joe_laxpass.should_not be_valid
     end
