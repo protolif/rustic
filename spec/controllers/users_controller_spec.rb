@@ -96,8 +96,8 @@ describe UsersController do
         pc1 = Factory(:computer, :user => @user, :model => "MacBook Pro")
         pc2 = Factory(:computer, :user => @user, :model => "iMac")
         get :show, :id => @user
-        response.should have_selector("div", :content => pc1.model)
-        response.should have_selector("div", :content => pc2.model)
+        response.should have_selector("div", :content => pc1.model.capitalize)
+        response.should have_selector("div", :content => pc2.model.capitalize)
       end
     end
   end
@@ -281,9 +281,9 @@ describe UsersController do
         flash[:success].should =~ /updated/
       end
       
-      it "should enforce complex password requirements" do
-        @attr = { :password              => "password",
-                  :password_confirmation => "password" }
+      it "should enforce password lengthrequirements" do
+        @attr = { :password              => "god",
+                  :password_confirmation => "god" }
         put :update, :id => @user, :user => @attr
         response.should have_selector("div#error_explanation")
       end

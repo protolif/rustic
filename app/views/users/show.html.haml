@@ -26,42 +26,56 @@
 				= link_to(content_tag(:span, "+", :class => "add round"),
 									new_computer_path + "?user_id=#{@user.id}",
 									:title => "Register Computer")
-			.tbl
+			.tbl#computers_table
 				- if @user.computers.any?
 					.row
 						.cellb Make
 						.cellb Model
-						.cellb Serial
-						.cellb Checked In
-						.cellb Checked Out
-						.cellb Actions
+						.cellb Location
+						.cellb Charger
+						.cellb
+						.cellb
+						.cellb
 					- @user.computers.each do |computer| 
 						.row.row_link
 							- computer_row(computer).each do |data| 
 								= content_tag(:div, link_to(data, computer_path(computer)), :class => 'cell')
+							.cell
+								= form_tag new_ticket_path, :method => :get, :remote => true do
+									= hidden_field_tag :computer_id, computer.id
+									= hidden_field_tag :user_id, computer.user.id
+									= submit_tag 'Open a Ticket'
+							.cell
+								= form_tag edit_computer_path(computer), :method => :get do
+									= hidden_field_tag :user_id, computer.user.id
+									= submit_tag 'Edit'
+							.cell
+								= form_tag computer_path(computer), :method => :delete do
+									= hidden_field_tag :computer_id, computer.id
+									= hidden_field_tag :user_id, computer.user.id
+									= submit_tag 'Delete'
 				- else
 					.row
 						.cell.default
 							It looks like you don't have any computers registered yet.
 							Click the green plus icon above to register your computer with us.
+			.tbl#new_ticket
 			.user_show_h2
 				= "#{@user.fname}'s Tickets"
-			.tbl
+			.tbl#ticket_table
 				- if @user.tickets.any?
 					.row
 						.cellb Make
 						.cellb Model
 						.cellb Issue
-						.cellb Technician
+						.cellb Tech
 						.cellb Status
 						.cellb Created
 					- @user.tickets.each do |ticket| 
-						.row.row_link
-							- ticket_row(ticket).each do |data| 
-								= content_tag(:div, link_to(data, ticket_path(ticket)), :class => 'cell')
+						= render 'ticket_row', :t => ticket
 				- else
-					.row
+					.row#no_ticket_message
 						.cell.default
 							It looks like you don't have any tickets yet.
 							If you've already registered your computer,
-							click the blue ticket icon above to open a ticket for your computer.
+							click the Open a Ticket button next to the computer with issues.

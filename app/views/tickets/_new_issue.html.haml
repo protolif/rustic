@@ -1,0 +1,18 @@
+.cell
+	= form_for t, :remote => true do |f| 
+		= render 'shared/error_messages', :object => f.object
+		.tbl
+			.row
+				.cellb
+					= f.label :issue, "Please describe your issue:"
+			.row
+				.cell
+					= f.text_area :issue
+			.row
+				.cell
+					= f.hidden_field   :status,      :value => 'In Queue'
+					= f.hidden_field   :customer_id, :value => params[:user_id]
+					= f.hidden_field   :computer_id, :value => params[:computer_id]
+					= hidden_field_tag :computer_id,           params[:computer_id]
+					= hidden_field_tag :user_id,               params[:user_id]
+					= f.submit

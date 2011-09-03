@@ -98,8 +98,8 @@ module ApplicationHelper
   
   def edit_icon
     image_tag("write.png",
-              :alt   => "Edit This Computer",
-              :title => "Edit This Computer",
+              :alt   => "Edit This",
+              :title => "Edit This",
               :class => "edit_button")
   end
   

@@ -36,7 +36,7 @@ class ComputersController < ApplicationController
   def update
     if @computer && @computer.update_attributes(params[:computer])
       respond_to do |format|
-        format.html { redirect_to @computer, :flash => { :success => "Update Success" } }
+        format.html { redirect_to @user, :flash => { :success => "Update Success" } }
         format.js
       end
     else

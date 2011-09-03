@@ -26,10 +26,6 @@ module UsersHelper
     noob? || changing_password?
   end
   
-  def new_ticket_link(computer)
-    link_to(ticket_icon, new_ticket_path + "?user_id=#{@user.id}&computer_id=#{computer.id}")
-  end
-  
   def edit_link(computer)
     link_to(edit_icon, edit_computer_path(computer) + "?user_id=#{@user.id}")
   end
@@ -43,14 +39,14 @@ module UsersHelper
   end
   
   def computer_row(computer)
-    [computer.make, computer.model, truncate(computer.serial, :length => 10),
-    checked_in_at(computer), checked_out_at(computer),
-    new_ticket_link(computer) + edit_link(computer) + delete_link(computer)]
+    [computer.make, truncate(computer.model.capitalize, :length => 15), computer.location, (computer.charger) ? 'True' : 'False']
   end
   
   def ticket_row(ticket)
-    [ticket.computer.make, ticket.computer.model, truncate(ticket.issue),
-    (ticket.technician) ? ticket.technician.fname : "None",
+    [ticket.computer.make,
+    truncate(ticket.computer.model.capitalize, :length => 15),
+    truncate(ticket.issue, :length => 18),
+    (ticket.technician) ? ticket.technician.fname.first + ticket.technician.lname.first : "None",
     (ticket.status.nil?) ? "None" : ticket.status,
     "#{time_ago_in_words(ticket.created_at)} ago"]
   end

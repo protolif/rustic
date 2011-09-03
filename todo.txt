@@ -1,5 +1,8 @@
+relax password requirements
+Re-categorize open tickets into Active Tickets.
+users show page should have an ajax new ticket form.
 customers should not be able to show/update/destroy tickets.
 customers should not be able to create/destroy labor, parts, payments.
 customers should not be able to edit/destroy computers.
-users show page should have an ajax new ticket form.
 replace ticket notes with a ticket feed
+need a method for admins to delete tickets.

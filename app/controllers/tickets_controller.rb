@@ -15,16 +15,26 @@ class TicketsController < ApplicationController
   def new
     @title  = "New Ticket"
     @ticket = @user.tickets.new
+    respond_to do |format|
+      format.html { render 'new' }
+      format.js
+    end
   end
   
   def create
     @ticket = @user.tickets.build(params[:ticket])
     if @ticket.save
       check_in @ticket.computer
-      redirect_to @user, :flash => { :success => "Ticket successfully created." }
+      respond_to do |format|
+        format.html { redirect_to @user, :flash => { :success => "Ticket successfully created." } }
+        format.js
+      end
     else
       @title = "New Ticket"
-      render 'new'
+      respond_to do |format|
+        format.html { redirect_to 'new' }
+        format.js
+      end
     end
   end
   

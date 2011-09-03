@@ -29,17 +29,6 @@
 			= f.label :location
 		.cell
 			= f.select :location, Computer::ZONES, { :include_blank => true }
-	- if current_user.admin?
-		.row
-			.cellb
-				= f.label :cpu, "CPU"
-			.cell
-				= f.text_field :cpu
-		.row
-			.cellb
-				= f.label :ram, "RAM"
-			.cell
-				= f.text_field :ram
 	.row
 		.cellb
 			= hidden_field_tag :user_id, params[:user_id]

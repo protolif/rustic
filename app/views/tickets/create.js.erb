@@ -1,0 +1,7 @@
+$("ticket_table").insert(
+  {'bottom' : "<%= escape_javascript(render 'users/ticket_row', :t => @ticket) %>"}
+);
+$("new_ticket").update;
+$("new_ticket").hide();
+$("no_ticket_message").update;
+$("no_ticket_message").hide();
