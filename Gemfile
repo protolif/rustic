@@ -7,6 +7,13 @@ gem 'faker'
 gem 'money'
 gem 'haml'
 gem 'rqrcode'
+gem 'jquery-rails'
+
+group :assets do
+  gem 'sass-rails', "  ~> 3.1.0"
+  gem 'coffee-rails', "~> 3.1.0"
+  gem 'uglifier'
+end
 
 group :development do
   gem 'annotate'
