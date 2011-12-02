@@ -4,4 +4,4 @@
 # If you change this key, all old signed cookies will become invalid!
 # Make sure the secret is at least 30 characters and all random,
 # no regular words or you'll be exposed to dictionary attacks.
-Rustic::Application.config.secret_token = '7f1fc0dbfa44755cdb053ae4e1747b01ff78342105bfe536cf4cc1367bd7037f24ec675d029863e0c90c5fc8ad6d361e913af7119ed578075c6066dc55729b59'
+Rustic::Application.config.secret_token = '02bd11971c5d320e1588f1b05202793ef8b47ff9d1390aa3e7f6b752975560187e9eaa1e62442dc7a44a7af15e7e5dd5e677d215f123936d6955f22588d3fa99'
