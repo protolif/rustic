@@ -1,0 +1,4 @@
+if $('#login_box').length != 0
+	$('#login_box').remove()
+else
+	$('#nav').append('<%= escape_javascript(render("login")) %>')
