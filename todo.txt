@@ -1,4 +1,11 @@
-relax password requirements
+Ticket notes is too small
+Ticket view overflows div
+customer can take their own jobs
+parts non-taxable option
+game consoles, ipods, etc
+on customer update tel2 should not be required
+search ticket index
+
 Re-categorize open tickets into Active Tickets.
 users show page should have an ajax new ticket form.
 customers should not be able to show/update/destroy tickets.
