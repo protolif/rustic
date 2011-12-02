@@ -33,6 +33,7 @@ Spork.prefork do
 end
 
 Spork.each_run do
+  load "#{Rails.root}/db/schema.rb"
 end
 
 # --- Instructions ---
