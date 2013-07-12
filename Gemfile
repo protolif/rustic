@@ -7,15 +7,14 @@ gem 'faker', '0.9.5'
 gem 'money', '3.7.1'
 gem 'haml', '3.1.2'
 gem 'rqrcode', '0.4.1'
+gem 'pg'
 
 group :development do
-  gem 'mysql2', '~> 0.2.6'
   gem 'rspec-rails', '2.6.1'
   gem 'annotate', '2.4.0'
 end
 
 group :test do
-  gem 'mysql2', '~> 0.2.6'
   gem 'rspec-rails', '2.6.1'
   gem 'webrat', '0.7.1'
   gem 'autotest', '4.4.6'

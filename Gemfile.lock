@@ -58,8 +58,8 @@ GEM
     mime-types (1.16)
     money (3.7.1)
       i18n (~> 0.4)
-    mysql2 (0.2.11)
     nokogiri (1.4.6)
+    pg (0.15.1)
     polyglot (0.3.1)
     rack (1.2.3)
     rack-mount (0.6.14)
@@ -122,7 +122,7 @@ DEPENDENCIES
   gravatar_image_tag (= 1.0.0.pre2)
   haml (= 3.1.2)
   money (= 3.7.1)
-  mysql2 (~> 0.2.6)
+  pg
   rails (= 3.0.9)
   rqrcode (= 0.4.1)
   rspec-rails (= 2.6.1)
