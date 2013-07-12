@@ -5,14 +5,14 @@ gem 'unicorn'
 gem 'pg'
 
 # design
-gem 'haml'
-gem 'sass'
+gem 'haml',       '~> 4.0.3'
+gem 'haml-rails', '~> 0.4'
 gem 'sass-rails', '~> 4.0.0'
-gem 'bourbon'
-gem 'neat'
+gem 'bourbon',    '~> 3.1.8'
+gem 'neat',       '~> 1.3.0'
 
 # security
-gem 'rend-acl', '~> 0.0.5'
+gem 'rend-acl',    '~> 0.0.5'
 gem 'bcrypt-ruby', '~> 3.0.0'
 
 # javascript
