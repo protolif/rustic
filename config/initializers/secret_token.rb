@@ -1,7 +1,12 @@
 # Be sure to restart your server when you modify this file.
 
-# Your secret key for verifying the integrity of signed cookies.
+# Your secret key is used for verifying the integrity of signed cookies.
 # If you change this key, all old signed cookies will become invalid!
+
 # Make sure the secret is at least 30 characters and all random,
 # no regular words or you'll be exposed to dictionary attacks.
-Rustic::Application.config.secret_token = '7f1fc0dbfa44755cdb053ae4e1747b01ff78342105bfe536cf4cc1367bd7037f24ec675d029863e0c90c5fc8ad6d361e913af7119ed578075c6066dc55729b59'
+# You can use `rake secret` to generate a secure secret key.
+
+# Make sure your secret_key_base is kept private
+# if you're sharing your code publicly.
+Cscindy::Application.config.secret_key_base = 'abdfd5ddbb60dbe17612740a0606e7b4b7a92b8ab9f3b34250c9dab18276534b5c6264ee2575dc06f825a9aa3a171805636388de141b4e9c2d5dc0ecb9085ea0'

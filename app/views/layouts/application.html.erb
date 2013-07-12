@@ -1,23 +1,14 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title><%= title %></title>
-    <%= csrf_meta_tag %>
-    <%= render 'layouts/style' %>
-    <%= javascript_include_tag :defaults %>
-    <link rel="shortcut icon" href="/images/favicon.ico" />
-  </head>
-  <body>
-    <div class="container">
-	  <%= render 'layouts/header' %>
-      <section class="round">
-	    <% flash.each do |key, value| %>
-		  <%= content_tag(:div, value, :class => "flash #{key}") %>
-		<% end %>
-        <%= yield %>
-      </section>
-      <%= render 'layouts/footer' %>
-      <%# render 'layouts/debug' %>
-    </div>
-  </body>
+<head>
+  <title>Cscindy</title>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<%= yield %>
+
+</body>
 </html>

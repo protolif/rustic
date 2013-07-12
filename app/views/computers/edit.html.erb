@@ -1,5 +1,0 @@
-<h1><%= "#{@user.fname} #{@user.lname}'s #{@computer.make} #{@computer.model}" %></h1>
-<%= form_for(@computer) do |f| %>
-  <%= render 'shared/error_messages', :object => f.object %>
-  <%= render 'fields', :f => f %>
-<% end %>

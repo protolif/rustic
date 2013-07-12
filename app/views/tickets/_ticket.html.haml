@@ -1,9 +1,0 @@
-.row.row_link
-	- ticket_index_row(ticket).each do |data| 
-		= content_tag(:div, link_to(data, ticket_path(ticket)), :class => 'cell')
-	.cell
-	- unless ticket.status == "Closed"
-		= form_for ticket do |f|
-			= f.hidden_field :id, :value => ticket.id
-			= f.hidden_field :technician_id, :value => current_user.id
-			= f.submit "Take Job"

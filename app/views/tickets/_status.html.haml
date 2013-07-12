@@ -1,7 +1,0 @@
-- unless t.status == "Closed"
-	= form_for t, :remote => true do |f|
-		= f.label :status, 'Status:'
-		= f.select :status, Ticket::STATUSES
-		= f.hidden_field :id, :value => @ticket.id
-		= f.hidden_field :technician_id, :value => current_user.id
-		= f.submit "Update"
