@@ -12,6 +12,108 @@
  * in lieu of sprockets, @import
  */
 @import 'bourbon';
-@import 'home';
-@import 'users';
+@import 'neat-helpers';
+// $visual_grid: true;// debugging
+$tablet: new-breakpoint(max-width 768px 8);
+$mobile: new-breakpoint(max-width 480px 4);
 @import 'neat';
+
+@mixin half-to-full-width-responsive {
+  @include span-columns(6 of 12);
+  @include media($tablet) {
+    @include span-columns(8);
+    text-align: center;
+  }
+  @include media($mobile) {
+    @include span-columns(4);
+    text-align: center;
+  }
+}
+
+@mixin full-width-responsive {
+  @include span-columns(12 of 12);
+  @include media($tablet) {
+    @include span-columns(8);
+    overflow: hidden;
+  }
+  @include media($mobile) {
+    @include span-columns(4);
+    overflow: hidden;
+  }
+}
+
+// Custom colors
+$csc_blue: rgba(70, 96, 161, 1);
+$frosted_glass: rgba(255, 255, 255, 0.35);
+$milky_glass: rgba(255, 255, 255, 0.75);
+
+// Generic colors
+$link_color: $csc_blue;
+$bg_medium:  $frosted_glass;
+$bg_light:   $milky_glass;
+$bg_dark:    black;
+
+// Elements
+body {
+  @include background-image(
+    linear-gradient($bg_medium, $bg_dark),
+    radial-gradient($bg_light, $bg_dark)
+  );
+  background-repeat: no-repeat;
+  background-color: $bg_dark;
+}
+
+.web_view {
+  @include outer-container;
+  font-family: $helvetica;
+  font-weight: 200;
+}
+
+.banner {
+  @include span-columns(12);
+}
+
+.logo {
+  @include half-to-full-width-responsive;
+  background-image: image-url('logo.png');
+  background-repeat: no-repeat;
+  height: 90px;
+}
+
+.menu {
+  @include half-to-full-width-responsive;
+  ul {
+    height: 50px;
+    padding: 0;
+  }
+  li {
+    display: inline;
+    list-style-type: none;
+    height: 50px;
+    margin-right: 10px;
+  }
+}
+
+.menu-item {
+  background-color: white;
+  border-radius: 15px;
+  margin-right: 5px;
+  padding: 7px;
+  font-size: 30px;
+  background-color: $bg_medium;
+  &:hover { background-color: $bg_light; }
+}
+
+a {
+  color: $link_color;
+  text-decoration: none;
+  &:hover { color: $bg_dark; }
+}
+
+table {
+  @include full-width-responsive;
+  &, td, th { background-color: $bg_medium; }
+  tr:hover td { background-color: $bg_light; }
+}
+
+td, th { padding: 5px; }

@@ -1,14 +1,36 @@
 !!! 5
 - html_tag_with_browser_classes
-  %head
-    %meta{ charset: 'utf-8' }
-    %title
-      = yield :title
-    = csrf_meta_tags
-    = stylesheet_link_tag    'application'
-    = javascript_include_tag 'application'
-    /[if lt IE 9]
-      / Load HTML5 Shiv from CDN
-      %script{ type: 'text/javascript', charset: 'utf-8', src: 'http://html5shim.googlecode.com/svn/trunk/html5.js' }
-  %body
-    = yield
+%head
+  %meta{ charset: 'utf-8' }
+  %title
+    = yield :title
+  = csrf_meta_tags
+  = stylesheet_link_tag    :application
+  = stylesheet_link_tag 'http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css'
+  = javascript_include_tag :application
+  / Load HTML5 Shiv from CDN (when necessary)
+  /[if lt IE 9]
+    = javascript_include_tag 'http://html5shim.googlecode.com/svn/trunk/html5.js'
+%body
+  .web_view
+    .banner
+      .logo
+      %nav.menu
+        %ul
+          %li
+            %a.menu-item{ href: root_path }<
+              %i.icon-home
+          %li
+            %a.menu-item{ href: '#' }<
+              %i.icon-group
+          %li
+            %a.menu-item{ href: '#' }<
+              %i.icon-desktop
+          %li
+            %a.menu-item{ href: '#' }<
+              %i.icon-ticket
+          %li
+            %a.menu-item{ href: '#' }<
+              %i.icon-gears
+    %main
+      = yield
