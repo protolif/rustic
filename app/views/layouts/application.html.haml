@@ -1,0 +1,13 @@
+!!! 5
+- html_tag_with_browser_classes
+  %head
+    %meta{ charset: 'utf-8' }
+    %title Computer Service Center
+    = csrf_meta_tags
+    = stylesheet_link_tag    'application'
+    = javascript_include_tag 'application'
+    /[if lt IE 9]
+      / Load HTML5 Shiv from CDN
+      %script{ type: 'text/javascript', charset: 'utf-8', src: 'http://html5shim.googlecode.com/svn/trunk/html5.js' }
+  %body
+    = yield

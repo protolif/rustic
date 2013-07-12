@@ -5,6 +5,7 @@ gem 'unicorn'
 gem 'pg'
 
 # design
+gem 'haml'
 gem 'sass'
 gem 'sass-rails', '~> 4.0.0'
 gem 'bourbon'
