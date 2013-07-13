@@ -17,6 +17,7 @@
 $tablet: new-breakpoint(max-width 768px 8);
 $mobile: new-breakpoint(max-width 480px 4);
 @import 'neat';
+@import 'buttons';
 
 @mixin half-to-full-width-responsive {
   @include span-columns(6 of 12);
@@ -53,7 +54,7 @@ $bg_medium:  $frosted_glass;
 $bg_light:   $milky_glass;
 $bg_dark:    black;
 
-// Elements
+// Generic elements
 body {
   @include background-image(
     linear-gradient($bg_medium, $bg_dark),
@@ -63,12 +64,28 @@ body {
   background-color: $bg_dark;
 }
 
+a {
+  color: $link_color;
+  text-decoration: none;
+  &:hover { color: $bg_dark; }
+}
+
+table {
+  @include full-width-responsive;
+  &, td, th { background-color: $bg_medium; }
+  tr:hover td { background-color: $bg_light; }
+}
+
+td, th { padding: 5px; }
+
+// Everything that's visible in the browser
 .web_view {
   @include outer-container;
   font-family: $helvetica;
   font-weight: 200;
 }
 
+// Contains the logo and the navigation menu
 .banner {
   @include span-columns(12);
 }
@@ -94,26 +111,49 @@ body {
   }
 }
 
-.menu-item {
-  background-color: white;
-  border-radius: 15px;
-  margin-right: 5px;
-  padding: 7px;
-  font-size: 30px;
+.menu_item {
+  @extend .button;
+  @extend .button-circle;
+  @extend .button-flat;
   background-color: $bg_medium;
   &:hover { background-color: $bg_light; }
+  width: 50px;
+  height: 50px;
+  i {
+    position: relative;
+    top: -35px;
+  }
 }
 
-a {
-  color: $link_color;
-  text-decoration: none;
-  &:hover { color: $bg_dark; }
+// Search box
+
+.search_container {
+  @include half-to-full-width-responsive;
+  // It should be hidden by default on all devices
+  // The search button makes it appear
+  display: none;
+  @include media($tablet) { display: none; }
+  @include media($mobile) { display: none; }
 }
 
-table {
-  @include full-width-responsive;
-  &, td, th { background-color: $bg_medium; }
-  tr:hover td { background-color: $bg_light; }
+.search_box {
+  height: 34px;
+  // border-radius: 5px;
+  // background-color: $bg_light;
+  font-family: $helvetica;
+  font-size: 1em;
+  font-weight: 200;
+  padding: 5px;
+  margin: 0 0 20px 0;
+  width: 265px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
 }
 
-td, th { padding: 5px; }
+.search_button {
+  position: relative;
+  top: -2px;
+  left: -3px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}

@@ -18,19 +18,23 @@
       %nav.menu
         %ul
           %li
-            %a.menu-item{ href: root_path }<
-              %i.icon-home
+            %a.menu_item#toggle_search{ href: '#' }<
+              %i.icon-search
           %li
-            %a.menu-item{ href: '#' }<
+            %a.menu_item{ href: '#' }<
               %i.icon-group
           %li
-            %a.menu-item{ href: '#' }<
+            %a.menu_item{ href: '#' }<
               %i.icon-desktop
           %li
-            %a.menu-item{ href: '#' }<
+            %a.menu_item{ href: '#' }<
               %i.icon-ticket
           %li
-            %a.menu-item{ href: '#' }<
+            %a.menu_item{ href: '#' }<
               %i.icon-gears
+    .search_container
+      = form_tag root_path do
+        = text_field_tag :search, params[:search], class: 'search_box button-flat button-rounded', placeholder: 'What are you looking for?'
+        = submit_tag :Search, class: 'button button-flat button-rounded search_button'
     %main
       = yield
