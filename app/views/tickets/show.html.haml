@@ -5,6 +5,8 @@
       %b Computer:
       = @ticket.computer.make
       = @ticket.computer.model
+      - if @ticket.computer.charger
+        w/charger
     %section.issue
       %i.icon-comments
       %b Complaint:
