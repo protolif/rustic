@@ -14,6 +14,7 @@ gem 'neat',       '~> 1.3.0'
 # security
 gem 'rend-acl',    '~> 0.0.5'
 gem 'bcrypt-ruby', '~> 3.0.0'
+gem 'money-rails', '~> 0.8.1'
 
 # javascript
 gem 'coffee-rails', '~> 4.0.0'

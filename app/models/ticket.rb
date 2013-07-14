@@ -2,6 +2,21 @@ class Ticket < ActiveRecord::Base
   belongs_to :computer
   belongs_to :customer,   :class_name => "User"
   belongs_to :technician, :class_name => "User"
+
+  composed_of :subtotal,
+              :class_name => 'Money',
+              :mapping => %w(price cents),
+              :converter => Proc.new { |value| value.respond_to?(:to_money) ? value.to_money : Money.empty }
+  
+  composed_of :total,
+              :class_name => 'Money',
+              :mapping => %w(price cents),
+              :converter => Proc.new { |value| value.respond_to?(:to_money) ? value.to_money : Money.empty }
+  
+  composed_of :tax,
+              :class_name => 'Money',
+              :mapping => %w(price cents),
+              :converter => Proc.new { |value| value.respond_to?(:to_money) ? value.to_money : Money.empty }
   
   has_many :labors,   :dependent => :destroy
   has_many :parts,    :dependent => :destroy

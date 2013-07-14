@@ -29,16 +29,20 @@
       %b Customer:
       = @ticket.customer.fname
       = @ticket.customer.lname
-      = @ticket.customer.tel
+      = number_to_phone @ticket.customer.tel, delimiter: '.'
     %section.labor
       %i.icon-wrench
       %b Labor:
       - if @ticket.labors.any?
+        = @ticket.labors.count
+        %br
         - @ticket.labors.each do |labor|
           = labor.service
-          = labor.price
           = labor.notes
+          = humanized_money_with_symbol labor.price
           = time_ago_in_words labor.created_at
+          ago
+          %br
       - else
         Diagnose & Call
     %section.parts
@@ -47,7 +51,7 @@
       - if @ticket.parts.any?
         - @ticket.parts.each do |part|
           = part.item
-          = part.price
+          = humanized_money_with_symbol part.price
           = part.qty
           = part.warranty
           = time_ago_in_words part.created_at
@@ -55,22 +59,20 @@
         None
     %section.bill
       %i.icon-money
-      %b Bill:
+      %b Balance:
+      = humanized_money_with_symbol @ticket.total
       - if @ticket.subtotal > 0
+        %br
         Subtotal:
-        = @ticket.subtotal
+        = humanized_money_with_symbol @ticket.subtotal
         Tax:
-        = @ticket.tax
-        Total:
-        = @ticket.total
-      - else
-        Free
+        = humanized_money_with_symbol @ticket.tax
     %section.payments
       %i.icon-credit-card
       %b Payments:
       - if @ticket.payments.any?
         - @ticket.payments.each do |payment|
-          = payment.price
+          = humanized_money_with_symbol payment.price
           = payment.method
           = time_ago_in_words payment.updated_at
       - else
