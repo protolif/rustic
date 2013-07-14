@@ -1,16 +1,19 @@
 %table#ticket-index
   %tr
-    %th First
-    %th Last
-    %th Make
-    %th Model
+    %th Customer
+    %th Computer
     %th Issue
-    %th Status
+    %th.ticket_status Status
   - @tickets.each do |ticket|
     %tr{ data: { id: ticket.id, url: ticket_path(ticket.id) } }
-      %td= ticket.customer.fname
-      %td= ticket.customer.lname
-      %td= ticket.computer.make
-      %td= ticket.computer.model
+      %td.customer_name
+        = ticket.customer.fname
+        = ticket.customer.lname
+      %td.computer_model
+        = ticket.computer.make
+        = ticket.computer.model
       %td= ticket.issue
-      %td= ticket.status
+      %td.ticket_status
+        = ticket.status
+        = time_ago_in_words ticket.updated_at
+        ago
