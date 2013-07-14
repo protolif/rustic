@@ -178,5 +178,10 @@ td, th { padding: 5px; }
   @include media($mobile) { min-width: 0; }
 }
 
+.table_label {
+  font-weight: 100;
+  color: white;
+  text-align: center;
+}
 // Controller-specific styles
 @import 'tickets';
