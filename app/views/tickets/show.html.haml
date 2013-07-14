@@ -36,8 +36,9 @@
       %i.icon-wrench
       %b Labor:
       - if @ticket.labors.any?
-        = @ticket.labors.count
-        %br
+        - if @ticket.labors.count > 1
+          = @ticket.labors.count
+          %br
         - @ticket.labors.each do |labor|
           = labor.service
           = labor.notes
@@ -51,16 +52,18 @@
       %i.icon-keyboard
       %b Parts:
       - if @ticket.parts.any?
+        - if @ticket.parts.count > 1
+          = @ticket.parts.count
+          %br
         - @ticket.parts.each do |part|
+          = part.qty
           = part.item
           = humanized_money_with_symbol part.price
-          = part.qty
-          = part.warranty
-          = time_ago_in_words part.created_at
-          ago
+          = "Warranty: #{part.warranty}"
+          %br
       - else
         None
-    %section.bill
+    %section.balance
       %i.icon-money
       %b Balance:
       = humanized_money_with_symbol @ticket.total
@@ -74,10 +77,14 @@
       %i.icon-credit-card
       %b Payments:
       - if @ticket.payments.any?
+        - if @ticket.payments.count > 1
+          = @ticket.payments.count
+          %br
         - @ticket.payments.each do |payment|
           = humanized_money_with_symbol payment.price
           = payment.method
           = time_ago_in_words payment.updated_at
           ago
+          %br
       - else
         None
