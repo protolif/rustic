@@ -1,0 +1,77 @@
+.ticket_show
+  .column_left
+    %section.computer
+      %i.icon-laptop
+      %b Computer:
+      = @ticket.computer.make
+      = @ticket.computer.model
+    %section.issue
+      %i.icon-comments
+      %b Complaint:
+      = @ticket.issue
+    %section.notes
+      %i.icon-edit
+      %b Notes:
+      = @ticket.notes
+  .column_right
+    %section.status
+      %i.icon-info-sign
+      %b Status:
+      = @ticket.status
+      = time_ago_in_words @ticket.updated_at
+      ago
+      - if @ticket.technician.present?
+        by
+        = @ticket.technician.fname
+        = @ticket.technician.lname
+    %section.customer
+      %i.icon-user
+      %b Customer:
+      = @ticket.customer.fname
+      = @ticket.customer.lname
+      = @ticket.customer.tel
+    %section.labor
+      %i.icon-wrench
+      %b Labor:
+      - if @ticket.labors.any?
+        - @ticket.labors.each do |labor|
+          = labor.service
+          = labor.price
+          = labor.notes
+          = time_ago_in_words labor.created_at
+      - else
+        Diagnose & Call
+    %section.parts
+      %i.icon-keyboard
+      %b Parts:
+      - if @ticket.parts.any?
+        - @ticket.parts.each do |part|
+          = part.item
+          = part.price
+          = part.qty
+          = part.warranty
+          = time_ago_in_words part.created_at
+      - else
+        None
+    %section.bill
+      %i.icon-money
+      %b Bill:
+      - if @ticket.subtotal > 0
+        Subtotal:
+        = @ticket.subtotal
+        Tax:
+        = @ticket.tax
+        Total:
+        = @ticket.total
+      - else
+        Free
+    %section.payments
+      %i.icon-credit-card
+      %b Payments:
+      - if @ticket.payments.any?
+        - @ticket.payments.each do |payment|
+          = payment.price
+          = payment.method
+          = time_ago_in_words payment.updated_at
+      - else
+        None

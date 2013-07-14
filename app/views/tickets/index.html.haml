@@ -7,7 +7,7 @@
     %th Issue
     %th Status
   - @tickets.each do |ticket|
-    %tr{ data: { id: ticket.id } }
+    %tr{ data: { id: ticket.id, url: ticket_path(ticket.id) } }
       %td= ticket.customer.fname
       %td= ticket.customer.lname
       %td= ticket.computer.make

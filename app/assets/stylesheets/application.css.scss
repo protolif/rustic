@@ -70,6 +70,8 @@ a {
   &:hover { color: $bg_dark; }
 }
 
+b { font-weight: 400; }
+
 table {
   @include full-width-responsive;
   &, td, th { background-color: $bg_medium; }
@@ -157,3 +159,5 @@ td, th { padding: 5px; }
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
 }
+
+@import 'tickets';
