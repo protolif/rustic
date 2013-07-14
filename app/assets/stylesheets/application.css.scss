@@ -73,6 +73,7 @@ a {
 b { font-weight: 400; }
 
 table {
+  margin-bottom: 20px;
   @include full-width-responsive;
   &, td, th { background-color: $bg_medium; }
   tr:hover td { background-color: $bg_light; }
@@ -182,6 +183,7 @@ td, th { padding: 5px; }
   font-weight: 100;
   color: white;
   text-align: center;
+  a { color: white; }
 }
 // Controller-specific styles
 @import 'tickets';

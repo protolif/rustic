@@ -1,20 +1,9 @@
-%h1.table_label Recent Open Tickets
-%table#ticket-index
-  %tr
-    %th Customer
-    %th Computer
-    %th Issue
-    %th.ticket_status Status
-  - @tickets.each do |ticket|
-    %tr{ data: { id: ticket.id, url: ticket_path(ticket.id) } }
-      %td.customer_name
-        = ticket.customer.fname
-        = ticket.customer.lname
-      %td.computer_model
-        = ticket.computer.make
-        = ticket.computer.model
-      %td= ticket.issue
-      %td.ticket_status
-        = ticket.status
-        = time_ago_in_words ticket.updated_at
-        ago
+%h1.table_label In Queue
+= render partial: 'tickets_table', locals: { tickets: @tickets_in_queue }
+%h1.table_label In Progress
+= render partial: 'tickets_table', locals: { tickets: @tickets_in_progress }
+%h1.table_label In Limbo
+= render partial: 'tickets_table', locals: { tickets: @tickets_in_limbo }
+%h1.table_label
+  %a{ href: '#' }
+    In Archive

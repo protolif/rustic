@@ -30,9 +30,9 @@ class Ticket < ActiveRecord::Base
   
   LOCAL_SALES_TAX = 0.07
   
-  scope :in_queue, where("status = ?",  "In Queue")
-  scope :waiting,  where("status = ?",  "Waiting")
-  scope :open,     where("status != ? AND status != ? AND status != ?", "Closed", "Completed", "Waiting")
+  scope :in_queue,    where("status = ?", "In Queue")
+  scope :in_limbo,    where("status = ?", "Waiting")
+  scope :in_progress, where("status = ? OR status = ?", "Diagnosing", "Fixing")
   scope :recent, -> { where("updated_at > ?", 6.months.ago) }
 end
 
