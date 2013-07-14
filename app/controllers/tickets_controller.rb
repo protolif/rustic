@@ -8,4 +8,8 @@ class TicketsController < ApplicationController
   def show
     @ticket = Ticket.find params[:id]
   end
+
+  def archive
+    @tickets_in_archive = Ticket.archived.order("updated_at DESC")
+  end
 end

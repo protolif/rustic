@@ -5,5 +5,4 @@
 %h1.table_label In Limbo
 = render partial: 'tickets_table', locals: { tickets: @tickets_in_limbo }
 %h1.table_label
-  %a{ href: '#' }
-    In Archive
+  = link_to 'In Archive', archive_path

@@ -33,7 +33,8 @@ class Ticket < ActiveRecord::Base
   scope :in_queue,    where("status = ?", "In Queue")
   scope :in_limbo,    where("status = ?", "Waiting")
   scope :in_progress, where("status = ? OR status = ?", "Diagnosing", "Fixing")
-  scope :recent, -> { where("updated_at > ?", 6.months.ago) }
+  scope :recent,   -> { where("updated_at > ?", 6.months.ago) }
+  scope :archived, -> { where("updated_at <= ?", 6.months.ago) }
 end
 
 # == Schema Information
