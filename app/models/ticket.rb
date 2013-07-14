@@ -32,8 +32,8 @@ class Ticket < ActiveRecord::Base
   
   scope :in_queue, where("status = ?",  "In Queue")
   scope :waiting,  where("status = ?",  "Waiting")
-  scope :closed,   where("status = ?",  "Closed")
-  scope :open,     where("status != ?", "Closed")
+  scope :open,     where("status != ? AND status != ? AND status != ?", "Closed", "Completed", "Waiting")
+  scope :recent, -> { where("updated_at > ?", 6.months.ago) }
 end
 
 # == Schema Information

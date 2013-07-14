@@ -1,6 +1,6 @@
 class TicketsController < ApplicationController
   def index
-    @tickets = Ticket.all limit: 20
+    @tickets = Ticket.open.recent.order("updated_at DESC")
   end
 
   def show
