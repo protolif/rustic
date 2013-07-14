@@ -20,7 +20,7 @@
       %i.icon-info-sign
       %b Status:
       = @ticket.status
-      = time_ago_in_words @ticket.updated_at
+      = time_ago_in_words @ticket.updated_at ago
       ago
       - if @ticket.technician.present?
         by
@@ -42,7 +42,7 @@
           = labor.service
           = labor.notes
           = humanized_money_with_symbol labor.price
-          = time_ago_in_words labor.created_at
+          = time_ago_in_words labor.created_at ago
           ago
           %br
       - else
@@ -56,7 +56,7 @@
           = humanized_money_with_symbol part.price
           = part.qty
           = part.warranty
-          = time_ago_in_words part.created_at
+          = time_ago_in_words part.created_at ago
       - else
         None
     %section.bill
@@ -76,6 +76,6 @@
         - @ticket.payments.each do |payment|
           = humanized_money_with_symbol payment.price
           = payment.method
-          = time_ago_in_words payment.updated_at
+          = time_ago_in_words payment.updated_at ago
       - else
         None
