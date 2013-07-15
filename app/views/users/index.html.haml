@@ -1,0 +1,26 @@
+%h1.table_label All Users
+%table#user_index
+  %tr
+    %th.customer_name.tablet_expanding Name
+    %th Phone
+    %th.customer_mobile Mobile
+    %th Email
+    %th.customer_address Address
+    %th.customer_address City
+    %th.customer_address State
+    %th.customer_address Zip
+  - @users.each do |user|
+    %tr{ data: { id: user.id, url: user_path(user.id) } }
+      %td.customer_name.tablet_expanding
+        = user.fname
+        = user.lname
+      %td= number_to_phone user.tel,  delimiter: '.'
+      %td.customer_mobile
+        = number_to_phone user.tel2, delimiter: '.'
+      %td.customer_email= user.email
+      %td.customer_address= user.address
+      %td.customer_address= user.city
+      %td.customer_address= user.state
+      %td.customer_address= user.zip
+.pagination
+  = will_paginate @posts, inner_window: 2

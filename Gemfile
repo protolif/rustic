@@ -10,6 +10,7 @@ gem 'haml-rails', '~> 0.4'
 gem 'sass-rails', '~> 4.0.0'
 gem 'bourbon',    '~> 3.1.8'
 gem 'neat',       '~> 1.3.0'
+gem 'will_paginate', git: 'git@github.com:mislav/will_paginate.git'
 
 # security
 gem 'rend-acl',    '~> 0.0.5'

@@ -81,6 +81,13 @@ table {
 
 td, th { padding: 5px; }
 
+// Make it so the search box doesn't affect the content below
+main {
+  @include full-width-responsive;
+  position: relative;
+  top: -20px;
+}
+
 // Everything that's visible in the browser
 .web_view {
   @include outer-container;
@@ -167,6 +174,20 @@ td, th { padding: 5px; }
   min-width: 140px;
   @include media($tablet) { min-width: 0; }
   @include media($mobile) { min-width: 0; }
+  &.tablet_expanding {
+    @include media($tablet) { width: 100%; }
+  }
+}
+.customer_address {
+  width: 100%;
+  @include media($tablet) { display: none; }
+  @include media($mobile) { display: none; }
+}
+.customer_mobile {
+  @include media($mobile) { display: none; }
+}
+.customer_email {
+  @include media($tablet) { width: 100%; }
 }
 .ticket_status   {
   min-width: 220px;
@@ -185,5 +206,26 @@ td, th { padding: 5px; }
   text-align: center;
   a { color: white; }
 }
+
+// Pagination links
+.pagination {
+  @include full-width-responsive;
+  // font-size: 1em;
+  color: white;
+  text-align: center;
+  a {
+    color: white;
+    margin: 0 5px;
+  }
+  .current {
+    margin: 0 5px;
+    padding: 0 5px;
+    font-style: normal;
+    font-weight: 400;
+    background-color: $bg_medium;
+  }
+  .disabled { color: #999; }
+}
+
 // Controller-specific styles
 @import 'tickets';
