@@ -1,8 +1,6 @@
-// Place all the styles related to the tickets controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
 .ticket_show {
   @include full-width-responsive;
+  margin-top: 20px;// counters main's position: relative; top: -20px;
 }
 
 .column_left, .column_right {

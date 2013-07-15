@@ -49,7 +49,7 @@ $frosted_glass: rgba(255, 255, 255, 0.35);
 $milky_glass: rgba(255, 255, 255, 0.75);
 
 // Generic colors
-$link_color: $csc_blue;
+$link_color: black;
 $bg_medium:  $frosted_glass;
 $bg_light:   $milky_glass;
 $bg_dark:    black;
@@ -67,7 +67,6 @@ body {
 a {
   color: $link_color;
   text-decoration: none;
-  &:hover { color: $bg_dark; }
 }
 
 b { font-weight: 400; }
@@ -229,3 +228,4 @@ main {
 
 // Controller-specific styles
 @import 'tickets';
+@import 'users';

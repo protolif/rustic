@@ -1,3 +1,5 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://coffeescript.org/
+$ ->
+  # When you click a row in the table
+  $('#user_index tr').click ->
+    # It should take the user to the row's show page
+    window.location = $(this).data('url')
