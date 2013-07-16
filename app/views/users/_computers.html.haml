@@ -1,20 +1,22 @@
 %table.user_computers
   %tr
-    %th.form_factor Size
     %th.make Make
     %th.model Model
+    %th.form_factor Size
     %th Cord
     %th Location
     %th.time Checked In
     %th.time Checked Out
   - user.computers.each do |computer|
     %tr
-      %td.form_factor= computer.form_factor
       %td.make= computer.make
       %td.model= computer.model
+      %td.form_factor= computer.form_factor
       %td= computer.charger ? 'Yes' : 'No'
       %td= computer.location
-      %td.time= computer.checked_in.in_time_zone('America/New_York').to_s(:long_ordinal)
+      %td.time
+        - if computer.checked_in.present?
+          = computer.checked_in.in_time_zone('America/New_York').to_s(:long_ordinal)
       %td.time
         - if computer.checked_out.present?
           = computer.checked_out.in_time_zone('America/New_York').to_s(:long_ordinal)
