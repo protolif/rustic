@@ -1,0 +1,26 @@
+%h1.table_label All Computers
+%table.index#computer_index
+  %tr
+    %th.make Make
+    %th.model Model
+    %th.serial Serial
+    %th.form_factor Size
+    %th Cord
+    %th Location
+    %th.time Checked In
+    %th.time Checked Out
+  - @computers.each do |computer|
+    %tr{ data: { id: computer.id, url: computer_path(computer.id) } }
+      %td.make= computer.make
+      %td.model= computer.model
+      %td.serial= computer.serial
+      %td.form_factor= computer.form_factor
+      %td= computer.charger ? 'Yes' : 'No'
+      %td= computer.location
+      %td.time
+        - if computer.checked_in.present?
+          = computer.checked_in.in_time_zone('America/New_York').to_s(:long_ordinal)
+      %td.time
+        - if computer.checked_out.present?
+          = computer.checked_out.in_time_zone('America/New_York').to_s(:long_ordinal)
+= will_paginate @posts, inner_window: 2

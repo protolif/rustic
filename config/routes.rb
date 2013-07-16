@@ -5,6 +5,8 @@ Cscindy::Application.routes.draw do
   get 'archive' => 'tickets#archive'
   
   resources :users
+
+  resources :computers
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
