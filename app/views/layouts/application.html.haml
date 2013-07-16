@@ -16,23 +16,7 @@
     .banner
       = link_to root_path do
         .logo
-      %nav.menu
-        %ul
-          %li
-            %a.menu_item#toggle_search{ href: '#' }<
-              %i.icon-search
-          %li
-            %a.menu_item{ href: users_path }<
-              %i.icon-group
-          %li
-            %a.menu_item{ href: computers_path }<
-              %i.icon-desktop
-          %li
-            %a.menu_item{ href: tickets_path }<
-              %i.icon-ticket
-          %li
-            %a.menu_item{ href: '#' }<
-              %i.icon-gears
+      = render partial: 'layouts/navigation'
     .search_container
       = form_tag root_path do
         = text_field_tag :search, params[:search], class: 'search_box button-flat button-rounded', placeholder: 'What are you looking for?'
