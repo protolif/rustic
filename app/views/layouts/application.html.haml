@@ -18,8 +18,8 @@
         .logo
       = render partial: 'layouts/navigation'
     .search_container
-      = form_tag root_path do
-        = text_field_tag :search, params[:search], class: 'search_box button-flat button-rounded', placeholder: 'What are you looking for?'
+      = form_tag search_path, method: :post do
+        = text_field_tag :q, params[:q], class: 'search_box button-flat button-rounded', placeholder: 'What are you looking for?'
         = submit_tag :Search, class: 'button button-flat button-rounded search_button'
     %main
       = yield

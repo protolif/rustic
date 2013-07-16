@@ -1,0 +1,8 @@
+.result {
+  @include span-columns(2 of 12);
+  text-align: center;
+  background-color: $bg_medium;
+  padding: 10px;
+  margin-bottom: 10px;
+  &:hover { background-color: $bg_light; }
+}

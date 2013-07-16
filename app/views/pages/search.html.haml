@@ -1,0 +1,21 @@
+%h1.table_label Results
+- if @fname_results.present?
+  - @fname_results.each do |result|
+    .result.clickable{ data: { url: user_path(result) } }
+      = result.fname
+      = result.lname
+- if @lname_results.present?
+  - @lname_results.each do |result|
+    .result.clickable{ data: { url: user_path(result) } }
+      = result.fname
+      = result.lname
+- if @tel_results.present?
+  - @tel_results.each do |result|
+    .result.clickable{ data: { url: user_path(result) } }
+      = result.fname
+      = result.lname
+- if @tel2_results.present?
+  - @tel2_results.each do |result|
+    .result.clickable{ data: { url: user_path(result) } }
+      = result.fname
+      = result.lname

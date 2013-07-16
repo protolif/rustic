@@ -1,5 +1,6 @@
 Cscindy::Application.routes.draw do
-  root 'tickets#index'
+  root 'pages#home'
+  post 'pages/search', as: 'search'
 
   resources :tickets
   get 'archive' => 'tickets#archive'
