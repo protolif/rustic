@@ -10,6 +10,6 @@ class TicketsController < ApplicationController
   end
 
   def archive
-    @tickets_in_archive = Ticket.archived.order("updated_at DESC")
+    @tickets_in_archive = Ticket.archived.order("updated_at DESC").paginate(page: params[:page], per_page: 30)
   end
 end
