@@ -78,12 +78,15 @@ b { font-weight: 400; }
 
 table {
   margin-bottom: 20px;
-  @include full-width-responsive;
   &, td, th { background-color: $bg_medium; }
   tr:hover td { background-color: $bg_light; }
+  &.index { @include full-width-responsive; }
 }
 
-td, th { padding: 5px; }
+td, th {
+  padding: 5px;
+  text-align: center;
+}
 
 // Make it so the search box doesn't affect the content below
 main {
