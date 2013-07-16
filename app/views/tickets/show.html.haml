@@ -1,6 +1,6 @@
 .ticket_show
   .column_left
-    %section.computer
+    %section.computer.clickable{ data: { id: @ticket.computer.id, url: computer_path(@ticket.computer) } }
       %i.icon-laptop
       %b Computer:
       = @ticket.computer.make
@@ -26,7 +26,7 @@
         by
         = @ticket.technician.fname
         = @ticket.technician.lname
-    %section.customer
+    %section.customer.clickable{ data: { id: @ticket.customer.id, url: user_path(@ticket.customer) } }
       %i.icon-user
       %b Customer:
       = @ticket.customer.fname

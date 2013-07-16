@@ -1,6 +1,8 @@
 .ticket_show {
   @include full-width-responsive;
   margin-top: 20px;// counters main's position: relative; top: -20px;
+  .clickable:hover { background-color: $bg_light; }
+
 }
 
 .column_left, .column_right {
