@@ -26,7 +26,7 @@
   %h1.table_label Related Tickets
   %table.computer_tickets
     %tr
-      %th
+      %th.issue
         %i.icon-comments
         Complaint
       %th
@@ -37,7 +37,7 @@
         Status
     - @computer.tickets.each do |ticket|
       %tr.clickable{ data: { id: ticket.id, url: ticket_path(ticket.id) } }
-        %td= ticket.issue
+        %td.issue= ticket.issue
         %td= ticket.notes
         %td.ticket_status
           = ticket.status
