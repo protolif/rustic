@@ -2,38 +2,11 @@
   %h1.table_label
     = @user.fname
     = @user.lname
-  %p.user_details
-    - if @user.tel.present?
-      = number_to_phone @user.tel, delimiter: '.'
-    - if @user.tel.present? && @user.tel2.present?
-      = '|'
-    - if @user.tel2.present?
-      = number_to_phone @user.tel2, delimiter: '.'
-    %br
-    - if @user.email.present?
-      = link_to @user.email, "mailto:#{@user.email}"
-      %br
-    - if @user.address.present?
-      = @user.address
-      %br
-      = @user.city
-      = @user.state
-      = @user.zip
+  = render partial: 'details', locals: { user: @user }
   %h1.table_label
     = "#{@user.fname}'s"
     Computers
-  %table.user_computers
-    %tr
-      %th Form Factor
-      %th Make
-      %th Model
-      %th Serial
-      %th Location
-    - @user.computers.each do |computer|
-      %tr
-        %td= computer.form_factor
-        %td= computer.make
-        %td= computer.model
-        %td= computer.serial
-        %td= computer.location
+    / = link_to '#', class: 'add_button' do
+    /   %i.icon-plus-sign
+  = render partial: 'computers', locals: { user: @user }
   %table.tickets

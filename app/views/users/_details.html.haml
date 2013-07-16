@@ -1,0 +1,17 @@
+%p.user_details
+  - if user.tel.present?
+    = number_to_phone user.tel, delimiter: '.'
+  - if user.tel.present? && user.tel2.present?
+    = '|'
+  - if user.tel2.present?
+    = number_to_phone user.tel2, delimiter: '.'
+  %br
+  - if user.email.present?
+    = link_to user.email, "mailto:#{user.email}"
+    %br
+  - if user.address.present?
+    = user.address
+    %br
+    = user.city
+    = user.state
+    = user.zip
