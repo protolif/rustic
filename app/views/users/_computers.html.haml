@@ -8,7 +8,7 @@
     %th.time Checked In
     %th.time Checked Out
   - user.computers.each do |computer|
-    %tr
+    %tr.clickable{ data: { id: computer.id, url: computer_path(computer.id) } }
       %td.make= computer.make
       %td.model= computer.model
       %td.form_factor= computer.form_factor

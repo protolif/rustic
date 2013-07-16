@@ -1,0 +1,25 @@
+.computer_show
+  %h1.table_label
+    = "#{@computer.user.fname}'s"
+    = @computer.make
+    = @computer.form_factor
+  = form_for @computer, html: { class: 'submitless' } do |f|
+    %table.computer.editable
+      %tr
+        %th.make Make
+        %th.model Model
+        %th.serial Serial
+        %th.form_factor Size
+        %th Cord
+        %th Location
+      %tr
+        %td.make= f.select :make, Computer::MAKES, { include_blank: true }
+        %td.model= f.text_field :model
+        %td.serial= f.text_field :serial
+        %td.form_factor= f.select :form_factor, Computer::FF, { include_blank: true }
+        %td.slider_container
+          .slider
+            = f.check_box :charger
+            %label{ for: 'computer_charger' }
+        %td= f.select :location, Computer::ZONES, { include_blank: true }
+    = f.submit 'Update', class: 'hidden'

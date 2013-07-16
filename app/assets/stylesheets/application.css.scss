@@ -9,7 +9,9 @@
 $tablet: new-breakpoint(max-width 768px 8);
 $mobile: new-breakpoint(max-width 480px 4);
 @import 'neat';
+@import 'colors';
 @import 'buttons';
+@import 'slider';
 
 @mixin half-to-full-width-responsive {
   @include span-columns(6 of 12);
@@ -48,17 +50,6 @@ $mobile: new-breakpoint(max-width 480px 4);
   @include hide-on-tablets;
 }
 
-// Custom colors
-$csc_blue: rgba(70, 96, 161, 1);
-$frosted_glass: rgba(255, 255, 255, 0.35);
-$milky_glass: rgba(255, 255, 255, 0.75);
-
-// Generic colors
-$link_color: black;
-$bg_medium:  $frosted_glass;
-$bg_light:   $milky_glass;
-$bg_dark:    black;
-
 // Generic elements
 body {
   @include background-image(
@@ -79,9 +70,10 @@ b { font-weight: 400; }
 table {
   margin-bottom: 20px;
   &, td, th { background-color: $bg_medium; }
-  tr:hover td { background-color: $bg_light; }
   &.index { @include full-width-responsive; }
 }
+
+.clickable:hover td { background-color: $bg_light; }
 
 td, th {
   padding: 5px;
@@ -231,6 +223,9 @@ main {
   }
   .disabled { color: #999; }
 }
+
+// Generic hidden class
+.hidden { display: none; }
 
 // Controller-specific styles
 @import 'tickets';

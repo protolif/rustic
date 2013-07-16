@@ -1,5 +1,5 @@
 %h1.table_label All Computers
-%table.index.computer_index#computer_index
+%table.index.computer_index
   %tr
     %th.make Make
     %th.model Model
@@ -10,7 +10,7 @@
     %th.time Checked In
     %th.time Checked Out
   - @computers.each do |computer|
-    %tr{ data: { id: computer.id, url: computer_path(computer.id) } }
+    %tr.clickable{ data: { id: computer.id, url: computer_path(computer.id) } }
       %td.make= computer.make
       %td.model= computer.model
       %td.serial= computer.serial

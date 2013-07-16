@@ -1,8 +1,4 @@
 $ ->
-  # When you click a row in the table
-  $('#ticket-index tr').click ->
-    # It should take the user to the row's show page
-    window.location = $(this).data('url')
   $('#toggle_search').click (event) ->
     # Override the link click handler
     event.preventDefault()

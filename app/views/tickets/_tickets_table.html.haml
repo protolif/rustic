@@ -1,11 +1,11 @@
-%table.index#ticket-index
+%table.index
   %tr
     %th Customer
     %th Computer
     %th Issue
     %th.ticket_status Status
   - tickets.each do |ticket|
-    %tr{ data: { id: ticket.id, url: ticket_path(ticket.id) } }
+    %tr.clickable{ data: { id: ticket.id, url: ticket_path(ticket.id) } }
       %td.customer_name
         = ticket.customer.fname
         = ticket.customer.lname

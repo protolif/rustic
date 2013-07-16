@@ -1,5 +1,5 @@
 %h1.table_label All Users
-%table.index#user_index
+%table.index
   %tr
     %th.customer_name.tablet_expanding Name
     %th Phone
@@ -10,7 +10,7 @@
     %th.customer_address State
     %th.customer_address Zip
   - @users.each do |user|
-    %tr{ data: { id: user.id, url: user_path(user.id) } }
+    %tr.clickable{ data: { id: user.id, url: user_path(user.id) } }
       %td.customer_name.tablet_expanding
         = user.fname
         = user.lname

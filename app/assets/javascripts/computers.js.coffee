@@ -1,3 +1,5 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://coffeescript.org/
+$ ->
+  $('.submitless input').change ->
+    $(this).closest('.submitless').submit()
+  $('.submitless select').change ->
+    $(this).closest('.submitless').submit()

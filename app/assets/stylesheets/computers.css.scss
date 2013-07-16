@@ -2,3 +2,40 @@
   .serial { @include hide-on-mobile-devices; }
   .time { @include hide-on-phones; }
 }
+
+.computer {
+  margin: auto;// centers the table
+  .form_factor { min-width: 90px; }
+  .make { min-width: 80px; }
+  .model { min-width: 150px; }
+}
+
+.editable {
+  td {
+    padding: 0;
+    &:hover { background-color: $bg_light; }
+  }
+  input, select {
+    font-family: $helvetica;
+    font-size: 1em;
+    font-weight: 200;
+    text-align: center;
+    border: none;
+    background: transparent;
+    height: 26px;
+    padding: 0 5px;
+    margin: 0;
+    &:focus { background-color: $bg_light; }
+  }
+}
+
+.slider_container {
+  &:hover {
+    // do not lighten the bgcolor
+    background-color: $bg_medium !important;
+    // lighten the label instead
+    label {
+      @include background-image(linear-gradient(lighten(#fafafa, 20%) 0, lighten(#dedede, 20%) 40%, lighten(#b5b5b5, 20%) 100%));
+    }
+  }
+}
