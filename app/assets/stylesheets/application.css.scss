@@ -35,6 +35,19 @@ $mobile: new-breakpoint(max-width 480px 4);
   }
 }
 
+@mixin hide-on-tablets {
+  @include media($tablet) { display: none; }
+}
+
+@mixin hide-on-phones {
+  @include media($mobile) { display: none; }
+}
+
+@mixin hide-on-mobile-devices {
+  @include hide-on-phones;
+  @include hide-on-tablets;
+}
+
 // Custom colors
 $csc_blue: rgba(70, 96, 161, 1);
 $frosted_glass: rgba(255, 255, 255, 0.35);
@@ -133,8 +146,7 @@ main {
   // It should be hidden by default on all devices
   // The search button makes it appear
   display: none;
-  @include media($tablet) { display: none; }
-  @include media($mobile) { display: none; }
+  @include hide-on-mobile-devices;
 }
 
 .search_box {
@@ -171,19 +183,18 @@ main {
 }
 .customer_address {
   width: 100%;
-  @include media($tablet) { display: none; }
-  @include media($mobile) { display: none; }
+  @include hide-on-mobile-devices;
 }
 .customer_mobile {
-  @include media($mobile) { display: none; }
+  @include hide-on-phones;
 }
 .customer_email {
-  @include media($tablet) { width: 100%; }
+  @include hide-on-tablets;
 }
 .ticket_status   {
   min-width: 220px;
   @include media($tablet) { min-width: 110px; }
-  @include media($mobile) { display: none; }
+  @include hide-on-phones;
 }
 .computer_model  {
   min-width: 170px;
