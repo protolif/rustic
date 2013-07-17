@@ -2,7 +2,16 @@
   @include full-width-responsive;
   margin-top: 20px;// counters main's position: relative; top: -20px;
   .clickable:hover { background-color: $bg_light; }
-
+  section {
+    padding: 5px;
+    margin-bottom: 2px;
+    background-color: $bg_medium;
+    &.notes {
+      padding: 0;
+      margin: 0 0 2px 0;
+      // the 2px on the bottom is necessary for mobile devices
+    }
+  }
 }
 
 .column_left, .column_right {
@@ -16,8 +25,28 @@
   background-color: $bg_medium;
 }
 
-.ticket_show section {
-  padding: 5px;
-  margin-bottom: 2px;
-  background-color: $bg_medium;
+.notes_label {
+  // position the label over the textarea
+  position: absolute;
+  left: 5px;
+  margin-top: 5px;
+  // when scrolling, it will move behind
+  // see also: tickets.js.coffee
+  z-index: 2;
+}
+
+.edit_notes {
+  // make the textarea fill the entire section
+  margin: 0;
+  border: 0;
+  width: 100%;
+  height: 250px;
+  // leave room for the label
+  padding: 25px 5px 0 5px;
+  clip: rect(20px 0 0 0);
+  // fonts aren't inherited here, re-declaring
+  font-family: $helvetica;
+  font-size: 1em;
+  font-weight: 200;
+  background-color: transparent;
 }

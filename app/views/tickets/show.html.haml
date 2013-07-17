@@ -1,77 +1,79 @@
-.ticket_show
-  .column_left
-    = render partial: 'customer', locals: { customer: @ticket.customer }
-    = render partial: 'computer', locals: { computer: @ticket.computer }
-    %section.issue
-      %i.icon-comments
-      %b Complaint:
-      = @ticket.issue
-    %section.notes
-      %i.icon-edit
-      %b Notes:
-      = @ticket.notes
-  .column_right
-    %section.status
-      %i.icon-info-sign
-      %b Status:
-      = @ticket.status
-      = time_ago_in_words @ticket.updated_at
-      ago
-      - if @ticket.technician.present?
-        by
-        = @ticket.technician.fname
-        = @ticket.technician.lname
-    %section.labor
-      %i.icon-wrench
-      %b Labor:
-      - if @ticket.labors.any?
-        - if @ticket.labors.count > 1
-          = @ticket.labors.count
+= form_for @ticket do |f|
+  .ticket_show
+    .column_left
+      = render partial: 'customer', locals: { customer: @ticket.customer }
+      = render partial: 'computer', locals: { computer: @ticket.computer }
+      %section.issue
+        %i.icon-comments
+        %b Complaint:
+        = @ticket.issue
+      %section.notes
+        .notes_label
+          %i.icon-edit
+          %b Notes:
+        = f.text_area :notes, class: 'edit_notes'
+    .column_right
+      %section.status
+        %i.icon-info-sign
+        %b Status:
+        = @ticket.status
+        = time_ago_in_words @ticket.updated_at
+        ago
+        - if @ticket.technician.present?
+          by
+          = @ticket.technician.fname
+          = @ticket.technician.lname
+      %section.labor
+        %i.icon-wrench
+        %b Labor:
+        - if @ticket.labors.any?
+          - if @ticket.labors.count > 1
+            = @ticket.labors.count
+            %br
+          - @ticket.labors.each do |labor|
+            = labor.service
+            = labor.notes
+            = humanized_money_with_symbol labor.price
+            %br
+        - else
+          Diagnose & Call
+      %section.parts
+        %i.icon-keyboard
+        %b Parts:
+        - if @ticket.parts.any?
+          - if @ticket.parts.count > 1
+            = @ticket.parts.count
+            %br
+          - @ticket.parts.each do |part|
+            = part.qty
+            = part.item
+            = humanized_money_with_symbol part.price
+            = "Warranty: #{part.warranty}"
+            %br
+        - else
+          None
+      %section.balance
+        %i.icon-money
+        %b Balance:
+        = humanized_money_with_symbol @ticket.total
+        - if @ticket.subtotal > 0
           %br
-        - @ticket.labors.each do |labor|
-          = labor.service
-          = labor.notes
-          = humanized_money_with_symbol labor.price
-          %br
-      - else
-        Diagnose & Call
-    %section.parts
-      %i.icon-keyboard
-      %b Parts:
-      - if @ticket.parts.any?
-        - if @ticket.parts.count > 1
-          = @ticket.parts.count
-          %br
-        - @ticket.parts.each do |part|
-          = part.qty
-          = part.item
-          = humanized_money_with_symbol part.price
-          = "Warranty: #{part.warranty}"
-          %br
-      - else
-        None
-    %section.balance
-      %i.icon-money
-      %b Balance:
-      = humanized_money_with_symbol @ticket.total
-      - if @ticket.subtotal > 0
-        %br
-        Subtotal:
-        = humanized_money_with_symbol @ticket.subtotal
-        Tax:
-        = humanized_money_with_symbol @ticket.tax
-    %section.payments
-      %i.icon-credit-card
-      %b Payments:
-      - if @ticket.payments.any?
-        - if @ticket.payments.count > 1
-          = @ticket.payments.count
-          %br
-        - @ticket.payments.each do |payment|
-          = humanized_money_with_symbol payment.price
-          = payment.method
-          = time_ago_in_words payment.updated_at
-          ago
-          %br
-      - else
-        None
+          Subtotal:
+          = humanized_money_with_symbol @ticket.subtotal
+          Tax:
+          = humanized_money_with_symbol @ticket.tax
+      %section.payments
+        %i.icon-credit-card
+        %b Payments:
+        - if @ticket.payments.any?
+          - if @ticket.payments.count > 1
+            = @ticket.payments.count
+            %br
+          - @ticket.payments.each do |payment|
+            = humanized_money_with_symbol payment.price
+            = payment.method
+            = time_ago_in_words payment.updated_at
+            ago
+            %br
+        - else
+          None
