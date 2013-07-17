@@ -1,0 +1,24 @@
+%h1.table_label Related Tickets
+%table.computer_tickets
+  %tr
+    %th.issue
+      %i.icon-comments
+      Complaint
+    %th
+      %i.icon-edit
+      Notes
+    %th.ticket_status
+      %i.icon-info-sign
+      Status
+  - computer.tickets.each do |ticket|
+    %tr.clickable{ data: { id: ticket.id, url: ticket_path(ticket.id) } }
+      %td.issue= ticket.issue
+      %td= ticket.notes
+      %td.ticket_status
+        = ticket.status
+        = time_ago_in_words ticket.updated_at
+        ago
+        - if ticket.technician.present?
+          by
+          = ticket.technician.fname
+          = ticket.technician.lname
