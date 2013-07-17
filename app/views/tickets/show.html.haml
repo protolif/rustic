@@ -1,4 +1,4 @@
-= form_for @ticket do |f|
+= form_for @ticket, html: { class: 'submitless' } do |f|
   .ticket_show
     .column_left
       = render partial: 'customer', locals: { customer: @ticket.customer }

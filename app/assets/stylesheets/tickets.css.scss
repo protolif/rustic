@@ -7,9 +7,12 @@
     margin-bottom: 2px;
     background-color: $bg_medium;
     &.notes {
+      // make the textarea fill the entire section
       padding: 0;
-      margin: 0 0 2px 0;
-      // the 2px on the bottom is necessary for mobile devices
+      margin: 0;
+      // the textarea has its own background color
+      // which is better, because it can change on focus
+      background-color: transparent;
     }
   }
 }
@@ -48,5 +51,6 @@
   font-family: $helvetica;
   font-size: 1em;
   font-weight: 200;
-  background-color: transparent;
+  background-color: $bg_medium;
+  @include highligh-on-hover-and-focus;
 }

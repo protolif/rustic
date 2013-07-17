@@ -3,6 +3,9 @@ $ ->
   # submit textboxes right away
   $(".submitless input[type='text']").change ->
     $(this).closest('.submitless').submit()
+  # submit textareas right away
+  $('.submitless textarea').change ->
+    $(this).closest('.submitless').submit()
   # don't submit checkboxes right away
   # wait for the slider transition to finish
   $(".submitless input[type='checkbox']").change ->

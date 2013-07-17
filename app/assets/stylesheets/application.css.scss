@@ -50,6 +50,10 @@ $mobile: new-breakpoint(max-width 480px 4);
   @include hide-on-tablets;
 }
 
+@mixin highligh-on-hover-and-focus {
+  &:hover, &:focus { background-color: $bg_light; }
+}
+
 // Generic elements
 body {
   @include background-image(

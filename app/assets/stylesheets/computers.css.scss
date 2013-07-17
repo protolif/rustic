@@ -57,12 +57,11 @@
     text-align: left;
     border: none;
     background: $bg_medium;
-    &:hover { background-color: $bg_light; }
+    @include highligh-on-hover-and-focus;
     // max-width: 120px;
     height: 26px;
     padding: 0 5px;
     margin: 0;
-    &:focus { background-color: $bg_light; }
   }
   // round the corners on text boxes
   input[type='text'], select { border-radius: 3px; }
