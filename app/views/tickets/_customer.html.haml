@@ -1,0 +1,11 @@
+%section.customer.clickable{ data: { id: customer.id, url: user_path(customer) } }
+  %i.icon-user
+  %b Customer:
+  = customer.fname
+  = customer.lname
+  - if customer.tel.present?
+    = number_to_phone customer.tel, delimiter: '.'
+  - if customer.tel.present? && customer.tel2.present?
+    = '|'
+  - if customer.tel2.present?
+    = number_to_phone customer.tel2, delimiter: '.'

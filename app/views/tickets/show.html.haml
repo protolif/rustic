@@ -1,12 +1,7 @@
 .ticket_show
   .column_left
-    %section.computer.clickable{ data: { id: @ticket.computer.id, url: computer_path(@ticket.computer) } }
-      %i.icon-laptop
-      %b Computer:
-      = @ticket.computer.make
-      = @ticket.computer.model
-      - if @ticket.computer.charger
-        w/charger
+    = render partial: 'customer', locals: { customer: @ticket.customer }
+    = render partial: 'computer', locals: { computer: @ticket.computer }
     %section.issue
       %i.icon-comments
       %b Complaint:
@@ -26,12 +21,6 @@
         by
         = @ticket.technician.fname
         = @ticket.technician.lname
-    %section.customer.clickable{ data: { id: @ticket.customer.id, url: user_path(@ticket.customer) } }
-      %i.icon-user
-      %b Customer:
-      = @ticket.customer.fname
-      = @ticket.customer.lname
-      = number_to_phone @ticket.customer.tel, delimiter: '.'
     %section.labor
       %i.icon-wrench
       %b Labor:

@@ -1,0 +1,7 @@
+%section.computer.clickable{ data: { id: computer.id, url: computer_path(computer) } }
+  %i.icon-laptop
+  %b Computer:
+  = computer.make
+  = computer.model
+  - if computer.charger
+    w/charger
