@@ -3,41 +3,82 @@
   .time { @include hide-on-phones; }
 }
 
-.computer {
-  margin: auto;// centers the table
-  .form_factor { min-width: 90px; }
-  .make { min-width: 80px; }
-  .model { min-width: 150px; }
-}
-
 .computer_tickets {
   margin: auto;// centers the table
   .issue { min-width: 120px;}
 }
 
-.editable {
-  td {
-    padding: 0;
-    &:hover { background-color: $bg_light; }
+.computer_edit {
+  // center the table
+  margin: auto;
+  // offset the td positioning for a more centered look
+  position: relative;
+  left: -63px;
+  th {
+    // the form's label should meet the input
+    text-align: right;
+    // label text's baseline should match input's text
+    line-height: 1;
+    // give the form some breathing room
+    padding-bottom: 10px;
   }
+  td {
+    // the form inputs' text should meet their labels
+    text-align: left;
+    // input borders should match cell border
+    padding: 0;
+    // hide the browser's default dropdown arrow
+    // creates sharp right corners on dropdown boxes
+    max-width: 120px;
+    overflow: hidden;
+    // rounding the div's corners to compensate
+    border-radius: 4px;// firefox doesn't like elipses
+    -webkit-border-radius: 3px/4px;// chrome/safari ok
+    // provide an anchor for the dropdown arrow
+    position: absolute;
+    // dropdown arrow
+    i {
+      position: absolute;
+      // move it to the right side of the dropdown
+      left: 100px;
+      // center it vertically
+      top: 2px;
+      // keep it in the foreground on hover
+      z-index: 2;
+    }
+  }
+  &, td, th { background-color: transparent; }
   input, select {
+    // fonts aren't inherited here, re-declaring
     font-family: $helvetica;
     font-size: 1em;
     font-weight: 200;
-    text-align: center;
+    // the form inputs' text should meet their labels
+    text-align: left;
     border: none;
-    background: transparent;
+    background: $bg_medium;
+    &:hover { background-color: $bg_light; }
+    // max-width: 120px;
     height: 26px;
     padding: 0 5px;
     margin: 0;
     &:focus { background-color: $bg_light; }
   }
+  // round the corners on text boxes
+  input[type='text'], select { border-radius: 3px; }
+  // remove the fancy bg image
+  select {
+    -webkit-appearance: none;
+    // Imperfect solution to minor browser inconsistencies:
+    // line the text up horizontally (Best in Safari & Firefox)
+    padding-left: 6px;
+    // and vertically (Best in Safari & Chrome)
+    padding-top: 2px;
+  }
 }
 
 .slider_container {
   &:hover {
-    // do not lighten the bgcolor
-    background-color: $bg_medium !important;
     // lighten the label instead
     label {
       @include background-image(linear-gradient(lighten(#fafafa, 20%) 0, lighten(#dedede, 20%) 40%, lighten(#b5b5b5, 20%) 100%));

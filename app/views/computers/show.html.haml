@@ -4,23 +4,33 @@
     = @computer.make
     = @computer.form_factor
   = form_for @computer, html: { class: 'submitless' } do |f|
-    %table.computer.editable
+    %table.computer_edit
       %tr
-        %th.make Make
-        %th.model Model
-        %th.serial Serial
-        %th.form_factor Size
-        %th Cord
-        %th Location
+        %th.make Make:
+        %td.make
+          = f.select :make, Computer::MAKES, { include_blank: true }
+          %i.icon-sort-down
       %tr
-        %td.make= f.select :make, Computer::MAKES, { include_blank: true }
+        %th.model Model:
         %td.model= f.text_field :model
+      %tr
+        %th.serial Serial:
         %td.serial= f.text_field :serial
-        %td.form_factor= f.select :form_factor, Computer::FF, { include_blank: true }
+      %tr
+        %th.form_factor Size:
+        %td.form_factor
+          = f.select :form_factor, Computer::FF, { include_blank: true }
+          %i.icon-sort-down
+      %tr
+        %th Cord:
         %td.slider_container
           .slider
             = f.check_box :charger
             %label{ for: 'computer_charger' }
-        %td= f.select :location, Computer::ZONES, { include_blank: true }
+      %tr
+        %th Location:
+        %td
+          = f.select :location, Computer::ZONES, { include_blank: true }
+          %i.icon-sort-down
     = f.submit 'Update', class: 'hidden'
   = render partial: 'tickets', locals: { computer: @computer }
