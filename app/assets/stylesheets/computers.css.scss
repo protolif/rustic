@@ -58,11 +58,12 @@
     border: none;
     background: $bg_medium;
     @include highligh-on-hover-and-focus;
-    // max-width: 120px;
     height: 26px;
     padding: 0 5px;
     margin: 0;
   }
+  // restrict text box size to fit its container
+  input[type='text'] { max-width: 120px; }
   // round the corners on text boxes
   input[type='text'], select { border-radius: 3px; }
   // remove the fancy bg image
