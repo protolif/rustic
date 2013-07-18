@@ -15,6 +15,14 @@
       background-color: transparent;
     }
   }
+  .status {
+    // necessary for the status select's absolute position
+    position: relative;
+    // used to hide the ugly firefox dropdown arrow
+    overflow: hidden;
+    // make it more obvious that this is clickable
+    &:hover { background-color: $bg_light; }
+  }
 }
 
 .column_left, .column_right {
@@ -53,4 +61,23 @@
   font-weight: 200;
   background-color: $bg_medium;
   @include highligh-on-hover-and-focus;
+}
+
+.status_select {
+  // make it take up the entire section
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 27px;
+  width: 110%;
+  // make it invisible
+  -webkit-appearance: none;
+  border: none;
+  background: transparent;
+  // color: transparent;
+  text-indent: 1000px;
+  // fonts aren't inherited here, re-declaring
+  font-family: $helvetica;
+  font-size: 1em;
+  font-weight: 200;
 }

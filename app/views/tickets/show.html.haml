@@ -13,16 +13,19 @@
           %b Notes:
         = f.text_area :notes, class: 'edit_notes'
     .column_right
+      - if @ticket.technician.present?
+        %section.technician
+          %i.icon-user-md
+          %b Technician:
+          = @ticket.technician.fname
+          = @ticket.technician.lname
       %section.status
         %i.icon-info-sign
         %b Status:
         = @ticket.status
         = time_ago_in_words @ticket.updated_at
         ago
-        - if @ticket.technician.present?
-          by
-          = @ticket.technician.fname
-          = @ticket.technician.lname
+        = f.select :status, Ticket::STATUSES, { include_blank: true }, class: 'status_select'
       %section.labor
         %i.icon-wrench
         %b Labor:
