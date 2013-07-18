@@ -21,6 +21,7 @@ gem 'money-rails', '~> 0.8.1'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
 gem 'uglifier', '>= 1.3.0'
-# gem 'turbolinks' is annoying
+gem 'turbolinks'
+gem 'jquery-turbolinks'
 gem 'therubyracer', platforms: :ruby
 gem 'jbuilder', '~> 1.2'
