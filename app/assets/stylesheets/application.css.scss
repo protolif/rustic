@@ -54,6 +54,12 @@ $mobile: new-breakpoint(max-width 480px 4);
   &:hover, &:focus { background-color: $bg_light; }
 }
 
+@mixin standard-fonts {
+  font-family: $helvetica;
+  font-size: 1em;
+  font-weight: 200;
+}
+
 // Generic elements
 body {
   @include background-image(
@@ -94,8 +100,7 @@ main {
 // Everything that's visible in the browser
 .web_view {
   @include outer-container;
-  font-family: $helvetica;
-  font-weight: 200;
+  @include standard-fonts;
 }
 
 // Contains the logo and the navigation menu
@@ -152,9 +157,7 @@ main {
   height: 34px;
   // border-radius: 5px;
   // background-color: $bg_light;
-  font-family: $helvetica;
-  font-size: 1em;
-  font-weight: 200;
+  @include standard-fonts;
   padding: 5px;
   margin: 0 0 20px 0;
   width: 265px;

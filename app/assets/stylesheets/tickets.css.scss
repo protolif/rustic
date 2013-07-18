@@ -56,9 +56,7 @@
   padding: 25px 5px 0 5px;
   clip: rect(20px 0 0 0);
   // fonts aren't inherited here, re-declaring
-  font-family: $helvetica;
-  font-size: 1em;
-  font-weight: 200;
+  @include standard-fonts;
   background-color: $bg_medium;
   @include highligh-on-hover-and-focus;
 }
@@ -74,10 +72,7 @@
   -webkit-appearance: none;
   border: none;
   background: transparent;
-  // color: transparent;
   text-indent: 1000px;
   // fonts aren't inherited here, re-declaring
-  font-family: $helvetica;
-  font-size: 1em;
-  font-weight: 200;
+  @include standard-fonts;
 }

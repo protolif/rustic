@@ -50,9 +50,7 @@
   &, td, th { background-color: transparent; }
   input, select {
     // fonts aren't inherited here, re-declaring
-    font-family: $helvetica;
-    font-size: 1em;
-    font-weight: 200;
+    @include standard-fonts;
     // the form inputs' text should meet their labels
     text-align: left;
     border: none;
