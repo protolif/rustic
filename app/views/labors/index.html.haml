@@ -1,0 +1,32 @@
+%h1.table_label
+  Labor Performed
+%table.ticket_labors
+  %tr
+    %th
+      %i.icon-wrench
+      Service
+    %th.notes
+      %i.icon-edit
+      Notes
+    %th
+      %i.icon-dollar
+      Price
+  - if @labors.any?
+    - @labors.each do |labor|
+      %tr
+        %td= labor.service
+        %td.notes= labor.notes
+        %td= labor.price
+  - else
+    %tr
+      %td Diagnose & Call
+      %td 
+      %td Free
+%br
+%nav.actions
+  = link_to ticket_path(@ticket), class: 'button button-flat button-pill' do
+    %i.icon-arrow-left
+    Go Back
+  = link_to '#', class: 'button button-flat button-pill' do
+    %i.icon-plus
+    Add Labor Charge

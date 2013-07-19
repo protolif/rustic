@@ -26,7 +26,7 @@
         = time_ago_in_words @ticket.updated_at
         ago
         = f.select :status, Ticket::STATUSES, { include_blank: true }, class: 'status_select'
-      %section.labor
+      %section.labor.clickable{ data: { url: ticket_labors_path(@ticket) } }
         %i.icon-wrench
         %b Labor:
         - if @ticket.labors.any?
