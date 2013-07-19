@@ -9,14 +9,16 @@
       %i.icon-edit
       Notes
     %th
-      %i.icon-dollar
-      Price
+      %i.icon-money
+      Cost
   - if @labors.any?
     - @labors.each do |labor|
-      %tr
-        %td= labor.service
-        %td.notes= labor.notes
-        %td= labor.price
+      = form_for [@ticket, labor], html: { class: 'submitless' } do |f|
+        %tr
+          %td.service= f.select :service, Labor::SERVICES, { include_blank: true }, class: 'service_select'
+          %td.notes= f.text_field :notes
+          %td= f.text_field :price, value: humanized_money_with_symbol(labor.price)
+        = f.submit :submit, class: 'hidden'
   - else
     %tr
       %td Diagnose & Call

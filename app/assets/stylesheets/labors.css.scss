@@ -1,7 +1,37 @@
 .ticket_labors {
-  margin: auto;// centers the table
-  .notes {
-    min-width: 150px;
+  // center the table
+  margin: auto;
+  // keep a reasonable size when notes are empty
+  .notes { min-width: 150px; }
+  td {
+    // make the form inputs the size of the cell
+    padding: 0;
+    // we'll get a bgcolor from the input
+    background: transparent;
+  }
+  // center the text of inputs but not select
+  input { text-align: center; }
+  input, select {
+    // redeclaring fonts
+    @include standard-fonts;
+    // give the text some breathing room
+    padding: 5px;
+    // make it take up the full cell
+    margin: 0;
+    border: none;
+    background: $bg_medium;
+    @include highligh-on-hover-and-focus;
+  }
+  select {
+    // remove the default browser background
+    -webkit-appearance: none;
+    // remove the rounded corners
+    border-radius: 0;
+    width: 160px;
+  }
+  .service {
+    max-width: 150px !important;
+    overflow: hidden;
   }
 }
 
