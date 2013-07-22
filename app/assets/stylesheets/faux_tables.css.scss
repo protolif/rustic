@@ -1,0 +1,28 @@
+.thead { display: table-header-group; }
+.tbody { display: table-row-group; }
+.tr    { display: table-row; }
+
+.table {
+  display: table;
+  border: 1px solid transparent;
+  background-color: $bg_medium;
+  // leave room for buttons
+  margin-bottom: 20px;
+}
+
+// (Former THs) need breathing room
+// TDs inputs & selects already have padding
+.thead .td { padding: 5px; }
+
+.td {
+  display: table-cell;
+  background-color: $bg_medium;
+  // "transparent" borders aren't drawn properly
+  border: 1px solid $nearly_transparent;
+  text-align: center;
+}
+
+// Rails' form_for inserts a classless div
+// When using the form as a table row,
+// it screws up the cell alignment.
+form.tr div:first-child { display: none !important; }

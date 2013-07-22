@@ -12,6 +12,7 @@ $mobile: new-breakpoint(max-width 480px 4);
 @import 'colors';
 @import 'buttons';
 @import 'slider';
+@import 'faux_tables';
 
 @mixin half-to-full-width-responsive {
   @include span-columns(6 of 12);

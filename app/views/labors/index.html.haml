@@ -1,34 +1,35 @@
 %h1.table_label
   Labor Performed
-%table.ticket_labors
-  %tr
-    %th
-      %i.icon-wrench
-      Service
-    %th.notes
-      %i.icon-edit
-      Notes
-    %th
-      %i.icon-money
-      Cost
-  - if @labors.any?
-    - @labors.each do |labor|
-      = form_for [@ticket, labor], html: { class: 'submitless' } do |f|
-        %tr
-          %td.service= f.select :service, Labor::SERVICES, { include_blank: true }, class: 'service_select'
-          %td.notes= f.text_field :notes
-          %td= f.text_field :price, value: humanized_money_with_symbol(labor.price)
-        = f.submit :submit, class: 'hidden'
-  - else
-    %tr
-      %td Diagnose & Call
-      %td 
-      %td Free
+.table.ticket_labors
+  .thead
+    .tr
+      .td.service_label
+        %i.icon-wrench
+        %b Service
+      .td.labor_notes_label
+        %i.icon-edit
+        %b Notes
+      .td.cost_label
+        %i.icon-money
+        %b Cost
+  .tbody
+    - if @labors.any?
+      - @labors.each do |labor|
+        = form_for [@ticket, labor], html: { class: 'tr submitless' } do |f|
+          .td.service= f.select :service, Labor::SERVICES, { include_blank: true }, class: 'service_select'
+          .td.notes= f.text_field :notes
+          .td= f.text_field :price, value: humanized_money_with_symbol(labor.price)
+          = f.submit :submit, class: 'hidden'
+    - else
+      .tr
+        .td Diagnose & Call
+        .td 
+        .td Free
 %br
 %nav.actions
   = link_to ticket_path(@ticket), class: 'button button-flat button-pill' do
     %i.icon-arrow-left
-    Go Back
+    Back To Ticket
   = link_to '#', class: 'button button-flat button-pill' do
     %i.icon-plus
     Add Labor Charge

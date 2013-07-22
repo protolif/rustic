@@ -1,16 +1,7 @@
 .ticket_labors {
   // center the table
   margin: auto;
-  // keep a reasonable size when notes are empty
-  .notes { min-width: 150px; }
-  td {
-    // make the form inputs the size of the cell
-    padding: 0;
-    // we'll get a bgcolor from the input
-    background: transparent;
-  }
-  // center the text of inputs but not select
-  input { text-align: center; }
+
   input, select {
     // redeclaring fonts
     @include standard-fonts;
@@ -19,7 +10,11 @@
     // make it take up the full cell
     margin: 0;
     border: none;
-    background: $bg_medium;
+    // Note: webkit doesn't honor text-align for select
+    text-align: center;
+    // Due to the way borders are drawn on faux tables,
+    // it's better to get the background from the table cell
+    background: transparent;
     @include highligh-on-hover-and-focus;
   }
   select {
@@ -27,13 +22,20 @@
     -webkit-appearance: none;
     // remove the rounded corners
     border-radius: 0;
-    width: 160px;
+    // needs to be long enough to overflow its div
+    // thus hiding the default select arrow in Firefox
+    width: 170px;
   }
   .service {
     max-width: 150px !important;
     overflow: hidden;
   }
+  // .table { margin: 0; }
 }
+
+.service_label { width: 152px; }
+.labor_notes_label { width: 100px; }
+.cost_label { width: 100px; }
 
 .actions {
   text-align: center;
