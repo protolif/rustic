@@ -30,6 +30,6 @@
   = link_to ticket_path(@ticket), class: 'button button-flat button-pill' do
     %i.icon-arrow-left
     Back To Ticket
-  = link_to '#', class: 'button button-flat button-pill' do
+  = link_to new_ticket_labor_path(@ticket), class: 'button button-flat button-pill' do
     %i.icon-plus
     Add Labor Charge

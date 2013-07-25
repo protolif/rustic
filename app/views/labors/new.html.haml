@@ -1,0 +1,14 @@
+.new_ticket_labor
+  %h1.table_label New Labor
+  = form_for [@ticket, @labor] do |f|
+    %table
+      %tr
+        %th Service:
+        %td= f.select :service, Labor::SERVICES, { include_blank: true }, class: 'service_select'
+      %tr
+        %th Notes:
+        %td= f.text_field :notes
+      %tr
+        %th Price:
+        %td= f.text_field :price, value: humanized_money_with_symbol(@labor.price)
+    = f.submit 'Submit'
