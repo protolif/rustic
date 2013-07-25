@@ -1,7 +1,7 @@
-.new_ticket_labor
+.derp
   %h1.table_label New Labor
   = form_for [@ticket, @labor] do |f|
-    %table
+    %table.new_ticket_labor
       %tr
         %th Service:
         %td= f.select :service, Labor::SERVICES, { include_blank: true }, class: 'service_select'
