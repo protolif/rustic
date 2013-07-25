@@ -22,9 +22,9 @@
           = f.submit :submit, class: 'hidden'
     - else
       .tr
-        .td Diagnose & Call
-        .td 
-        .td Free
+        .td.diagnose Diagnose & Call
+        .td.diagnose
+        .td.diagnose Free
 %br
 %nav.actions
   = link_to ticket_path(@ticket), class: 'button button-flat button-pill' do
