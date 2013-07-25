@@ -1,0 +1,66 @@
+.flat_form {
+  // center the table
+  margin: auto;
+  // offset the td positioning for a more centered look
+  position: relative;
+  left: -63px;
+  th {
+    // the form's label should meet the input
+    text-align: right;
+    // label text's baseline should match input's text
+    line-height: 1;
+    // give the form some breathing room
+    padding-bottom: 10px;
+  }
+  td {
+    // the form inputs' text should meet their labels
+    text-align: left;
+    // input borders should match cell border
+    padding: 0;
+    // hide the browser's default dropdown arrow
+    // creates sharp right corners on dropdown boxes
+    max-width: 120px;
+    overflow: hidden;
+    // rounding the div's corners to compensate
+    border-radius: 4px;// firefox doesn't like elipses
+    -webkit-border-radius: 3px/4px;// chrome/safari ok
+    // provide an anchor for the dropdown arrow
+    position: absolute;
+    // dropdown arrow
+    i {
+      position: absolute;
+      // move it to the right side of the dropdown
+      left: 100px;
+      // center it vertically
+      top: 2px;
+      // keep it in the foreground on hover
+      z-index: 2;
+    }
+  }
+  &, td, th { background-color: transparent; }
+  input, select {
+    // fonts aren't inherited here, re-declaring
+    @include standard-fonts;
+    // the form inputs' text should meet their labels
+    text-align: left;
+    border: none;
+    background: $bg_medium;
+    @include highligh-on-hover-and-focus;
+    height: 26px;
+    padding: 0 5px;
+    margin: 0;
+  }
+  // restrict text box size to fit its container
+  input[type='text'] { max-width: 120px; }
+  // round the corners on text boxes
+  input[type='text'], select { border-radius: 3px; }
+  // remove the fancy bg image
+  select {
+    -webkit-appearance: none;
+    // Imperfect solution to minor browser inconsistencies:
+    // line the text up horizontally (Best in Safari & Firefox)
+    padding-left: 6px;
+    // and vertically (Best in Safari & Chrome)
+    padding-top: 2px;
+  }
+}

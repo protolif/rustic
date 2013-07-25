@@ -1,0 +1,36 @@
+@mixin half-to-full-width-responsive {
+  @include span-columns(6 of 12);
+  @include media($tablet) {
+    @include span-columns(8);
+    text-align: center;
+  }
+  @include media($mobile) {
+    @include span-columns(4);
+    text-align: center;
+  }
+}
+
+@mixin full-width-responsive {
+  @include span-columns(12 of 12);
+  @include media($tablet) {
+    @include span-columns(8);
+    overflow: hidden;
+  }
+  @include media($mobile) {
+    @include span-columns(4);
+    overflow: hidden;
+  }
+}
+
+@mixin hide-on-tablets {
+  @include media($tablet) { display: none; }
+}
+
+@mixin hide-on-phones {
+  @include media($mobile) { display: none; }
+}
+
+@mixin hide-on-mobile-devices {
+  @include hide-on-phones;
+  @include hide-on-tablets;
+}

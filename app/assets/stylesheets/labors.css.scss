@@ -1,3 +1,7 @@
+.new_ticket_labor {
+  @extend .flat_form;
+}
+
 .ticket_labors {
   // center the table
   margin: auto;

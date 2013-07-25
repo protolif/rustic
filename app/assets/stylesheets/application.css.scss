@@ -9,47 +9,11 @@
 $tablet: new-breakpoint(max-width 768px 8);
 $mobile: new-breakpoint(max-width 480px 4);
 @import 'neat';
+@import 'responsive';
 @import 'colors';
 @import 'buttons';
 @import 'slider';
 @import 'faux_tables';
-
-@mixin half-to-full-width-responsive {
-  @include span-columns(6 of 12);
-  @include media($tablet) {
-    @include span-columns(8);
-    text-align: center;
-  }
-  @include media($mobile) {
-    @include span-columns(4);
-    text-align: center;
-  }
-}
-
-@mixin full-width-responsive {
-  @include span-columns(12 of 12);
-  @include media($tablet) {
-    @include span-columns(8);
-    overflow: hidden;
-  }
-  @include media($mobile) {
-    @include span-columns(4);
-    overflow: hidden;
-  }
-}
-
-@mixin hide-on-tablets {
-  @include media($tablet) { display: none; }
-}
-
-@mixin hide-on-phones {
-  @include media($mobile) { display: none; }
-}
-
-@mixin hide-on-mobile-devices {
-  @include hide-on-phones;
-  @include hide-on-tablets;
-}
 
 @mixin highligh-on-hover-and-focus {
   &:hover, &:focus { background-color: $bg_light; }
@@ -60,6 +24,8 @@ $mobile: new-breakpoint(max-width 480px 4);
   font-size: 1em;
   font-weight: 200;
 }
+
+@import 'forms';
 
 // Generic elements
 body {
